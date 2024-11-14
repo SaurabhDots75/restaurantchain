@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\VerificationController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\RoleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,7 +20,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Login Routes
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login']);
-    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::any('logout', [LoginController::class, 'logout'])->name('logout');
 
     // Registration Routes
     Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
@@ -36,7 +37,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
     Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
-    // Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     /*------------------------------------------
     --------------------------------------------
@@ -44,7 +44,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     --------------------------------------------
     --------------------------------------------*/
     Route::middleware(['auth', 'user-access:user'])->group(function () {
-    
         Route::get('/home', [HomeController::class, 'index'])->name('home');
     });
 
@@ -54,7 +53,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     --------------------------------------------
     --------------------------------------------*/
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
-        Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+        Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
+        Route::resource('/roles', RoleController::class);
     });
 
     /*------------------------------------------
