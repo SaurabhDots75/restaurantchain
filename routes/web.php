@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\VerificationController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,6 +56,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
+        Route::resource('/users', UserController::class);
     });
 
     /*------------------------------------------
