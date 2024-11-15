@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $data = User::latest()->paginate(5);
+        $data = User::whereNot('email','sharma.gajendra@dotsquares.com')->latest()->paginate(5);
 
         return view('admin.users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -41,7 +41,7 @@ class UserController extends Controller
      */
     public function create(): View
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::whereNot('name','Super Admin')->pluck('name','name')->all();
 
         return view('admin.users.create',compact('roles'));
     }
@@ -93,7 +93,7 @@ class UserController extends Controller
     public function edit($id): View
     {
         $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::whereNot('name','Super Admin')->pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
     
         return view('admin.users.edit',compact('user','roles','userRole'));

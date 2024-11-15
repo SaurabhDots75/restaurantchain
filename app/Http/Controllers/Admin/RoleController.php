@@ -32,7 +32,7 @@ class RoleController extends Controller
      */
     public function index(Request $request): View
     {
-        $roles = Role::latest()->paginate(5);
+        $roles = Role::whereNot('name','Super Admin')->paginate(5);
         return view('admin.roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
