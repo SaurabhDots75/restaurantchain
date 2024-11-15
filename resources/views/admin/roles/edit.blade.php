@@ -1,62 +1,55 @@
 @extends('admin.layouts.app')
- 
+
 @section('content')
-  
-<div class="card mt-5">
-  <h2 class="card-header">Edit Role</h2>
-  <div class="card-body">
-  
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-primary btn-sm" href="{{ route('admin.roles.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <div class="pull-left">
+            <h2>Edit Role</h2>
+        </div>
+        <div class="pull-right">
+            <a class="btn btn-primary btn-sm mb-2" href="{{ route('admin.roles.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
+        </div>
     </div>
-  
-    <form action="{{ route('admin.roles.update',$role->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-  
-        <div class="mb-3">
-            <label for="inputName" class="form-label"><strong>Name:</strong></label>
-            <input
-                type="text"
-                name="name"
-                value="{{ $role->name }}"
-                class="form-control @error('name') is-invalid @enderror"
-                id="inputName"
-                placeholder="Name">
-            @error('name')
-                <div class="form-text text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="inputSlug" class="form-label"><strong>Slug:</strong></label>
-            <input
-                type="text"
-                name="slug"
-                value="{{ $role->slug }}"
-                class="form-control @error('slug') is-invalid @enderror"
-                id="inputSlug"
-                placeholder="Slug">
-            @error('slug')
-                <div class="form-text text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="inputType" class="form-label"><strong>Type:</strong></label>
-            <input
-                type="text"
-                name="type"
-                value="{{ $role->type }}"
-                class="form-control @error('type') is-invalid @enderror"
-                id="inputType"
-                placeholder="Type">
-            @error('type')
-                <div class="form-text text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Update</button>
-    </form>
-  
-  </div>
 </div>
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        </ul>
+    </div>
+@endif
+
+<form method="POST" action="{{ route('admin.roles.update', $role->id) }}">
+    @csrf
+    @method('PUT')
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Name:</strong>
+                <input type="text" name="name" placeholder="Name" class="form-control" value="{{ $role->name }}">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Permission:</strong>
+                <br/>
+                @foreach($permission as $value)
+                    <label><input type="checkbox" name="permission[{{$value->id}}]" value="{{$value->id}}" class="name" {{ in_array($value->id, $rolePermissions) ? 'checked' : ''}}>
+                    {{ $value->name }}</label>
+                <br/>
+                @endforeach
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-primary btn-sm mb-3"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+        </div>
+    </div>
+</form>
+
 
 @endsection

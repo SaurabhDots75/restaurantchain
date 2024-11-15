@@ -51,11 +51,11 @@
                     </nav>
                 </div> -->
                 <div class="sb-sidenav-menu-heading">Masters</div>
-                <a class="nav-link" href="{{url('/admin/roles')}}">
+                <a class="nav-link" href="{{ route('admin.roles.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Roles
                 </a>
-                <a class="nav-link" href="{{url('/admin/users')}}">
+                <a class="nav-link" href="{{ route('admin.users.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Users
                 </a>
