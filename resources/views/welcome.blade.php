@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>printit4less</title>
+	<title>Printit4Less</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/front/images/image_2024_11_18T06_22_47_583Z.png')}}">
     <link rel='stylesheet' href='css/bootstrap.min.css' />
     <link rel='stylesheet' href='css/owl.carousel.min.css' />
     <link rel='stylesheet' href='css/style.css' media='' />

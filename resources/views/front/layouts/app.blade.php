@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>printit4less</title>
+    <link rel="apple-touch-icon" href="{{asset('/front/images/image_2024_11_18T06_22_47_583Z.png')}}">
     <link rel='stylesheet' href="{{asset('/front/css/bootstrap.min.css')}}" />
     <link rel='stylesheet' href="{{asset('/front/css/owl.carousel.min.css')}}" />
     <link rel='stylesheet' href="{{asset('/front/css/style.css')}}" media='' />
@@ -32,7 +33,7 @@
                 </div>
 
                 <div class="head-right-box">
-                    <a href="#"><img class="head-icon" src="{{asset('')}}front/images/shop-user.png" data-src="" alt=""><strong>My Account</strong></a>
+                    <a href="{{asset('/admin/login')}}"><img class="head-icon" src="{{asset('')}}front/images/shop-user.png" data-src="" alt=""><strong>My Account</strong></a>
                 </div>
 
                 <div class="head-right-box">
