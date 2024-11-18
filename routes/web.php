@@ -13,7 +13,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.index');
 });
 
 
