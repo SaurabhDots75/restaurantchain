@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\Auth\VerificationController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SettingController;
 
 Route::get('/', function () {
     return view('front.index');
@@ -58,6 +58,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
         Route::resource('/users', UserController::class);
+        Route::resource('/setting', SettingController::class);
     });
 
     /*------------------------------------------
