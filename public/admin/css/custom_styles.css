@@ -48,8 +48,16 @@ body{font-family: 'Montserrat'; background: #f6f7fb;;}
 h2{font-size: 30px;margin-bottom: 0;font-weight: bold;}
 h3{font-size: 20px;margin-bottom: 0;font-weight: bold;}
 h4{ font-size: 16px;}
-.view-btn {background: #0d51aa;padding: 10px 30px;font-size: 16px;text-align: center;color: #fff;border: none;border-radius: 5px; text-decoration: none;}
+.view-btn {background: #0d51aa;padding: 10px 30px;font-size: 16px;text-align: center;color: #fff;border: none;border-radius: 5px; text-decoration: none;transition: all 0.2s ease;border: 1px solid transparent;}
+.view-btn:hover {background: rgb(13 81 170 / 20%);border: 1px solid #0d51aa;transition: all 0.2s ease; color: #0d51aa;}
 .btn-success{background: #0d51aa;}
+
+#layoutSidenav_nav .sb-sidenav .sb-sidenav-menu .sb-sidenav-menu-heading {color: #ffffff;font-size: 14px;}
+#layoutSidenav_nav .sb-sidenav .sb-sidenav-menu a.nav-link {color: #fff;}
+#layoutSidenav_nav .sb-sidenav .sb-sidenav-menu a.nav-link .sb-nav-link-icon svg {color: #fff; height: 1.2em;}
+
+.dashboard-panel .alert.alert-danger br {display: none;}
+.dashboard-panel .alert.alert-danger ul {padding: 0 0 0 19px;margin: 0;}
 .dashboard-panel {padding: 30px 30px;background: #f6f7fb;}
 .dashboard-panel .pull-right {float: right; margin-bottom: 20px;}
 .dashboard-report-sec {display: flex;justify-content: space-between;}
@@ -151,7 +159,8 @@ table.table button.btn.btn-danger{ width: 30px; height: 30px; background: #ff000
 /*create new roll css*/
 .create-roll form input.form-control {border: 1px solid #e2e2e2;border-radius: 4px;margin: 0 0 20px;}
 .createroll-checkbox {display: grid;grid-template-columns: repeat(5, 1fr);align-items: center;gap: 7px;margin-top: 15px;}
-.createroll-checkbox label {width: 100%;background: #dceaff;padding: 8px 15px;border-radius: 7px;display: flex;align-items: center;text-transform: capitalize;color: #000;font-weight: 500;}
+.createroll-checkbox label {width: 100%;background: #dceaff;padding: 8px 15px;border-radius: 7px;display: flex;align-items: center;text-transform: capitalize;
+color: #000;font-weight: 500; font-size: 15px;}
 .createroll-checkbox label input {margin: 0 8px 0 0;width: 20px;height: 20px;}
 .create-roll button.view-btn {float: left;margin-top: 30px;}
 /*create new roll end*/
@@ -161,8 +170,18 @@ table.table button.btn.btn-danger{ width: 30px; height: 30px; background: #ff000
 .show-role .form-group label {width: auto;background: #dceaff;padding: 8px 15px;border-radius: 7px;text-transform: capitalize;color: #000;font-weight: 500;}
 .show-role .role-name {display: flex;margin: 0 0 24px;}
 .show-role .role-name span {color: #000;font-weight: bold;margin: 0 0 0 10px;}
-
 /*show roll css end*/
+
+/*edit user css*/
+.edituserform {margin-top: 20px;}
+.edit-rolecheckbox .form-group h3 {margin-top: 20px;}
+.edituserform form .edituserform-row {display: grid;grid-template-columns: repeat(2, 1fr);gap: 15px;}
+.edituserform form .edituserform-row .form-group {width: 100%;margin:0 0 10px;}
+.edituserform form .edituserform-row .form-group input.form-control {width: 100%;border: 1px solid #e8edff;padding: 10px 15px;}
+.edituserform .btnsubmit {width: 100%;float: left;vertical-align: bottom;}
+.showuser {margin-top: 24px;background: #fff;padding: 20px;border: 1px solid #e2e2e2;border-radius: 4px;}
+.edit-rolecheckbox button.view-btn {margin-top: 30px;}
+/*edit user css end*/
 
 
 @media(max-width:1800px){
@@ -175,7 +194,9 @@ table.table button.btn.btn-danger{ width: 30px; height: 30px; background: #ff000
 .dashboard-salesreport .card h3 { font-size: 1vw;}
 .dashboard-salesreport .card .amount { font-size: 1.4vw;}
 .pie-chart {position: relative;width: 170px;height: 170px;}
-.product-list .table-responsive table {width: 1000px;}
+
+.product-list .card .table-responsive {overflow: scroll;}
+.product-list .table-responsive table {width: 1000px;overflow: hidden;}
 .table-responsive, .datatable-wrapper .datatable-container { overflow-x: visible;}
 }
 
@@ -184,6 +205,8 @@ table.table button.btn.btn-danger{ width: 30px; height: 30px; background: #ff000
 .dashboard-salesreport .card .mini-bar-chart{gap: 5px;}
 .pie-chart {position: relative;width: 140px;height: 140px;}
 .dashboard-salesreport .card .info {font-size: 0.6rem;}
+.createroll-checkbox {display: grid;grid-template-columns: repeat(4, 1fr);}
+.latest-sale-product .latest-sale-left .amount-date h4{ font-size: 14px;}
 }
 
 @media(max-width:1199px){
@@ -194,8 +217,8 @@ table.table button.btn.btn-danger{ width: 30px; height: 30px; background: #ff000
 .sales-report{ padding: 10px;}
 .sales-report .last-sales-report h3 {font-size: 1.2vw;}
 
-.createroll-checkbox {display: grid;grid-template-columns: repeat(4, 1fr);}
 .createroll-checkbox label{ font-size: 15px;}
+.dashboard-panel .col-md-4 {width: 100%;}
 }
 
 @media(max-width:991px){
@@ -205,6 +228,7 @@ table.table button.btn.btn-danger{ width: 30px; height: 30px; background: #ff000
 }
 
 @media(max-width:767px){
+.dashboard-panel {padding: 20px 20px;}
 .dashboard-report-sec{ display: block;}
 .dashboard-salesreport{ width: 100%;}
 
@@ -212,13 +236,14 @@ table.table button.btn.btn-danger{ width: 30px; height: 30px; background: #ff000
 .sales-report .last-sales-report h3 {font-size: 2vw;}
 .pie-chart {position: relative;width: 160px;height: 160px;}
 .dashboard-salesreport .card .amount {font-size: 18px;}
-.product-list .card {overflow: scroll;}
-.product-list .table-responsive table {width: 1000px;overflow: hidden;}
 
 .createroll-checkbox {display: grid;grid-template-columns: repeat(2, 1fr);}
 
-.management-tableroll {width: 100%;overflow: scroll;display: block;}
-.management-tableroll table.management-table {width: 900px;}
+.tablescroll-tableroll {width: 100%;overflow: scroll;display: block;}
+.tablescroll-tableroll table.management-table {width: 900px;}
+.show-role {margin: 10px 0 0;display: inline-block;}
+.show-role .form-group strong{ display: block; margin-bottom: 20px;}
+.show-role .form-group label{ margin-bottom: 10px;}
 }
 
 @media(max-width:575px){
@@ -236,4 +261,7 @@ table.table button.btn.btn-danger{ width: 30px; height: 30px; background: #ff000
 .product-list .card .card-footer .col-sm-auto ul.pagination {padding: 18px 0 0;}
 
 .createroll-checkbox {display: grid;grid-template-columns: repeat(1, 1fr);}
+.edituserform form .edituserform-row { grid-template-columns: repeat(1, 1fr);}
+.edituserform form .edituserform-row .form-group{ margin-bottom: 5px;}
+.showuser .emailusername {word-wrap: break-word;font-size: 15px;}
 }
