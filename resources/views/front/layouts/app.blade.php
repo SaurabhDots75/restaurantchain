@@ -32,9 +32,23 @@
                     <a href="#"><img class="head-icon" src="{{asset('')}}front/images/contact-us.png" data-src="" alt=""><strong>Contact us</strong></a>
                 </div>
 
-                <div class="head-right-box">
-                    <a href="{{asset('/admin/login')}}"><img class="head-icon" src="{{asset('')}}front/images/shop-user.png" data-src="" alt=""><strong>My Account</strong></a>
-                </div>
+                @auth
+                    <div class="head-right-box">
+                        <a href="{{ route('admin.home') }}">
+                            <img class="head-icon" src="{{ asset('front/images/shop-user.png') }}" alt="My Account">
+                            <strong>My Account</strong>
+                        </a>
+                    </div>
+                @endauth
+
+                @guest
+                    <div class="head-right-box">
+                        <a href="{{ route('admin.login') }}">
+                            <img class="head-icon" src="{{ asset('front/images/shop-user.png') }}" alt="Login">
+                            <strong>Login</strong>
+                        </a>
+                    </div>
+                @endguest
 
                 <div class="head-right-box">
                     <a href="#"><img class="head-icon" src="{{asset('')}}front/images/cart.png" data-src="" alt=""><strong>Basket</strong></a>

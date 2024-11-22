@@ -32,7 +32,7 @@ class RoleController extends Controller
      */
     public function index(Request $request): View
     {
-        $roles = Role::whereNot('name','Super Admin')->paginate(5);
+        $roles = Role::whereNotIn('name', ['Super Admin', 'Admin'])->paginate(5);
         return view('admin.roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -141,8 +141,13 @@ class RoleController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        DB::table("roles")->where('id',$id)->delete();
+        $getRoleUserCount = DB::table("model_has_roles")->where('role_id',$id)->count();
+        if(isset($getRoleUserCount) && $getRoleUserCount == 0) {
+            Role::where('id',$id)->delete();
+            return redirect()->route('admin.roles.index')
+                            ->with('success','Role deleted successfully');
+        }
         return redirect()->route('admin.roles.index')
-                        ->with('success','Role deleted successfully');
+                        ->with('success','The role is currently assigned to a user and cannot be deleted.');
     }
 }
