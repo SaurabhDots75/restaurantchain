@@ -21,7 +21,7 @@
             {{ $value }}
         </div>
         @endsession
-        <div class="management-tableroll">
+        <div class="tablescroll-tableroll">
             <table class="management-table table table-bordered">
                 <tr>
                     <th width="100px">No</th>

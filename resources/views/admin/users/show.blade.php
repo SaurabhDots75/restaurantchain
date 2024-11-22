@@ -1,14 +1,10 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="card mt-5">
-    <h2 class="card-header">Show User</h2>
-    <div class="card-body">
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary btn-sm" href="{{ route('admin.users.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
-        </div>
-
+<div class="dashboard-panel">
+<h2 class="card-header">Show User</h2>
+<a class="view-btn" href="{{ route('admin.users.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
+<div class="showuser">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
@@ -18,8 +14,8 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                 <div class="form-group">
-                    <strong>Email:</strong> <br />
-                    {{ $user->email }}
+                    <strong>Email:</strong> 
+                    <span class="emailusername">{{ $user->email }}</span>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
@@ -33,6 +29,6 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 </div>
     @endsection

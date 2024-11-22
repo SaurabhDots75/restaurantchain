@@ -20,6 +20,7 @@
         {{ $value }}
     </div>
     @endsession
+    <div class="tablescroll-tableroll">
     <table class="management-table table table-bordered">
         <tr>
             <th>No</th>
@@ -58,7 +59,7 @@
         </tr>
         @endforeach
     </table>
-
+</div>
 </div>
 {!! $data->links('pagination::bootstrap-5') !!}
 
