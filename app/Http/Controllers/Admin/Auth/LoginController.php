@@ -45,7 +45,7 @@ class LoginController extends Controller
      * @return RedirectResponse
      */
     public function login(Request $request): RedirectResponse
-    {   
+    {
         $input = $request->all();
      
         $this->validate($request, [
@@ -57,14 +57,23 @@ class LoginController extends Controller
         {
             if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.home');
-            }else if (auth()->user()->type == 'manager') {
+            } elseif (auth()->user()->type == 'manager') {
                 return redirect()->route('admin.manager.home');
             }else{
                 return redirect()->route('admin.home');
             }
         }else{
             return redirect()->route('admin.login')
-                ->with('error','Email-Address And Password Are Wrong.');
-        } 
+                 ->with('error', 'The email address or password you entered is incorrect.');
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        // Invalidate the session and regenerate the CSRF token
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/admin/login'); // Change '/admin/login' to your desired path
     }
 }
