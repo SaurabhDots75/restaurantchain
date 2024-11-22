@@ -49,7 +49,7 @@
             </div>
             <div class="form-group">
                 <strong>Role:</strong>
-                <select name="roles[]" class="form-control" multiple="multiple">
+                <select name="roles[]" class="form-control" id="multiple" multiple="multiple">
                     @foreach ($roles as $value => $label)
                         <option value="{{ $value }}" {{ isset($userRole[$value]) ? 'selected' : ''}}>
                             {{ $label }}
@@ -64,6 +64,12 @@
 </form>
 </div>
 </div>
-
-
+@endsection
+@section('custom_js_scripts')
+<script>
+      $("#multiple").select2({
+          placeholder: "Select Role",
+          allowClear: true
+      });
+</script>
 @endsection

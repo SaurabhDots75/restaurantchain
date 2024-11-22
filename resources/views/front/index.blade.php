@@ -341,10 +341,8 @@
                     <div class="review-section">
                         <div class="rating-section">
                             <h3>Our Customer Love Us</h3>
-                            <div class="bottom-review">
                                 <p>See all 32057 reviews at <a href="#" class="shopperlink new-sa-seals placement-default">
-                                        <a href=""><img class=" ls-is-cached lazyloaded" src="" data-src="" alt="" oncontextmenu=""></a></p>
-                            </div>
+                                <a href=""><img class=" ls-is-cached lazyloaded" src="" data-src="" alt="" oncontextmenu=""></a></p>
                         </div>
                         <div class="contain">
                             <div id="owl-carousel" class="owl-carousel owl-theme">
