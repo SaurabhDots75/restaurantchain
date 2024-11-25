@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>printit4less</title>
-    <link rel="apple-touch-icon" href="{{asset('/front/images/image_2024_11_18T06_22_47_583Z.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.printit4less.com/wp-content/themes/PrintIt4Less/favicon-32x32.png">
     <link rel='stylesheet' href="{{asset('/front/css/bootstrap.min.css')}}" />
     <link rel='stylesheet' href="{{asset('/front/css/owl.carousel.min.css')}}" />
     <link rel='stylesheet' href="{{asset('/front/css/style.css')}}" media='' />
