@@ -55,7 +55,7 @@
                         <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" style="display:inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('You want to delete?');" @if($user->id === auth()->id()) disabled @endif><i class="fa-solid fa-trash-can"></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Confirm deletion?');"><i class="fa-solid fa-trash-can"></i></button>
                         </form>
                         @endcan
                     @endif
