@@ -48,13 +48,16 @@
                 <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit',$user->id) }}"><i
                         class="fa-solid fa-pen-to-square"></i></a>
                 @endcan
-                @can('user-delete')
-                <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" style="display:inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
-                </form>
-                @endcan
+                
+                @if(isset($user->email) && $user->email != 'info@printit4less.com')
+                    @can('user-delete')
+                    <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                    @endcan
+                @endif
             </td>
         </tr>
         @endforeach

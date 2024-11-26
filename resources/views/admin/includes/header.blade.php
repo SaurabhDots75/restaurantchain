@@ -63,7 +63,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            {{auth()->user()->name}}
+            {{auth()->user()->name}} as {{implode(', ',auth()->user()->getRoleNames()->toArray()) }}
         </div>
     </nav>
 </div>
