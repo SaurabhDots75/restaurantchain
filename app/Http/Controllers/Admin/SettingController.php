@@ -29,79 +29,81 @@ class SettingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
-    {
-        $setting = Setting::first();
-        return view('admin.setting.index',compact('setting'));
-    }
+    public function index()
+	{
+		$settingData = Setting::get();
+		return view('admin.settings.index', compact('settingData'));
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(SettingRequest $request): RedirectResponse
-    {
+    public function update(Request $request)
+	{
+		$request->request->remove('_token'); // to remove property from $request
+		$input = $request->all();
         
-        // if ($image = $request->file('logo_url')) {
-        //     $logoImage = date('YmdHis'). rand() . "." . $image->getClientOriginalExtension();
-        //     $request->image->storeAs('images', $logoImage);
-        //     $input['image'] = "$logoImage";
-        // }
-        // if ($image = $request->file('favicon_url')) {
-        //     $faviconImage = date('YmdHis'). rand() . "." . $image->getClientOriginalExtension();
-        //     $request->image->storeAs('images', $faviconImage);
-        //     $input['image'] = "$faviconImage";
-        // }
+		foreach ($input as $key => $value) {
+			if ($key == 'logo') {
+				if ($request->hasFile('logo')) {
+					$image = '';
+					$uploadpath = public_path().'/images/logo';
+					$request->file('logo')->getClientOriginalName();
+					if (!empty($request->file('logo'))) {
+						$image_prefix = 'logo_' . rand(0, 999999999) . '_' . date('d_m_Y_h_i_s');
+						$ext = $request->file('logo')->getClientOriginalExtension();
+						$image = $image_prefix . '.' . $ext;
+						$request->file('logo')->move($uploadpath, $image);
+					}
+					$value = $image;
+				} else {
+					$value = $request->image_bk;
+				}
+			}
+           
+            Setting::updateOrCreate(['option_name' => $key], [
+                'option_name' => $key,
+                'option_value' => $value,
+            ]);
+            // echo "asds<pre>";
+            // print_r($request->all());
+            // die;
+		}
+		return back()->withInput(array('msg' => 'Setting Updated Successfully'));
+	}
 
-        Setting::create($request->validated());
-        return redirect()->route('admin.setting.index')->with('success','Settings Modified successfully.');
-    }
+    public function headerSetting()
+	{
+		$settingData = Setting::get();
+		return view('admin.settings.headerSetting', compact('settingData'));
+	}
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    public function headerSettingUpdate(Request $request)
+	{
+		$request->request->remove('_token'); // to remove property from $request
+		$input = $request->all();
+		foreach ($input as $key => $value) {
+			Setting::updateOrCreate(['option_name' => $key], [
+                'option_name' => $key,
+                'option_value' => $value,
+            ]);
+		}
+		return back()->withInput(array('msg' => 'Setting Updated Successfully'));
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function footerSetting()
+	{
+		$settingData = Setting::get();
+		return view('admin.settings.footerSetting', compact('settingData'));
+	}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        $setting = Setting::find($id);
-        $request->validate([
-            'title' => 'required',
-            'email' => 'required',
-            'phone' => 'required'
-        ]);
-        $input = $request->all();
-        $setting->update($input);
-        return redirect()->route('admin.setting.index')
-                        ->with('success','Product updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+	public function footerSettingUpdate(Request $request)
+	{
+		$request->request->remove('_token'); // to remove property from $request
+		$input = $request->all();
+		foreach ($input as $key => $value) {
+			Setting::updateOrCreate(['option_name' => $key], [
+                'option_name' => $key,
+                'option_value' => $value,
+            ]);
+		}
+		return back()->withInput(array('msg' => 'Setting Updated Successfully'));
+	}
 }
