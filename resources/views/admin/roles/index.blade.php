@@ -52,7 +52,7 @@
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger btn-sm"><i
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Confirm deletion?');"><i
                                     class="fa-solid fa-trash-can"></i></button>
                         </form>
                         @endcan

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\MenuController;
 
 Route::get('/', function () {
     return view('front.index');
@@ -64,7 +65,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
         Route::resource('/users', UserController::class);
-        Route::resource('/setting', SettingController::class);
+        // Settings Route
+		Route::get('/settings', [SettingController::class,'index'])->name('settings');
+		Route::post('/settings-update', [SettingController::class,'update']);
+        // Header Settings Route
+		Route::get('/header-settings', [SettingController::class,'headerSetting'])->name('header-settings');
+		Route::post('/header-settings-update', [SettingController::class,'footerSettingUpdate']);
+		// Footer Settings Route
+		Route::get('/footer-settings', [SettingController::class,'footerSetting'])->name('footer-settings');
+		Route::post('/footer-settings-update', [SettingController::class,'footerSettingUpdate']);
+
+        //Appreance > Menus Routes
+		Route::get('/menus', [MenuController::class,'index'])->name('menus');
+		Route::post('/menus/save', [MenuController::class,'save']);
     });
 
     /*------------------------------------------

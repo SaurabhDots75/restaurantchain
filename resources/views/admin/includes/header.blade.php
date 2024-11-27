@@ -5,8 +5,9 @@
                 <img src="https://demo.w3cms.in/lemars/public/images/no-user.png" alt="User profile">
                 <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
             </div>
-            <h5 class="name"><span class="font-w400">Hello,</span> Admin </h5>
-            <p class="email">admin@gmail.com</p>
+            <h5 class="name"><span class="font-w400">Hello,</span> {{auth()->user()->name}} </h5>
+            <p class="role">{{implode(', ',auth()->user()->getRoleNames()->toArray()) }}</p>
+            <p class="email">{{auth()->user()->email}}</p>
     </div>
         <div class="sb-sidenav-menu">
             <div class="nav">
@@ -15,19 +16,21 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <!-- <div class="sb-sidenav-menu-heading">Interface</div>
+                <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Layouts
+                    Settings
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                        <a class="nav-link" href="{{ route('admin.settings') }}">Basic Website Setting</a>
+                        <a class="nav-link" href="{{ route('admin.header-settings') }}">Header Setting</a>
+                        <a class="nav-link" href="{{ route('admin.footer-settings') }}">Footer Setting</a>
+                        <a class="nav-link" href="{{ route('admin.menus') }}">Menu</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Pages
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
