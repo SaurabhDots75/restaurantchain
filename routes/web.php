@@ -12,6 +12,11 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\PostCategoryController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\FaqCategoryController;
+use App\Http\Controllers\Admin\FaqController;
 
 Route::get('/', function () {
     return view('front.index');
@@ -59,6 +64,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
         Route::resource('/users', UserController::class);
+        Route::resource('/posts', PostController::class);
+        Route::resource('/pages', PageController::class);
+        Route::resource('/faqcategories', FaqCategoryController::class);
+        Route::resource('/faqs', FaqController::class);
+        
         // Settings Route
 		Route::get('/settings', [SettingController::class,'index'])->name('settings');
 		Route::post('/settings-update', [SettingController::class,'update']);
@@ -72,6 +82,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         //Appreance > Menus Routes
 		Route::get('/menus', [MenuController::class,'index'])->name('menus');
 		Route::post('/menus/save', [MenuController::class,'save']);
+
+        // Post Category Routes
+		Route::get('/posts-categories',[PostCategoryController::class,'index'])->name('postcategories');
+		Route::get('/posts-categories/create/{catslug?}',[PostCategoryController::class,'createForm'])->name('create');
+		Route::post('/posts-categories/add',[PostCategoryController::class,'add'])->name('add');
+		Route::post('/get-postcategories',[PostCategoryController::class,'getPostCategory'])->name('get-postcategories');
+		Route::post('/change-postcategories',[PostCategoryController::class,'status']);
+		Route::post('/delete-postcategories',[PostCategoryController::class,'delete']);
     });
 
     /*------------------------------------------
