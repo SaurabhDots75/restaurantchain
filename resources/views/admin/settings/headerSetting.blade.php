@@ -2,6 +2,8 @@
 
 @section('content')
 @inject('settings', 'App\Models\Setting')
+<div class="dashboard-panel">
+<div class="role-management">
 <div id="content-wrapper">
    <div class="container-fluid">
       @if(session()->has('alert-danger'))
@@ -15,11 +17,11 @@
       </div>
       @endif
       <!-- DataTables Example -->
-      <div class="card mb-3">
-         <div class="card-header">
-            <i class="fas fa-table"></i> Settings
-         </div>
+      <div class="pull-left">
+                    <h2>Settings</h2>
+       </div>
          <div class="card-body">
+            <div class="form-setting">
             <form action="{{ url('admin/settings-update') }}" enctype="multipart/form-data" method="post">
                @csrf
                <div class="row">
@@ -45,11 +47,7 @@
                            </div>
                         </div>
                         
-                           <div class="card card-info">
-                              <div class="card-header">
                                  <h3 class="card-title">Top Bar Mobile</h3>
-                              </div>
-                           </div>
                            <div class="form-group">
                               <div class="form-label-group">
                                  <label for="product_name">Field 1</label>
@@ -75,14 +73,8 @@
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <div class="card card-primary">
                         <div class="card-body">
-                           <div class="card card-info">
-                              <div class="card-header">
                                  <h3 class="card-title">Header Bottom</h3>
-                              </div>
-                           </div>
                            <div class="form-group">
                               <div class="form-label-group">
                                  <label for="product_name">Left</label>
@@ -102,8 +94,6 @@
                               </div>
                            </div>
                         </div>
-                     </div>
-                     <div class="card card-primary">
                         <div class="card-body">
                            <div class="form-group">
                               <div class="form-label-group">
@@ -135,15 +125,17 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <button type="submit" class="btn btn-primary">Submit</button>
+                           <button type="submit" class="view-btn">Submit</button>
                         </div>
                      </div>
                   </div>
                </div>
             </form>
+</div>
          </div>
       </div>
    </div>
+</div>
 </div>
 <!-- Sticky Footer -->
 <script>

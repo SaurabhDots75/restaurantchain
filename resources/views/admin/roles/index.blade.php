@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="dashboard-panel">
-    <div class="roll-management">
+    <div class="role-management">
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left">
