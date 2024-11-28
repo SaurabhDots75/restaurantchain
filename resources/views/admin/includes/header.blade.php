@@ -18,48 +18,48 @@
                 </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSettings" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
                     Settings
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseSettings" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="{{ route('admin.settings') }}">Basic Website Setting</a>
-                        <a class="nav-link" href="{{ route('admin.header-settings') }}">Header Setting</a>
+                        <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a>
                         <a class="nav-link" href="{{ route('admin.footer-settings') }}">Footer Setting</a>
                         <a class="nav-link" href="{{ route('admin.menus') }}">Menu</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePosts" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-signs-post"></i></div>
                     Posts
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapsePosts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav aria-label="Close" class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('admin.postcategories') }}">Post Category</a>
-                        <a class="nav-link" href="{{ route('admin.posts.index') }}">Post</a>
+                        <a class="nav-link" href="{{ route('admin.postcategories') }}"><div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div> Post Category</a>
+                        <a class="nav-link" href="{{ route('admin.posts.index') }}"><div class="sb-nav-link-icon"><i class="fa-solid fa-signs-post"></i></div> Post</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-regular fa-file"></i></div>
                     Pages
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav aria-label="Close" class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('admin.pages.index') }}">Pages</a>
+                        <a class="nav-link" href="{{ route('admin.pages.index') }}"><div class="sb-nav-link-icon"><i class="fa-regular fa-file"></i></div> Pages</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFaqs" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-question"></i></div>
                     Faqs
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapseFaqs" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav aria-label="Close" class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('admin.faqcategories.index') }}">FAQ Category</a>
-                        <a class="nav-link" href="{{ route('admin.faqs.index') }}">FAQ</a>
+                        <a class="nav-link" href="{{ route('admin.faqcategories.index') }}"><div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>FAQ Category</a>
+                        <a class="nav-link" href="{{ route('admin.faqs.index') }}"><div class="sb-nav-link-icon"><i class="fa-solid fa-question"></i></div> FAQ</a>
                     </nav>
                 </div>
                 <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

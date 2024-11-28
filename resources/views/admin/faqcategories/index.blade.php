@@ -1,19 +1,16 @@
 @extends('admin.layouts.app')
 @section('content')
 <!-- Main content -->
-<section class="content">
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-12">
-            <div class="card">
-               <div class="card-header">
-                 <div class="text-right">
-                  <a href="{{ url('admin/faqcategories/create')}}"><button type="button" class="btn btn-primary add-button">Add New Faq category</button></a>
-               </div>
+<div class="dashboard-panel">
+<div class="role-management">
+    <div class="content">
+    <div class="pull-left"><h2>Faq Categories</h2></div>
+               <div class="pull-right">
+                  <a class="view-btn" href="{{ url('admin/faqcategories/create')}}">Add New Faq category</a>
                </div>
                <!-- /.card-header -->
-               <div class="card-body">
-                  <table id="example2" class="table table-bordered table-hover">
+               <div class="tablescroll-tableroll">
+                  <table id="example2" class="management-table table table-bordered">
                      <thead>
                         <tr>
                            <th>Faq Category</th>
@@ -27,7 +24,7 @@
                         <tr>
                            <td>{{$faq->title}}</td>
                            <td>
-                              <a title="Edit" href="{{ route('admin.faqcategories.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
+                              <a class="btn btn-primary btn-sm" title="Edit" href="{{ route('admin.faqcategories.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
 
                               <form method="POST" action="{{ route('admin.faqcategories.destroy', $faq->id) }}" style="display:inline">
                                  @csrf
@@ -40,24 +37,12 @@
                         @endforeach
                         @endif
                      </tbody>
-                     <tfoot>
-                        <tr>
-                           <th>Faq Category</th>
-                           <th>Action</th>
-                        </tr>
-                     </tfoot>
                   </table>
                </div>
-               <!-- /.card-body -->
-            </div>
             <!-- /.card -->
-            <!-- /.card -->
-         </div>
-         <!-- /.col -->
-      </div>
-      <!-- /.row -->
-   </div>
    <!-- /.container-fluid -->
-</section>
+</div>
 <!-- /.content -->
+</div>
+</div>
 @endsection
