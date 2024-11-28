@@ -21,6 +21,12 @@ use App\Http\Controllers\Admin\FaqController;
 Route::get('/', function () {
     return view('front.index');
 });
+Route::get('/product-listing', function () {
+    return view('front.product-listing');
+});
+Route::get('/product-detail', function () {
+    return view('front.product-details');
+});
 
 
 Route::prefix('admin')->name('admin.')->group(function () {

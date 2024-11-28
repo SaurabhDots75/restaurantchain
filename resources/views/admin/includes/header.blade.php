@@ -1,9 +1,18 @@
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+    <div class="main-profile">
+            <div class="image-bx">
+                <img src="https://demo.w3cms.in/lemars/public/images/no-user.png" alt="User profile">
+                <a href="#"><i class="fa fa-cog" aria-hidden="true"></i></a>
+            </div>
+            <h5 class="name"><span class="font-w400">Hello,</span> {{auth()->user()->name}} </h5>
+            <p class="role">{{implode(', ',auth()->user()->getRoleNames()->toArray()) }}</p>
+            <p class="email">{{auth()->user()->email}}</p>
+    </div>
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="{{ url('/admin/home') }}">
+                <a class="nav-link active" href="{{ url('/admin/home') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
@@ -94,10 +103,6 @@
                     Users
                 </a>
             </div>
-        </div>
-        <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            {{auth()->user()->name}} as {{implode(', ',auth()->user()->getRoleNames()->toArray()) }}
         </div>
     </nav>
 </div>
