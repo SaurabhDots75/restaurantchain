@@ -2,6 +2,8 @@
 
 @section('content')
 @inject('settings', 'App\Models\Setting')
+<div class="dashboard-panel">
+<div class="role-management">
 <div id="content-wrapper">
   <div class="container-fluid">
     @if(session()->has('alert-danger'))
@@ -15,132 +17,118 @@
     </div>
     @endif
     <!-- DataTables Example -->
-    <div class="card mb-3">
-      <div class="card-header">
-        <i class="fas fa-table"></i> Footer Settings
-      </div>
+      <div class="pull-left">
+                <h2>Footer Settings</h2>
+            </div>
       <div class="card-body">
+      <div class="form-setting">
         <form action="{{ url('admin/settings-update') }}" enctype="multipart/form-data" method="post">
           @csrf
           <div class="row">
             <div class="col-md-7">
               <div class="card card-primary">
-                <div class="card card-info">
-                  <div class="card-header">
                     <h3 class="card-title">Section 1</h3>
-                  </div>
                   <div class="card-body">
                     <!-- Color Picker -->
                     <div class="form-group">
+                      <div class="form-label-group">
                       <label for="sec1-title">Section 1 Title</label>
                       <input type="text" id="sec1-title" name="footer_sec1-title" value="{{$settings->get_options('footer_sec1-title')}}" class="form-control" placeholder="Section 1 Title">
                     </div>
-
+                    </div>
+                    <div class="form-group">
                     <div class="form-label-group">
                       <label for="product_name">About</label>
-
                       <textarea id="about" name="about" class="form-control">{{$settings->get_options('about')}}</textarea>
+                    </div>
                     </div>
 
                   </div>
 
-                </div>
 
 
-                <div class="card card-info">
-                  <div class="card-header">
                     <h3 class="card-title">Section 2</h3>
-                  </div>
                   <div class="card-body">
                     <!-- Color Picker -->
                     <div class="form-group">
+                    <div class="form-label-group">
                       <label for="footer_sec2-title">Section 2 Title</label>
                       <input type="text" id="footer_sec2-title" name="footer_sec2-title" value="{{$settings->get_options('footer_sec2-title')}}" class="form-control" placeholder="Section 2 Title">
                     </div>
-
-                    <div class="form-label-group">
-                      <label for="product_name">Catalogue</label>
-
-                      <textarea id="catalogue" name="catalogue" class="form-control">{{$settings->get_options('catalogue')}}</textarea>
                     </div>
 
+                    <div class="form-group">
+                    <div class="form-label-group">
+                      <label for="product_name">Catalogue</label>
+                      <textarea id="catalogue" name="catalogue" class="form-control">{{$settings->get_options('catalogue')}}</textarea>
+                    </div>
+                    </div>
                   </div>
 
-                </div>
 
 
-                <div class="card card-info">
-                  <div class="card-header">
                     <h3 class="card-title">Section 3</h3>
-                  </div>
                   <div class="card-body">
                     <!-- Color Picker -->
                     <div class="form-group">
+                    <div class="form-label-group">
                       <label for="footer_sec3-title">Section 3 Title</label>
                       <input type="text" id="footer_sec3-title" name="footer_sec3-title" value="{{$settings->get_options('footer_sec3-title')}}" class="form-control" placeholder="Section 3 Title">
                     </div>
-
+                    </div>
+                    <div class="form-group">
                     <div class="form-label-group">
                       <label for="resources">Resources</label>
-
                       <textarea id="resources" name="resources" class="form-control">{{$settings->get_options('resources')}}</textarea>
+                    </div>
                     </div>
 
                   </div>
 
-                </div>
 
-
-                <div class="card card-info">
-                  <div class="card-header">
                     <h3 class="card-title">Section 4</h3>
-                  </div>
+
                   <div class="card-body">
                     <!-- Color Picker -->
                     <div class="form-group">
+                    <div class="form-label-group">
                       <label for="footer_sec4-title">Section 4 Title</label>
                       <input type="text" id="footer_sec4-title" name="footer_sec4-title" value="{{$settings->get_options('footer_sec4-title')}}" class="form-control" placeholder="Section 4 Title">
                     </div>
+                    </div>
 
+                    <div class="form-group">
                     <div class="form-label-group">
                       <label for="product_name">Resources</label>
-
                       <textarea id="sec-resources" name="sec-resources" class="form-control">{{$settings->get_options('sec-resources')}}</textarea>
                     </div>
-
-                  </div>
-
-                </div>
-
-                <div class="card card-info">
-                  <div class="card-header">
-                    <h3 class="card-title">Section 5</h3>
-                  </div>
-                  <div class="card-body">
-                    <!-- Color Picker -->
-                    <div class="form-group">
-                      <label for="footer_sec5-title">Section 5 Title</label>
-                      <input type="text" id="footer_sec5-title" name="footer_sec5-title" value="{{$settings->get_options('footer_sec5-title')}}" class="form-control" placeholder="Section 5 Title">
-                    </div>
-
-                    <div class="form-label-group">
-                      <label for="product_name">Policies</label>
-
-                      <textarea id="policies" name="policies" class="form-control">{{$settings->get_options('policies')}}</textarea>
                     </div>
 
                   </div>
 
-                </div>
+                        <h3 class="card-title">Section 5</h3>
+                    <div class="card-body">
+                      <!-- Color Picker -->
+                      <div class="form-group">
+                      <div class="form-label-group">
+                        <label for="footer_sec5-title">Section 5 Title</label>
+                        <input type="text" id="footer_sec5-title" name="footer_sec5-title" value="{{$settings->get_options('footer_sec5-title')}}" class="form-control" placeholder="Section 5 Title">
+                      </div>
+                      </div>
+
+                      <div class="form-group">
+                      <div class="form-label-group">
+                        <label for="product_name">Policies</label>
+                        <textarea id="policies" name="policies" class="form-control">{{$settings->get_options('policies')}}</textarea>
+                      </div>
+                      </div>
+                    </div>
+
               </div>
             </div>
             <div class="col-md-5">
               <div class="card card-header">
-                <div class="card card-info">
-                  <div class="card-header">
                     <h3 class="card-title">Footer Bottom</h3>
-                  </div>
-                </div>
                 <div class="form-group">
                   <div class="form-label-group">
                     <label for="product_name">Footer Left</label>
@@ -160,30 +148,16 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="view-btn"">Submit</button>
                 </div>
               </div>
             </div>
           </div>
         </form>
+</div>
       </div>
     </div>
   </div>
 </div>
-<!-- Sticky Footer -->
-<script>
-  $(function() {
-    // Summernote
-    $('#about').summernote()
-    $('#catalogue').summernote()
-    $('#resources').summernote()
-    $('#sec-resources').summernote()
-    $('#policies').summernote()
-    $('#footer-left').summernote()
-    $('#footer-center').summernote()
-    $('#footer-right').summernote()
-
-
-  })
-</script>
+</div>
 @endsection

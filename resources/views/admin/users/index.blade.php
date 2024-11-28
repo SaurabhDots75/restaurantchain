@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="dashboard-panel">
+<div class="role-management">
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -48,22 +49,18 @@
                 <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit',$user->id) }}"><i
                         class="fa-solid fa-pen-to-square"></i></a>
                 @endcan
-                
-                @if(isset($user->email) && $user->email != 'info@printit4less.com')
-                    @if($user->id !== auth()->id())
-                        @can('user-delete')
-                        <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Confirm deletion?');"><i class="fa-solid fa-trash-can"></i></button>
-                        </form>
-                        @endcan
-                    @endif
-                @endif
+                @can('user-delete')
+                <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" style="display:inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></button>
+                </form>
+                @endcan
             </td>
         </tr>
         @endforeach
     </table>
+</div>
 </div>
 </div>
 {!! $data->links('pagination::bootstrap-5') !!}

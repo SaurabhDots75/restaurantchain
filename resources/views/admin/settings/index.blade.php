@@ -2,6 +2,8 @@
 
 @section('content')
 @inject('setting', 'App\Models\Setting')
+<div class="dashboard-panel">
+<div class="role-management">
 <div id="content-wrapper">
    <div class="container-fluid">
       @if(session()->has('alert-danger'))
@@ -15,11 +17,10 @@
       </div>
       @endif
       <!-- DataTables Example -->
-      <div class="card mb-3">
-         <div class="card-header">
-            <i class="fas fa-table"></i> Settings
-         </div>
-         <div class="card-body">
+      <div class="pull-left">
+                    <h2>Settings</h2>
+       </div>
+         <div class="form-setting">
             <form action="{{ url('admin/settings-update') }}" enctype="multipart/form-data" method="post">
                @csrf
 
@@ -85,15 +86,16 @@
                   <div class="col-md-6">
                      <div class="card card-header">
                         <div class="form-group">
-                           <label for="exampleInputFile">Logo</label>
                            @if($setting->get_options('logo')!='')
                            <div class="input-group"><img src="{{url('/').'/images/logo/'.$setting->get_options('logo')}}" width="150px;"></div>
                            @endif
                            <div class="input-group">
-                              <div class="custom-file">
-
+                              <div class="file-upload">
+                              <div class="file-select">
+                                 <div class="file-select-button" id="fileName">Choose File</div>
+                                 <div class="file-select-name" id="noFile">No file chosen...</div> 
                                  <input type="file" id="logo" name="logo" value="{{ $setting->get_options('logo') }}" class="custom-file-input" accept="image/*">
-                                 <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                              </div>
                               </div>
                            </div>
                         </div>
@@ -134,14 +136,15 @@
                            </div>
                         </div>
                         <div class="form-group">
-                           <button type="submit" class="btn btn-primary">Submit</button>
+                           <button type="submit" class="view-btn">Submit</button>
                         </div>
                      </div>
                   </div>
                </div>
             </form>
          </div>
-      </div>
    </div>
+</div>
+</div>
 </div>
 @endsection
