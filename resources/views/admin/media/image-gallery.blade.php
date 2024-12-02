@@ -50,15 +50,14 @@
                     <div class='uploadheading'>
                         <small>{{ $image->title }}</small>
                     </div>
-                    <form method="POST" action="{{ route('admin.image-gallery-delete') }}" style="display:inline">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="deleteId" value="{{$image->id}}">
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Confirm deletion?');"><i class="fa-solid fa-trash-can"></i>Delete</button>
-                </form>
                 </a>
-
             </div>
+            <form method="POST" action="{{ route('admin.image-gallery-delete') }}" style="display:inline">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="deleteId" value="{{$image->id}}">
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Confirm deletion?');"><i class="fa-solid fa-trash-can"></i>Delete</button>
+            </form>
             @endforeach
             @endif
         </div>
