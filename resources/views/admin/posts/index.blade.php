@@ -18,7 +18,6 @@
                      <tr>
                         <th scope="col">Title</th>
                         <th scope="col">Slug</th>
-                        <th scope="col">Category</th>
                         <th scope="col">Created</th>
                         <th scope="col">Action</th>
                      </tr>
@@ -29,7 +28,6 @@
                      <tr class="<?php if($post->status == 0){ echo " bg-danger"; } ?>" >
                         <td>{{$post->title}}</td>
                         <td>{{$post->slug}}</td>
-                        <td>{{isset($post->cat_details)?$post->cat_details:''}}</td>
                         <td>{{$post->created_at}}</td>
                         <td>
                            <a class="btn btn-primary btn-sm" title="Edit"

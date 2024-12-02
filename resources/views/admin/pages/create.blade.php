@@ -48,12 +48,6 @@
                         </div>
                         <div class="form-group">
                            <div class="form-label-group">
-                           <label for="deposit">Deposit(%)</label>
-                              <input type="number" id="deposit" name="deposit" class="form-control" placeholder="Deposit">
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <div class="form-label-group">
                               <label for="product_name">Slug</label>
                               <input type="text" id="slug" name="slug" class="form-control" placeholder="Slug" >
                            </div>
@@ -116,7 +110,7 @@
                      </div>
                      <div class="form-group">
                         <div class="form-label-group">
-                           <textarea id="meta_description" name="meta_description" class="form-control ckeditor" placeholder="Meta Description" ></textarea>                    
+                           <textarea id="meta_description" name="meta_description" class="form-control ckeditor" placeholder="Meta Description" ></textarea>
                         </div>
                      </div>
                     

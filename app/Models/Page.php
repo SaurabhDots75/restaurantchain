@@ -13,6 +13,6 @@ class Page extends Model
     use Notifiable;
     
     protected $fillable = [
-        'title','subtitle','slug', 'deposit','short_description', 'description', 'status', 'template', 'image', 'meta_title', 'meta_description','meta_keyword', 'is_deleted','deleted_at','created_at','updated_at'
+        'title','subtitle','slug','short_description', 'description', 'status', 'template', 'image', 'meta_title', 'meta_description','meta_keyword', 'is_deleted','deleted_at','created_at','updated_at'
     ];
 }

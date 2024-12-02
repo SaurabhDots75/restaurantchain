@@ -18,7 +18,7 @@
                         @csrf
 
                         <div class="login-field">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Email Address') }}" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('email@domain.com') }}" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 <span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

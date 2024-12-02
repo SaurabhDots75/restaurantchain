@@ -106,37 +106,6 @@
                            </select>
                         </div>
                      </div>
-					 <div class="form-group">
-						   <div class="form-label-group">
-							  <label for="product_name">Categories</label>
-							  <select name="categories[]" id="categories" class=""
-								 multiple="" data-dropdown-css-class="select2-purple" style="width: 100%;"
-								 data-select2-id="7" tabindex="-1" aria-hidden="true">
-                         <option value="5">Checking anyone</option>
-                        </select>
-						   </div>
-					  </div>
-                 <div class="form-group">
-						   <div class="form-label-group">
-							  <label for="faq_title">FAQ Title</label>
-							  <input type="text" name="faq_title" id="faq_title" value="{{ $posts->faq_title }}" class="form-control" placeholder="FAQ Title">
-						   </div>
-					  </div>
-					 <div class="form-group">
-						   <div class="form-label-group">
-							   <label for="faq_category">FAQs Categories</label>
-                        <?php
-                           $seelctedFaqCate = explode(',',$posts->faq_category);
-                           $getFaqCategory = getFaqsAllCategory();
-                        ?>
-							  <select name="faq_category[]" id="faq_category" class="" data-dropdown-css-class="select2-purple" style="width: 100%;" multiple="" tabindex="-1" aria-hidden="true">
-                           @foreach($getFaqCategory as $key => $faqCate)
-                              <option @if(in_array($faqCate->id,$seelctedFaqCate)) selected  @endif value="{{$faqCate->id}}">{{$faqCate->title}}</option>
-                           @endforeach
-
-							  </select>
-						   </div>
-					  </div>
                      <div class="form-group">
                         <div class="form-label-group">
                            <label for="product_name">Meta Title</label>
