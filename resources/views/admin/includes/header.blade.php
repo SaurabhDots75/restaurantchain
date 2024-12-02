@@ -102,6 +102,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Users
                 </a>
+                <a class="nav-link" href="{{ route('admin.image-gallery') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Media
+                </a>
             </div>
         </div>
     </nav>
