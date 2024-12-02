@@ -28,6 +28,18 @@ Route::get('/product-detail', function () {
     return view('front.product-details');
 });
 
+Route::get('/contact-us', function () {
+    return view('front.contact-us');
+});
+
+Route::get('/blog', function () {
+    return view('front.blog');
+});
+
+Route::get('/blog-detail', function () {
+    return view('front.blog-detail');
+});
+
 
 Route::prefix('admin')->name('admin.')->group(function () {
         
