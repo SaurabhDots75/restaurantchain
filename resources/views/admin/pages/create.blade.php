@@ -128,31 +128,6 @@
                      </div>
                   </div>
                </div>
-
-               <div class="col-md-12">
-                  <div class="card card-primary">
-                     <div class="card-header">
-                        <h3 class="card-title">Add More Sections</h3>
-                     </div>
-                     <div class="card-body">
-                        <div class="column_type_section">
-                           <div class="form-group field">
-                              <div class="form-label-group">
-                                 <label for="product_name">Select Column Type : </label>
-                                 <select name="column_type" id="column_type_1" data-index="1" class="column_type">
-                                    <option value="">--Choose Any--</option>  
-                                    <option value="one">1:1</option>  
-                                    <option value="two">1:2</option>  
-                                    <option value="three">1:3</option>  
-                                    <option value="three">1:4</option>  
-                                 </select>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
                <div class="col-md-12">
                    <div class="form-group">
                      <button type="submit" class="btn btn-primary float-right">Submit</button>
