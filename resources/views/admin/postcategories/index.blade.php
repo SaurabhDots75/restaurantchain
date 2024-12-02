@@ -11,23 +11,17 @@
       @endif
       
 <!-- Main content -->
-<section class="content">
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-12">
-            <div class="card">
-                     <div class="card-header">
-                       <div class="text-right">
-                        <a href="{{asset('admin/posts/categories/create')}}">
-                           <button type="button" class="btn btn-primary">
-                              Add Category
-                           </button>
-                        </a></div>
-                     </div>
+<div class="dashboard-panel">
+<div class="role-management">
+<div class="content">
+<div class="pull-left"><h2>Posts Categories</h2></div>
+                        <div class="pull-right">
+                           <a class="view-btn" href="{{asset('admin/posts/categories/create')}}">Add Category </a>
+                       </div>
                   
                 <!-- /.card-header -->
-               <div class="card-body">
-                  <table id="example2" class="table table-bordered table-hover">
+               <div class="tablescroll-tableroll">
+                  <table id="example2" class="management-table table table-bordered">
                      <thead>
                         <tr>
                            <th scope="col">Sr No</th>
@@ -50,7 +44,7 @@
                               <td>{{$value->created_at}}</td>
                               <td>
                                  @if($value->status == 1)
-                                    <a title="Change Status"
+                                    <a class="btn btn-info btn-sm" title="Change Status"
                                     href="javascript:void(0);" class="statusSwitch" data-record="{{$value->id}}" data-value="0"><i
                                        class="fa fa-check" aria-hidden="true"></i></a>
                                  @else
@@ -64,30 +58,13 @@
                            </tr>
                         @endforeach
                      </tbody>
-                     <tfoot>
-                        <tr>
-                            <th scope="col">Sr No</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Slug</th>
-                            <th scope="col">Parent</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Created</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                     </tfoot>
                   </table>
                </div>
                <!-- /.card-body -->
-            </div>
             <!-- /.card -->
             <!-- /.card -->
-         </div>
-         <!-- /.col -->
-      </div>
       <!-- /.row -->
-   </div>
-   <!-- /.container-fluid -->
-</section>
+</div>
 <!-- /.content -->
 
 <!-- Button trigger modal -->
@@ -116,5 +93,7 @@
          </div>
       </div>
    </div>
+</div>
+</div>
 </div>
 @endsection

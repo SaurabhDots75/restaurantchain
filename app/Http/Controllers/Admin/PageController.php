@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
 use Illuminate\Support\Facades\DB;
-use File;
+use Illuminate\Support\Facades\File;
 use URL;
 
 class PageController extends Controller

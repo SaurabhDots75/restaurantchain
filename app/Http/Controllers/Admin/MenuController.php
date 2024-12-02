@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
-    public function index()
+	public function index()
 	{
 		$getData =  Menus::where('parent', 0)->orderBy('id')->get();
 		$menusArray = array();
@@ -66,9 +66,8 @@ class MenuController extends Controller
 		$data = $request->all();
 		$data_array = json_decode($data['out']);
 
-
 		Menus::truncate();
-		foreach ($data_array as $key => $value) { // Level 1
+		foreach ($data_array as $value) { // Level 1
 			// Save the date for level 1
 			$menus = new Menus();
 			$menus->title = $value->text;

@@ -20,8 +20,8 @@ class FaqCategoryController extends Controller
      */
     public function index()
     {
-		$faqcategories = FaqCategory::all();
-		return view('admin.faqcategories.index', compact('faqcategories'));
+        $faqcategories = FaqCategory::all();
+        return view('admin.faqcategories.index', compact('faqcategories'));
     }
 
     /**
@@ -32,7 +32,7 @@ class FaqCategoryController extends Controller
     public function create()
     {
         $faqcategories = FaqCategory::all();
-		return view('admin.faqcategories.create',compact('faqcategories'));
+        return view('admin.faqcategories.create', compact('faqcategories'));
     }
 
     /**
@@ -45,7 +45,7 @@ class FaqCategoryController extends Controller
     {
         $request->except(['_token', '_method']);
         $input = $request->all();
-		$request->validate([
+        $request->validate([
             'title' => 'required|max:255',
         ]);
         FaqCategory::create($input);
@@ -71,15 +71,15 @@ class FaqCategoryController extends Controller
      */
     public function edit(string $faqid)
     {
-		$id = base64_decode($faqid);
-		if ($id == '') {
+        $id = base64_decode($faqid);
+        if ($id == '') {
             return 'URL NOT FOUND';
         }
         $faqcategories = FaqCategory::find($id);
-		if (empty($faqcategories)) {
+        if (empty($faqcategories)) {
             return 'URL NOT FOUND';
         }
-        return view('admin.faqcategories.edit',compact('faqcategories'));
+        return view('admin.faqcategories.edit', compact('faqcategories'));
     }
 
     /**
@@ -99,10 +99,10 @@ class FaqCategoryController extends Controller
         if (empty($faqcategories)) {
             return 'URL NOT FOUND';
         }
-		$input = $request->all();
-		$request->validate([
+        $input = $request->all();
+        $request->validate([
             'title' => 'required|max:255',
-		]);
+        ]);
         $faqcategories->fill($input)->save();
         return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Updated Successfully');
     }
@@ -116,6 +116,6 @@ class FaqCategoryController extends Controller
     public function destroy(string $faqid)
     {
         FaqCategory::find($faqid)->delete();
-		return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Updated Successfully');
+        return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Updated Successfully');
     }
 }
