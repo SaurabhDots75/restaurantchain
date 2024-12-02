@@ -5,7 +5,7 @@
 @section('content')
 <div class="dashboard-panel">
 <div class="role-management">
-    <div class="pull-left"><h2>Laravel - Image Gallery CRUD Example</h2></div>
+    <div class="pull-left"><h2>Image Gallery</h2></div>
     <div class="form-setting crud-image">
         <form action="{{ route('admin.image-gallery') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
             {!! csrf_field() !!}
