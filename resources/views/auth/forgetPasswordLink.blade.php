@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ config('app.name', 'Print 4 Less') }}</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.printit4less.com/wp-content/themes/PrintIt4Less/favicon-32x32.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <style type="text/css">
     body{
