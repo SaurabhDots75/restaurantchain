@@ -29,7 +29,7 @@
 
                         <div class="login-field">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="{{ __('Password') }}" required autocomplete="current-password">
-                                <span class="input-icon"><i class="fa-solid fa-lock"></i></span>
+                                <span class="input-icon show-password"><i class="fa-solid fa-eye"></i></span>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -60,4 +60,31 @@
             </div>
     </div>
 </div>
+@endsection
+
+@section('custom_js_scripts')
+<script>
+    $(document).ready(function() {
+        $('.show-password').on('click', function(e) {
+            var target = e.currentTarget;
+            $(target).hasClass('show') ? hidePassword($(target)) : showPassword($(target));
+        });
+    });
+
+    function hidePassword(e) {
+        // Correctly find the icon within the target element (the show-password span)
+        var icon = e.find('svg');
+        icon.removeClass('fa-eye-slash').addClass('fa-eye');
+        e.removeClass('show').addClass('hide');
+        e.prev('input').attr('type', 'password');
+    }
+
+    function showPassword(e) {
+        // Correctly find the icon within the target element (the show-password span)
+        var icon = e.find('svg');
+        icon.removeClass('fa-eye').addClass('fa-eye-slash');
+        e.removeClass('hide').addClass('show');
+        e.prev('input').attr('type', 'text');
+    }
+</script>
 @endsection

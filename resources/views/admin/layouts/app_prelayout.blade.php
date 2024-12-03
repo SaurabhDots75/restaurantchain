@@ -77,5 +77,7 @@
             @yield('content')
         </main>
     </div>
+    @include('admin.includes.js_scripts')
+    @yield('custom_js_scripts')
 </body>
 </html>
