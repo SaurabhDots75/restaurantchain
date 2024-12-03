@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PostCategoryController;
 use App\Http\Controllers\Admin\PostController;
@@ -85,6 +86,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('/faqs', FaqController::class);
 
         // Settings Route
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+        Route::post('/profile/{userid}', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/settings', [SettingController::class, 'index'])->name('settings');
         Route::post('/settings-update', [SettingController::class, 'update']);
         // Header Settings Route

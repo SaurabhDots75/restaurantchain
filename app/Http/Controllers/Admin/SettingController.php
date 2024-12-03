@@ -62,9 +62,6 @@ class SettingController extends Controller
                 'option_name' => $key,
                 'option_value' => $value,
             ]);
-            // echo "asds<pre>";
-            // print_r($request->all());
-            // die;
 		}
 		return back()->withInput(array('msg' => 'Setting Updated Successfully'));
 	}
