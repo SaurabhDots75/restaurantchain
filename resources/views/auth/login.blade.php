@@ -6,10 +6,15 @@
             <div class="login">
                 <!--<div class="card-header">{{ __('Login') }}</div>-->
 
-                <div class="card-header"><div class="logo"><a href="#"><img src="http://127.0.0.1:8000/front/images/logo.png" alt=""></a></div></div>
+                <div class="card-header"><div class="logo"><a href="#"><img src="{{asset('/front/images/logo.png')}}" alt=""></a></div></div>
                 @if(session('error'))
                     <div class="alert alert-danger">
                         {{ session('error') }}
+                    </div>
+                @endif
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
                     </div>
                 @endif
                 <div class="login-card">
@@ -36,7 +41,7 @@
                                     </span>
                                 @enderror
                         </div>
-                        <a class="btn btn-link" href="#">Forgot Your Password?</a>
+                        <a class="btn btn-link" href="{{ route('admin.forget.password.get') }}">Forgot Your Password?</a>
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -50,7 +55,7 @@
                                     {{ __('Login') }}
                                 </button>
 
-                            @if (Route::has('password.request'))
+                                @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>

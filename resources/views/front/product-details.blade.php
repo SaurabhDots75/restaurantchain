@@ -154,21 +154,21 @@
                 <div class="detail-product-area">
                     <div class="product-detail">
                         <div class="product-gallery">
-                            <img src="http://127.0.0.1:8000/front/images/carboless-paper.jpg" data-src=""
+                            <img src="{{asset('/front/images/carboless-paper.jpg')}}" data-src=""
                                 alt="custom-carbonless">
                         </div>
 
                         <div class="product-info">
                             <div class="group-stars product_just_stars">
-                                <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                <span class="on"><img src="{{asset('/front/images/star-full-sm.png')}}"
                                         data-src="" alt="review star"></span>
-                                <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                <span class="on"><img src="{{asset('/front/images/star-full-sm.png')}}"
                                         data-src="" alt="review star"></span>
-                                <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                <span class="on"><img src="{{asset('/front/images/star-full-sm.png')}}"
                                         data-src="" alt="review star"></span>
-                                <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                <span class="on"><img src="{{asset('/front/images/star-full-sm.png')}}"
                                         data-src="" alt="review star"></span>
-                                <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                <span class="on"><img src="{{asset('/front/images/star-full-sm.png')}}"
                                         data-src="" alt="review star"></span>
                                 <span class="startreview">
                                     <span class="ind_cnt_num">5</span>
@@ -274,9 +274,9 @@
                                         class="woocommerce-Price-currencySymbol">$</span>68.00</bdi></span></div>
 
                         <div class="review-sa-plugin">
-                            <div class="detail-review"><img src="http://127.0.0.1:8000/front/review.gif" data-src=""
+                            <div class="detail-review"><img src="{{asset('/front/images/star-full-sm.png')}}front/review.gif" data-src=""
                                     alt="review star"></div>
-                            <div class="madeincountry"><img src="http://127.0.0.1:8000/front/images/madeincountry.png"
+                            <div class="madeincountry"><img src="{{asset('')}}front/images/madeincountry.png"
                                     data-src="" alt="country"></div>
                         </div>
 
@@ -484,7 +484,7 @@
                                 </div>
                                 <div class="review-box graph-bar">
                                     <img class="graph block" alt="A graph showing this site's review totals."
-                                        src="http://127.0.0.1:8000/front/images/gold-bars.png">
+                                        src="{{asset('')}}/front/images/gold-bars.png">
                                 </div>
 
                                 <div class="review-box stars-block">
@@ -513,19 +513,19 @@
                                     <div class="rating">
                                         <div class="stars">
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                         </div>
                                     </div>
@@ -542,19 +542,19 @@
                                     <div class="rating">
                                         <div class="stars">
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                         </div>
                                     </div>
@@ -572,49 +572,19 @@
                                     <div class="rating">
                                         <div class="stars">
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
-                                                    data-src="" alt="review star"></span>
-                                        </div>
-                                    </div>
-                                    <div class="info" style="margin-top: 10px;">November 25, 2024 by
-                                        <span class="name">Brandon W.</span> (TX, US)
-                                    </div>
-                                    <div class="comments">“Great!”</div>
-                                </div>
-                            </div>
-
-
-
-                            <div class="product_review">
-                                <div class="main-questions">
-                                    <div class="rating">
-                                        <div class="stars">
-                                            <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
-                                                    data-src="" alt="review star"></span>
-                                            <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
-                                                    data-src="" alt="review star"></span>
-                                            <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
-                                                    data-src="" alt="review star"></span>
-                                            <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
-                                                    data-src="" alt="review star"></span>
-                                            <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                         </div>
                                     </div>
@@ -632,19 +602,49 @@
                                     <div class="rating">
                                         <div class="stars">
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                             <span class="on"><img
-                                                    src="http://127.0.0.1:8000/front/images/star-full-sm.png"
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
+                                                    data-src="" alt="review star"></span>
+                                        </div>
+                                    </div>
+                                    <div class="info" style="margin-top: 10px;">November 25, 2024 by
+                                        <span class="name">Brandon W.</span> (TX, US)
+                                    </div>
+                                    <div class="comments">“Great!”</div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="product_review">
+                                <div class="main-questions">
+                                    <div class="rating">
+                                        <div class="stars">
+                                            <span class="on"><img
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
+                                                    data-src="" alt="review star"></span>
+                                            <span class="on"><img
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
+                                                    data-src="" alt="review star"></span>
+                                            <span class="on"><img
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
+                                                    data-src="" alt="review star"></span>
+                                            <span class="on"><img
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
+                                                    data-src="" alt="review star"></span>
+                                            <span class="on"><img
+                                                    src="{{asset('')}}front/images/star-full-sm.png"
                                                     data-src="" alt="review star"></span>
                                         </div>
                                     </div>

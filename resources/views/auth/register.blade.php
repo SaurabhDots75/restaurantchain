@@ -4,7 +4,7 @@
 <div class="container">
 <div class="login-panel">
 <div class="login">
-<div class="card-header"><div class="logo"><a href="#"><img src="http://127.0.0.1:8000/front/images/logo.png" alt=""></a></div></div>
+<div class="card-header"><div class="logo"><a href="#"><img src="{{asset('/front/images/logo.png')}}" alt=""></a></div></div>
                 
 
                 <div class="login-card">

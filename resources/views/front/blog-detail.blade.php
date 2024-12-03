@@ -23,7 +23,7 @@
 
             <div class="blog-detail">
                     <div class="blogboximg">
-                        <img src="http://127.0.0.1:8000/front/images/empowering-enve.jpg" alt="">
+                        <img src="{{asset('/front/images/empowering-enve.jpg')}}" alt="">
                     </div>
 
                     <div class="blog-content">

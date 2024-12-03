@@ -28,7 +28,7 @@
                      <div class="card-body">
                         <div class="form-group">
                            <div class="form-label-group">
-                              <label for="product_name">Catgory</label>
+                              <label for="product_name">Category</label>
                               <input type="text" id="title" name="title" class="form-control" placeholder="Title" value="{{ $faqcategories->title }}" >
                            </div>
                         </div>

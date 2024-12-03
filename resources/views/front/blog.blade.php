@@ -110,7 +110,7 @@
                     <a href="#" class="btns">Read More</a>
                 </div>
                 <div class="blogboximg">
-                    <img src="http://127.0.0.1:8000/front/images/loyalti.jpg" alt="">
+                    <img src="{{asset('/front/images/loyalti.jpg')}}" alt="">
                 </div>
             </div>
 

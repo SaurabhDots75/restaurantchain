@@ -11,7 +11,7 @@
         <div class="contact-info">
             <div class="contact-box">
                 <div class="contact-box-inner">
-                    <img src="http://127.0.0.1:8000/front/images/live-chat.png" alt="">
+                    <img src="{{asset('/front/images/live-chat.png')}}" alt="">
                     <h3>Live Chat</h3>
                     <span>Online</span>
                     <p>Send us a chat during business hours for fast assistance.</p>
@@ -21,7 +21,7 @@
 
             <div class="contact-box">
                 <div class="contact-box-inner">
-                    <img src="http://127.0.0.1:8000/front/images/email.png" alt="">
+                    <img src="{{asset('/front/images/email.png')}}" alt="">
                     <h3>Email</h3>
                     <span><a href="#">contact@printit4less.com</a></span>
                     <p>Our customer care team is here to help.</p>
@@ -32,7 +32,7 @@
 
             <div class="contact-box">
                 <div class="contact-box-inner">
-                    <img src="http://127.0.0.1:8000/front/images/phone.png" alt="">
+                    <img src="{{asset('/front/images/phone.png')}}" alt="">
                     <h3>Phone</h3>
                     <span><a href="#">1-800-370-5591</a></span>
                     <p>9:00 am – 5:00 pm EST
@@ -65,7 +65,7 @@
                     <textarea class="inhut-box" placeholder="Message"></textarea>
                 </div>
 
-                <div class="roboat-form"><img src="http://127.0.0.1:8000/front/images/robot.png" alt=""></div>
+                <div class="roboat-form"><img src="{{asset('/front/images/robot.png')}}" alt=""></div>
          </div>
                 <a href="#" class="btns">Submit</a>
         </div>

@@ -204,11 +204,11 @@
                                     <span class="price"><span class="from">From: </span><span class="amount">$68.00</span></span>
 
                                     <div class="group-stars">
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
                                         <span class="startreview">
                                             <span class="ind_cnt_num">5</span> 
                                             <span class="ind_cnt_desc">reviews</span>
@@ -264,11 +264,11 @@
                                     <span class="price"><span class="from">From: </span><span class="amount">$68.00</span></span>
 
                                     <div class="group-stars">
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
                                         <span class="startreview">
                                             <span class="ind_cnt_num">5</span> 
                                             <span class="ind_cnt_desc">reviews</span>
@@ -307,11 +307,11 @@
                                     </div>
                                     <span class="price"><span class="from">From: </span><span class="amount">$68.00</span></span>
                                     <div class="group-stars">
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
-                                        <span class="on"><img src="http://127.0.0.1:8000/front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
+                                        <span class="on"><img src="{{asset('')}}front/images/star-full-sm.png" data-src="" alt="review star"></span>
                                         <span class="startreview">
                                             <span class="ind_cnt_num">5</span> 
                                             <span class="ind_cnt_desc">reviews</span>
