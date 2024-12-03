@@ -72,7 +72,8 @@
                         </div>
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="view-btn">Submit</button>
+                        <a href="{{ route('admin.faqs.index') }}" class="view-btn"> Cancel</a>
                      </div>
                   </div>
                </div>

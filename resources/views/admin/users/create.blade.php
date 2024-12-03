@@ -7,9 +7,6 @@
         <div class="pull-left">
             <h2>Create New User</h2>
         </div>
-        <div class="pull-right">
-            <a class="view-btn" href="{{ route('admin.users.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
-        </div>
     </div>
 </div>
 
@@ -58,6 +55,7 @@
         </div>
 </div>
 <button type="submit" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+<a href="{{ route('admin.users.index') }}" class="view-btn"> Cancel</a>
 </form>
 </div>
 </div>

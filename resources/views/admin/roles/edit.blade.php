@@ -7,9 +7,6 @@
         <div class="pull-left">
             <h2>Edit Role</h2>
         </div>
-        <div class="pull-right">
-            <a class="view-btn" href="{{ route('admin.roles.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
-        </div>
     </div>
 </div>
 
@@ -49,6 +46,7 @@
 <div class="clearfix"></div>
         <div class="">
             <button type="submit" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+            <a href="{{ route('admin.roles.index') }}" class="view-btn"> Cancel</a>
         </div>
     </div>
 </form>

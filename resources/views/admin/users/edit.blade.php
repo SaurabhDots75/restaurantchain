@@ -5,9 +5,6 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
             <h2>Edit User</h2>
-        <div class="pull-left">
-            <a class="view-btn" href="{{ route('admin.users.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
-        </div>
     </div>
 </div>
 
@@ -59,10 +56,11 @@
                      @endforeach
                 </select>
             </div>
+        </div>
         <div class="btnsubmit">
             <button type="submit" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+            <a href="{{ route('admin.users.index') }}" class="view-btn"> Cancel</a>
         </div>
-    </div>
 </form>
 </div>
 </div>

@@ -131,6 +131,7 @@
                <div class="col-md-12">
                    <div class="form-group">
                      <button type="submit" class="btn btn-primary float-right">Submit</button>
+                     <a href="{{ route('admin.pages.index') }}" class="view-btn"> Cancel</a>
                   </div>
                </div>
             </div>

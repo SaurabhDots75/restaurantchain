@@ -124,6 +124,7 @@
                      </div>
                      <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('admin.pages.index') }}" class="view-btn"> Cancel</a>
                      </div>
                   </div>
                </div>

@@ -7,9 +7,6 @@
             <div class="pull-left">
                 <h2>Create New Role</h2>
             </div>
-            <div class="pull-right">
-                <a class="view-btn" href="{{ route('admin.roles.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
-            </div>
         </div>
     </div>
     @if (count($errors) > 0)
@@ -45,8 +42,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <div class="">
                     <button type="submit" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+                    <a href="{{ route('admin.roles.index') }}" class="view-btn"> Cancel</a>
                 </div>
             </div>
         </form>
