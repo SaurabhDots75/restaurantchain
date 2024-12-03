@@ -31,6 +31,7 @@
                               <input type="text" id="title" name="title" class="form-control" placeholder="Title" >
                            </div>
                            <button type="submit" class="view-btn">Submit</button>
+                           <a href="{{ route('admin.faqcategories.index') }}" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Cancel</a>
                         </div>
                         
                      </div>

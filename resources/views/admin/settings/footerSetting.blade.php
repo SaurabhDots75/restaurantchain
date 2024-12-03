@@ -149,6 +149,7 @@
                 </div>
                 <div class="form-group">
                   <button type="submit" class="view-btn"">Submit</button>
+                  <a href="{{ route('admin.home') }}" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Cancel</a>
                 </div>
               </div>
             </div>

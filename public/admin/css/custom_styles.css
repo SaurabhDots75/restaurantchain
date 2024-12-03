@@ -215,7 +215,7 @@ color: #000;font-weight: 500; font-size: 15px;}
 .edituserform {background: #fff;padding: 20px 20px;border-radius: 20px;margin-top: 40px; display: inline-block; width: 100%;}
 .edit-rolecheckbox .form-group h3 {margin-top: 20px;}
 .edituserform form .edituserform-row {display: grid;grid-template-columns: repeat(2, 1fr);gap: 15px; width: 100%;}
-.edituserform form .edituserform-row .form-group {width: 100%;margin:0 0 10px;}
+.edituserform form .edituserform-row .form-group {width: 100%;margin:0 0 10px;position: relative;}
 .edituserform form .edituserform-row .form-group input.form-control {width: 100%;border: 1px solid #e8edff;padding: 10px 15px;}
 .edituserform form .edituserform-row .form-group select.form-control {width: 100%;border: 1px solid #e8edff;padding: 10px 15px;}
 .edituserform form .edituserform-row .form-group span.select2-selection {width: 100%;border: 1px solid #e8edff;padding: 4px 15px;min-height: auto;}
@@ -279,6 +279,8 @@ font-size: 18px;padding: 0 10px;}
 .edit-item-menu .form-setting form {margin: 0 0 20px;}
 .edit-item-menu .form-setting {border: 1px solid #cce0f3;font-size: 14px;padding: 18px 23px;background: #f5faff;border-radius: 0px 0px 15px 15px;height: 100%;display: block;}
 /*edit item menu css end*/
+.edituserform form .edituserform-row .form-group span.input-icon.show-password {position: absolute;top: 36px;right: 11px;}
+.select2-selection--multiple:before {content: "";position: absolute;right: 7px;top: 42%;border-top: 5px solid #888;border-left: 4px solid transparent;border-right: 4px solid transparent;}
 
 @media(max-width:1800px){
 .product-list table tr th {font-size: 10px;}

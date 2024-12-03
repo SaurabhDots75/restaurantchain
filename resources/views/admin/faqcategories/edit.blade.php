@@ -42,6 +42,7 @@
                      
                      <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="{{ route('admin.faqcategories.index') }}" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Cancel</a>
                      </div>
                   </div>
                </div>
