@@ -49,7 +49,7 @@ h2{font-size: 30px;margin-bottom: 0;font-weight: bold;}
 h3{font-size: 20px;margin-bottom: 0;font-weight: bold;}
 h4{ font-size: 16px;}
 .view-btn {background: #0d51aa;padding: 10px 30px;font-size: 15px;text-align: center;color: #fff;border-radius: 5px; text-decoration: none;
-    transition: all 0.2s ease;border: 1px solid transparent; text-transform: uppercase; font-weight: 500;}
+    transition: all 0.2s ease;border: 1px solid transparent; text-transform: uppercase; font-weight: 500; display: inline-block;}
 .view-btn:hover {background: rgb(13 81 170 / 20%);border: 1px solid #0d51aa;transition: all 0.2s ease; color: #0d51aa;}
 .btn-success{background: #0d51aa;}
 a.view-btn.search {padding: 10px 15px;}
@@ -260,19 +260,41 @@ font-size: 18px;padding: 0 10px;}
 .form-setting form .card h3.card-title {margin-top: 25px;}
 /*setting css end*/
 
-/*image gallery css*/
+/*media library css*/
 .crud-image {border: 1px solid #cce0f3;font-size: 14px;padding: 18px 23px;background: #f5faff;border-radius: 15px;height: 100%;display: block;}
 .crud-image form {margin: 0 0 20px;}
+.crud-image .drop-files-sec {width: 100%;border: 4px dashed #c3c4c7;text-align: center;background: #fff;border-radius: 10px;margin: 0 0 28px; padding: 50px 15px;
+display: flex;align-items: center;justify-content: center;}
+.crud-image .drop-files-sec h3 span {display: block;margin: 8px 0 0;font-weight: 500;}
+.crud-image .drop-files-sec h3 {margin: 0 0 18px;}
+.crud-image .drop-files-sec p {margin: 12px 0 0;}
+.drop-images-files {display: grid;grid-template-columns: repeat(11, 1fr); gap: 15px;}
+.drop-images-files .dropboximg {background: #fff;padding: 15px;border: 1px solid #e5e5e5;display: flex;align-items: center;justify-content: center; transition: all 0.5s ease; border-radius: 10px;}
+.drop-images-files .dropboximg:hover {border: 1px solid #0d51aa; transition: all 0.5s ease;}
+
+.imgupload-pop .modal-dialog {width: 98%;max-width: 98%;height: 100%;}
+.imgupload-pop .modal-dialog .modal-content .modal-header {padding: 8px 15px;}
+.imgupload-pop .modal-dialog .modal-content .modal-header h5 {font-size: 16px;font-weight: bold;color: #000;}
+
 .crud-image .list-group {display: flex;flex-wrap: wrap;}
 .crud-image .update-img a.fancybox {display: inline-block;position: relative;text-decoration: none;width: 100px;height: 100px;}
 .crud-image .update-img a.fancybox img {width: 100%;height: 100%;object-fit: cover;}
 .crud-image .update-img a.fancybox .uploadheading {background: #0d51aa;padding: 4px 5px;}
 .crud-image .update-img a.fancybox form {position: absolute;top: -10px;right: -10px;}
-.crud-image .update-img a.fancybox .uploadheading {background: #0d51aa;}
 .crud-image .update-img a.fancybox .uploadheading small {color: #fff;text-align: center;width: 100%;display: inline-block;font-weight: bold;}
 .crud-image .update-img a.fancybox form button.btn {font-size: 0;width: 25px;height: 25px;border-radius: 50px;padding: 0;}
 .crud-image .update-img a.fancybox form button.btn svg {font-size: 13px;}
-/*image gallery css end*/
+
+.imgupload-content {display: flex;flex-wrap: wrap;height: 100%;overflow: hidden;}
+.imgupload-content .imgupload-sec {width: 65%;display: flex;align-items: center;justify-content: center;}
+.imgupload-content .imgupload-information {width: 35%;background: #eaf2fd;padding: 30px; height: 100%;}
+.imgupload-content .imgupload-information .uploadimginformation ul {padding: 0 0 15px;border-bottom: 1px solid #cbe1ff;margin-bottom: 15px;}
+.imgupload-content .imgupload-information .uploadimginformation ul li {list-style: none;margin: 0 0 4px;font-size: 12px;}
+.imgupload-content .imgupload-information .uploadimage-form label {width: 100%;font-weight: bold;font-size: 12px;}
+.imgupload-content .imgupload-information .uploadimage-form .textbox {width: 100%;border: 1px solid #cce0f3;font-size: 14px;padding: 7px 12px;border-radius: 8px;}
+.imgupload-content .imgupload-information .uploadimage-form .image-form-filed p {font-size: 13px;color: #000;font-weight: 500;}
+.imgupload-content .imgupload-information a.view-btn {margin: 11px 0 0;padding: 4px 15px;font-size: 10px;}
+/*media library css end*/
 
 /*edit item menu css*/
 .edit-item-menu .card-header {background: #0d51aa;color: #fff;padding: 10px 27px;border-radius: 15px 15px 0px 0px;}
@@ -308,6 +330,10 @@ font-size: 18px;padding: 0 10px;}
 .tablescroll-tableroll {width: 100%;overflow: scroll;display: block;}
 .tablescroll-tableroll table.management-table {width: 1000px;}
 .management-table tr th, .management-table tr td{ font-size: 14px;}
+
+/*media library css*/
+.drop-images-files {grid-template-columns: repeat(8, 1fr);}
+/*media library css*/
 }
 
 @media(max-width:1199px){
@@ -325,6 +351,9 @@ font-size: 18px;padding: 0 10px;}
 .form-setting form .col-md-6 {width: 100%; margin-bottom: 30px;}
 /*setting css end*/
 
+/*media library css*/
+.drop-images-files {grid-template-columns: repeat(6, 1fr);}
+/*media library css*/
 }
 
 @media(max-width:991px){
@@ -335,6 +364,11 @@ font-size: 18px;padding: 0 10px;}
 .createroll-checkbox {display: grid;grid-template-columns: repeat(3, 1fr);}
 
 .form-setting form .col-md-7, .form-setting form .col-md-5 {width: 100%; margin-bottom: 30px;}
+/*media library css*/
+.imgupload-content .imgupload-information{ padding: 15px;}
+.imgupload-content .imgupload-information a.view-btn{ padding: 4px 10px;}
+.drop-images-files {grid-template-columns: repeat(4, 1fr);}
+/*media library css end*/
 }
 
 @media(max-width:767px){
@@ -356,6 +390,13 @@ font-size: 18px;padding: 0 10px;}
 
 .edituserform form .edituserform-row{grid-template-columns: repeat(1, 1fr);}
 .adminsetting-form .adminaddress{grid-column: 1 / 1;}
+
+/*media library css*/
+.imgupload-pop .modal-dialog {width: 97%;max-width: 97%;}
+.imgupload-content .imgupload-sec {width: 100%; padding: 30px;}
+.imgupload-content .imgupload-information {width: 100%;}
+.drop-images-files {grid-template-columns: repeat(3, 1fr);}
+/*media library css end*/
 }
 
 @media(max-width:575px){
@@ -376,4 +417,8 @@ font-size: 18px;padding: 0 10px;}
 .edituserform form .edituserform-row { grid-template-columns: repeat(1, 1fr);}
 .edituserform form .edituserform-row .form-group{ margin-bottom: 5px;}
 .showuser .emailusername {word-wrap: break-word;font-size: 15px;}
+
+/*media library css*/
+.drop-images-files {grid-template-columns: repeat(2, 1fr);}
+/*media library css end*/
 }
