@@ -33,7 +33,7 @@
                             <td>
                                 <?php echo html_entity_decode($faq->description); ?>
                             </td>
-                            <td>{{ $faq->created_at }}</td>
+                            <td>{{ $faq->created_at->format('d-M-Y h:i:s')}}</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" title="Edit"
                                     href="{{ route('admin.faqs.edit', base64_encode($faq->id)) }}"><i

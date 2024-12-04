@@ -37,7 +37,7 @@
                     <td><input type="checkbox" hidden="hidden" id="username">
                         <label class="switch" for="username"></label>
                     </td>
-                    <td>20/11/2024</td>
+                    <td>{{$role->created_at->format('d-M-Y h:i:s')}}</td>
                     <td>
                         <a class="btn btn-info btn-sm" href="{{ route('admin.roles.show',$role->id) }}"><i
                                 class="fa-solid fa-eye"></i></a>

@@ -15,6 +15,7 @@
                         <tr>
                            <th>Sr No</th>
                            <th>Faq Category</th>
+                           <th>Created</th>
                            <th>Action</th>
                         </tr>
                      </thead>
@@ -24,6 +25,7 @@
                         <tr>
                            <td>{{ $i + $loop->index + 1 }}</td>
                            <td>{{$faq->title}}</td>
+                           <td>{{$faq->created_at->format('d-M-Y h:i:s')}}</td>
                            <td>
                               <a class="btn btn-primary btn-sm" title="Edit" href="{{ route('admin.faqcategories.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
 

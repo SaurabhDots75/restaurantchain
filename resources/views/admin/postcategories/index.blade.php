@@ -41,7 +41,7 @@
                               <td>{{$value->slug}}</td>
                               <td>Parent</td>
                               <td>{!!$value->description!!}</td>
-                              <td>{{$value->created_at}}</td>
+                              <td>{{$value->created_at->format('d-M-Y h:i:s')}}</td>
                               <td>
                                  @if($value->status == 1)
                                     <a class="btn btn-info btn-sm" title="Change Status"

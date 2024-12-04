@@ -34,7 +34,7 @@
                                                 <td>{{ $i + $loop->index + 1 }}</td>
                                                 <td>{{ $page->title }}</td>
                                                 <td>{{ $page->slug }}</td>
-                                                <td>{{ $page->created_at }}</td>
+                                                <td>{{ $page->created_at->format('d-M-Y h:i:s')}}</td>
                                                 <td>
                                                     @if ($page->status == 1)
                                                         <!-- <a title="Change Status"

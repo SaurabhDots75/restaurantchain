@@ -28,6 +28,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Roles</th>
+            <th>Created</th>
             <th>Action</th>
         </tr>
         @foreach ($data as $key => $user)
@@ -42,6 +43,7 @@
                 @endforeach
                 @endif
             </td>
+            <td>{{ $user->created_at->format('d-M-Y h:i:s')}}</td>
             <td>
                 <a class="btn btn-info btn-sm" href="{{ route('admin.users.show',$user->id) }}"><i
                         class="fa-solid fa-eye"></i></a>

@@ -30,7 +30,7 @@
                         <td>{{ $i + $loop->index + 1 }}</td>
                         <td>{{$post->title}}</td>
                         <td>{{$post->slug}}</td>
-                        <td>{{$post->created_at}}</td>
+                        <td>{{$post->created_at->format('d-M-Y h:i:s')}}</td>
                         <td>
                            <a class="btn btn-primary btn-sm" title="Edit"
                               href="{{ route('admin.posts.edit', base64_encode($post->id)) }}"><i class="fa fa-edit "
