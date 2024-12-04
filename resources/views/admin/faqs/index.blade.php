@@ -16,6 +16,7 @@
                 <table class="management-table table table-bordered">
                     <thead>
                         <tr>
+                            <th>Sr No</th>
                             <th>Category Name</th>
                             <th>Question</th>
                             <th>Answer</th>
@@ -24,8 +25,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($faqs as $faq)
+                        @foreach ($faqs as $key => $faq)
                         <tr class="{{$faq->is_deleted ? 'bg-danger' : '' }}">
+                            <td>{{ $i + $loop->index + 1 }}</td>
                             <td>{{ isset($faq->category_name)?$faq->category_name:'No Category' }}</td>
                             <td>{{ $faq->title }}</td>
                             <td>
@@ -53,7 +55,7 @@
                     </tbody>
                 </table>
                 <div class="pagination-container float-right">
-                    {{ $faqs->links() }}
+                    {!! $faqs->links('pagination::bootstrap-5') !!}
                 </div>
             </div>
         </div>

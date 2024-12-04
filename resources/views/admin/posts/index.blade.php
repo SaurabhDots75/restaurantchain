@@ -16,6 +16,7 @@
                <table id="example2" class="management-table table table-bordered table-hover">
                   <thead>
                      <tr>
+                        <th scope="col">Sr No</th>
                         <th scope="col">Title</th>
                         <th scope="col">Slug</th>
                         <th scope="col">Created</th>
@@ -23,9 +24,10 @@
                      </tr>
                   </thead>
                   <tbody>
-                     @foreach($posts as $post)
+                     @foreach($posts as $key => $post)
 
                      <tr class="<?php if($post->status == 0){ echo " bg-danger"; } ?>" >
+                        <td>{{ $i + $loop->index + 1 }}</td>
                         <td>{{$post->title}}</td>
                         <td>{{$post->slug}}</td>
                         <td>{{$post->created_at}}</td>

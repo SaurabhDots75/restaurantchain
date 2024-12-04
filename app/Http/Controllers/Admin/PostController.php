@@ -23,8 +23,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        return view('admin.posts.index', compact('posts'));
+        $posts = Post::latest()->paginate(10);
+        return view('admin.posts.index', compact('posts'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

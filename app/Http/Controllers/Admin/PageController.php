@@ -17,7 +17,7 @@ class PageController extends Controller
     public function index(Request $request)
     {
         $pages = Page::orderBy('id', 'DESC')->paginate(10);
-        return view('admin.pages.index', compact('pages'));
+        return view('admin.pages.index', compact('pages'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

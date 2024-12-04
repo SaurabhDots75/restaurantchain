@@ -18,7 +18,7 @@ class FaqController extends Controller
     public function index(Request $request)
     {
         $faqs = Faq::orderBy('id', 'DESC')->paginate(10);
-        return view('admin.faqs.index', compact('faqs'));
+        return view('admin.faqs.index', compact('faqs'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

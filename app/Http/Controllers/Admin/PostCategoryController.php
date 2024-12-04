@@ -27,10 +27,10 @@ class PostCategoryController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
-        $getData = PostCategory::latest()->get();
-        return view('admin.postcategories.index', compact('getData'));
+        $getData = PostCategory::latest()->paginate(10);
+        return view('admin.postcategories.index', compact('getData'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

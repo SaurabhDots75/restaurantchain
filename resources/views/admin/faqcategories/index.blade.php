@@ -13,15 +13,16 @@
                   <table id="example2" class="management-table table table-bordered">
                      <thead>
                         <tr>
+                           <th>Sr No</th>
                            <th>Faq Category</th>
                            <th>Action</th>
                         </tr>
                      </thead>
                      <tbody>
                         @if(!empty($faqcategories))
-                        @php ($i = 1)
-                        @foreach($faqcategories as $faq)
+                        @foreach($faqcategories as $key => $faq)
                         <tr>
+                           <td>{{ $i + $loop->index + 1 }}</td>
                            <td>{{$faq->title}}</td>
                            <td>
                               <a class="btn btn-primary btn-sm" title="Edit" href="{{ route('admin.faqcategories.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
@@ -33,12 +34,12 @@
                               </form>
                            </td>
                         </tr>
-                        @php ($i++)
                         @endforeach
                         @endif
                      </tbody>
                   </table>
                </div>
+               {!! $faqcategories->links('pagination::bootstrap-5') !!}
             <!-- /.card -->
    <!-- /.container-fluid -->
 </div>

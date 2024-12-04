@@ -28,10 +28,10 @@ class UserController extends Controller
      */
     public function index(Request $request): View
     {
-        $data = User::whereNot('email','sharma.gajendra@dotsquares.com')->latest()->paginate(5);
+        $data = User::whereNot('email','sharma.gajendra@dotsquares.com')->latest()->paginate(10);
 
         return view('admin.users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 10);
     }
     
     /**
