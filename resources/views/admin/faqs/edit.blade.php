@@ -23,17 +23,19 @@
    </div>
    @endif
    <!-- DataTables Example -->
-   <section class="content">
-      <div class="container-fluid">
+   <div class="dashboard-panel">
+   <div class="role-management">
+   <div class="content">
+      <div class="pull-left">
+                    <h2>Edit Faq</h2>
+       </div>
+       <div class="form-setting">
          <form id="cmsForm" action="{{ route('admin.faqs.update', base64_encode($faqs->id)) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
             <div class="row">
                <div class="col-md-8">
                   <div class="card card-primary">
-                     <div class="card-header">
-                        <h3 class="card-title">Edit Faq</h3>
-                     </div>
                      <div class="card-body">
                         <div class="form-group">
                            <div class="form-label-group">
@@ -51,7 +53,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-4 mt">
                   <div class="card card-header">
                         
                     <div class="form-group">
@@ -84,7 +86,9 @@
             </div>
          </form>
       </div>
-   </section>
+</div>
+</div>
+</div>
 </div>
 @endsection
 

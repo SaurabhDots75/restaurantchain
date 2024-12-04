@@ -23,17 +23,19 @@
    </div>
    @endif
    <!-- DataTables Example -->
-   <section class="content">
-      <div class="container-fluid">
+   <div class="dashboard-panel">
+   <div class="role-management">
+   <div class="content">
+   <div class="pull-left">
+                    <h2>Edit Page</h2>
+       </div>
+       <div class="form-setting">
          <form action="{{ route('admin.pages.update', base64_encode($pages->id)) }}" enctype="multipart/form-data" method="post"  id="cmsForm">
             @csrf
             @method('PUT')
             <div class="row">
                <div class="col-md-8">
                   <div class="card card-primary">
-                     <div class="card-header">
-                        <h3 class="card-title">Edit Page</h3>
-                     </div>
                      <div class="card-body">
                         <div class="form-group">
                            <div class="form-label-group">
@@ -67,17 +69,15 @@
                      </div>
                   </div>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-4 mt">
                   <div class="card card-header">
                      <div class="form-group">
-                        <label for="exampleInputFile">Page Banner</label>
                         <div class="input-group">
 							@if(isset($pages->image) && !empty($pages->image))
-								<img src="{{asset('storage').'/'.$pages->image}}" width="50px">
+                     <img src="assets/img/tshirt-same.png" alt="">
 							@endif
-                           <div class="custom-file">
+                           <div class="custom-file edit-file">
                               <input type="file" id="image" name="image" value="{{ $pages->image }}" class="custom-file-input" accept="image/*">
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                            </div>
                         </div>
                      </div>
@@ -123,7 +123,7 @@
                         </div>
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button class="view-btn" type="submit" class="btn btn-primary">Submit</button>
                         <a href="{{ route('admin.pages.index') }}" class="view-btn"> Cancel</a>
                      </div>
                   </div>
@@ -131,6 +131,8 @@
             </div>
          </form>
       </div>
-   </section>
+</div>
+</div>
+</div>
 </div>
 @endsection

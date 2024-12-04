@@ -42,8 +42,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="">
-                    <button type="submit" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+                <div class="desk-mt">
+                    <button type="submit" class="view-btn desk-mr"> Submit</button>
                     <a href="{{ route('admin.roles.index') }}" class="view-btn"> Cancel</a>
                 </div>
             </div>

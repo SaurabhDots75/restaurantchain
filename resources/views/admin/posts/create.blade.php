@@ -37,16 +37,18 @@
    </div>
    @endif
    <!-- DataTables Example -->
-   <section class="content">
-      <div class="container-fluid">
+   <div class="dashboard-panel">
+   <div class="role-management">
+   <div class="content">
+   <div class="pull-left">
+                    <h2>Add Blog</h2>
+       </div>
+      <div class="form-setting">
          <form id="cmsForm" action="{{ route('admin.posts.store') }}" enctype="multipart/form-data" method="post" >
             @csrf
             <div class="row">
                <div class="col-md-8">
                   <div class="card card-primary">
-                     <div class="card-header">
-                        <h3 class="card-title">Add Blog</h3>
-                     </div>
                      <div class="card-body">
                         <div class="form-group">
                            <div class="form-label-group">
@@ -81,14 +83,12 @@
                      </div>
                   </div>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-4 mt">
                   <div class="card card-header">
                      <div class="form-group">
-                        <label for="exampleInputFile">Image</label>
                         <div class="input-group">
                            <div class="custom-file">
                               <input type="file" id="image" name="image" class="custom-file-input" accept="image/*">
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                            </div>
                         </div>
                         <span><b>Note</b>: <span style="color: green; font-size:15px">Please upload image size 500 X 300</span></span>
@@ -129,6 +129,8 @@
             </div>
          </form>
       </div>
-   </section>
+   </div>
+</div>
+</div>
 </div>
 @endsection

@@ -6,6 +6,8 @@
   <title>{{ config('app.name', 'Print 4 Less') }}</title>
   <link rel="icon" type="image/png" sizes="32x32" href="https://www.printit4less.com/wp-content/themes/PrintIt4Less/favicon-32x32.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="{{asset('admin/css/login_style.css')}}" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
   <style type="text/css">
     body{
       background: #F8F9FA;
@@ -16,17 +18,13 @@
 
 <section class="bg-light py-3 py-md-5">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-        <div class="card border border-light-subtle rounded-3 shadow-sm mt-5">
-          <div class="card-body p-3 p-md-4 p-xl-5">
-            <div class="text-center mb-3">
-              <a href="#!">
-                <img src="{{asset('/front/images/logo.png')}}" alt="BootstrapBrain Logo" width="250">
-              </a>
-            </div>
-            <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Reset Password</h2>
+    <div class="login-panel">
+      <div class="login">
+              <div class="card-header"><div class="logo"><a href="#"><img src="{{asset('/front/images/logo.png')}}" alt=""></a></div></div>
+            <div class="login-card">
             <form method="POST" action="{{ route('admin.reset.password.post') }}">
+
+            <h3>Reset Password</h3>
               @csrf
               <input type="hidden" name="token" value="{{ $token }}">
 
@@ -36,51 +34,35 @@
                   </div>
               @endif
 
-              <div class="row gy-2 overflow-hidden">
-
-                <div class="col-12">
-                  <div class="form-floating mb-3">
+                  <div class="login-field">
                     <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="name@example.com" required>
-                    <label for="email" class="form-label">{{ __('Email Address') }}</label>
                     @if ($errors->has('email'))
                         <span class="text-danger">{{ $errors->first('email') }}</span>
                     @endif
+                    <span class="input-icon show-password"><i class="fa-solid fa-envelope"></i></span>
                   </div>
-                </div>
 
-                <div class="col-12">
-                  <div class="form-floating mb-3">
-                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="name@example.com" required>
-                    <label for="password" class="form-label">{{ __('Password') }}</label>
+                  <div class="login-field">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password" required>
                     @if ($errors->has('password'))
                         <span class="text-danger">{{ $errors->first('password') }}</span>
                     @endif
+                    <span class="input-icon show-password"><i class="fa-solid fa-eye"></i></span>
                   </div>
-                </div>
 
-                <div class="col-12">
-                  <div class="form-floating mb-3">
-                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="password_confirmation" placeholder="name@example.com" required>
-                    <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
+                  <div class="login-field">
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required>
                     @if ($errors->has('password_confirmation'))
                         <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
                     @endif
+                    <span class="input-icon show-password"><i class="fa-solid fa-eye"></i></span>
                   </div>
-                </div>
-
-                <div class="col-12">
-                  <div class="d-grid my-3">
-                    <button class="btn btn-primary btn-lg" type="submit">{{ __('Reset Password') }}</button>
-                  </div>
-                </div>
-
-              </div>
+                    <button class="btn btn-primary" type="submit">{{ __('Reset Password') }}</button>
             </form>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          </div>
+          </div>
+          </div>
 </section>
 
 </body>

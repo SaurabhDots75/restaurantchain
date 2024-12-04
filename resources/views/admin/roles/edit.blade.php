@@ -44,8 +44,8 @@
             </div>
         </div>
 <div class="clearfix"></div>
-        <div class="">
-            <button type="submit" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+        <div class="mt">
+            <button type="submit" class="view-btn">Submit</button>
             <a href="{{ route('admin.roles.index') }}" class="view-btn"> Cancel</a>
         </div>
     </div>

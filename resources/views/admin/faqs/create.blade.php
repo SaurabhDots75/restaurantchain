@@ -23,16 +23,18 @@
    </div>
    @endif
    <!-- DataTables Example -->
-   <section class="content">
-      <div class="container-fluid">
+   <div class="dashboard-panel">
+   <div class="role-management">
+   <div class="content">
+      <div class="form-setting">
+      <div class="pull-left">
+                    <h2>Add Faq</h2>
+       </div>
          <form id="cmsForm" action="{{ route('admin.faqs.store') }}" enctype="multipart/form-data" method="post" >
             @csrf
             <div class="row">
                <div class="col-md-8">
                   <div class="card card-primary">
-                     <div class="card-header">
-                        <h3 class="card-title">Add Faq</h3>
-                     </div>
                      <div class="card-body">
                         <div class="form-group">
                            <div class="form-label-group">
@@ -49,7 +51,7 @@
                      </div>
                   </div>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-4 mt">
                   <div class="card card-header">
 
 						<div class="form-group">
@@ -80,6 +82,8 @@
             </div>
          </form>
       </div>
-   </section>
+</div>
+</div>
+</div>
 </div>
 @endsection

@@ -37,17 +37,17 @@
    </div>
    @endif
    <!-- DataTables Example -->
-   <section class="content">
-      <div class="container-fluid">
+   <div class="dashboard-panel">
+   <div class="role-management">
+   <div class="content">
+   <div class="pull-left"><h2>Edit Post</h2></div>
+   <div class="form-setting">
          <form action="{{ route('admin.posts.update',base64_encode($posts->id)) }}" enctype="multipart/form-data" method="post"  id="cmsForm">
             @csrf
             @method('PUT')
             <div class="row">
                <div class="col-md-8">
                   <div class="card card-primary">
-                     <div class="card-header">
-                        <h3 class="card-title">Edit Post</h3>
-                     </div>
                      <div class="card-body">
                         <div class="form-group">
                            <div class="form-label-group">
@@ -81,18 +81,16 @@
                      </div>
                   </div>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-4 mt">
                   <div class="card card-header">
                     
                      <div class="form-group">
-                        <label for="exampleInputFile">Image</label>
                         <div class="input-group">
                            @if(isset($posts->image) && !empty($posts->image))
                                  <img src="{{asset('storage').'/'.$posts->image}}" width="50px;">
                            @endif
                            <div class="custom-file">
                               <input type="file" id="image" name="image" value="{{ $posts->image }}" class="custom-file-input" accept="image/*">
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                            </div>
                         </div>
                         <span><b>Note</b>: <span style="color: green; font-size:15px">Please upload image size 500 X 300</span></span>
@@ -131,7 +129,9 @@
                </div>
             </div>
          </form>
-      </div>
-   </section>
+         </div>
+   </div>
+</div>
+</div>
 </div>
 @endsection

@@ -49,10 +49,12 @@
             <div class="form-group">
                 <strong>Password:</strong>
                 <input type="password" name="password" placeholder="Password" class="form-control">
+                <span class="input-icon show-password"><i class="fa-solid fa-eye"></i></span>
             </div>
             <div class="form-group">
                 <strong>Confirm Password:</strong>
                 <input type="password" name="confirm-password" placeholder="Confirm Password" class="form-control">
+                <span class="input-icon show-password"><i class="fa-solid fa-eye"></i></span>
             </div>
             <div class="form-group">
                 <strong>Role:</strong>
