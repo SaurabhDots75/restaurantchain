@@ -73,7 +73,12 @@ class ForgotPasswordController extends Controller
        */
       public function showResetPasswordForm($token): View
       {
-         return view('auth.forgetPasswordLink', ['token' => $token]);
+        $updatePassword = DB::table('password_resets')
+                              ->where([
+                                'token' => $token
+                              ])
+                              ->first();
+         return view('auth.forgetPasswordLink', ['token' => $token,'email'=>$updatePassword->email]);
       }
   
       /**

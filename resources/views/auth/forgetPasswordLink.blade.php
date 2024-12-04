@@ -28,14 +28,14 @@
               @csrf
               <input type="hidden" name="token" value="{{ $token }}">
 
-              @if (Session::has('message'))
+              @if (Session::has('error'))
                    <div class="alert alert-success" role="alert">
-                      {{ Session::get('message') }}
+                      {{ Session::get('error') }}
                   </div>
               @endif
 
                   <div class="login-field">
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="name@example.com" required>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="name@example.com" value="{{isset($email)?$email:''}}" required>
                     @if ($errors->has('email'))
                         <span class="text-danger">{{ $errors->first('email') }}</span>
                     @endif
