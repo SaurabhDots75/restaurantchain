@@ -24,7 +24,7 @@
         <div class="tablescroll-tableroll">
             <table class="management-table table table-bordered">
                 <tr>
-                    <th width="100px">No</th>
+                    <th width="100px">Sr No</th>
                     <th>Name</th>
                     <th>Status</th>
                     <th>Created</th>
@@ -32,12 +32,12 @@
                 </tr>
                 @foreach ($roles as $key => $role)
                 <tr>
-                    <td>{{ ++$i }}</td>
+                    <td>{{ $i + $loop->index + 1 }}</td>
                     <td>{{ $role->name }}</td>
                     <td><input type="checkbox" hidden="hidden" id="username">
                         <label class="switch" for="username"></label>
                     </td>
-                    <td>20/11/2024</td>
+                    <td>{{$role->created_at->format('d-M-Y h:i:s')}}</td>
                     <td>
                         <a class="btn btn-info btn-sm" href="{{ route('admin.roles.show',$role->id) }}"><i
                                 class="fa-solid fa-eye"></i></a>

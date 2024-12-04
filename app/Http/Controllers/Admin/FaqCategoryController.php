@@ -18,10 +18,10 @@ class FaqCategoryController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
-        $faqcategories = FaqCategory::all();
-        return view('admin.faqcategories.index', compact('faqcategories'));
+        $faqcategories = FaqCategory::latest()->paginate(10);
+        return view('admin.faqcategories.index', compact('faqcategories'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**

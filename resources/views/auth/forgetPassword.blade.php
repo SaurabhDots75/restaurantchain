@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ config('app.name', 'Print 4 Less') }}</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="https://www.printit4less.com/wp-content/themes/PrintIt4Less/favicon-32x32.png">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-  <style type="text/css">
-    body{
-      background: #F8F9FA;
-    }
-  </style>
-</head>
-<body>
+@extends('admin.layouts.app_prelayout')
 
+@section('content')
 <section class="bg-light py-3 py-md-5">
   <div class="container">
     <div class="row justify-content-center">
@@ -64,6 +51,31 @@
     </div>
   </div>
 </section>
+@endsection
 
-</body>
-</html>
+@section('custom_js_scripts')
+<script>
+    $(document).ready(function() {
+        $('.show-password').on('click', function(e) {
+            var target = e.currentTarget;
+            $(target).hasClass('show') ? hidePassword($(target)) : showPassword($(target));
+        });
+    });
+
+    function hidePassword(e) {
+        // Correctly find the icon within the target element (the show-password span)
+        var icon = e.find('svg');
+        icon.removeClass('fa-eye-slash').addClass('fa-eye');
+        e.removeClass('show').addClass('hide');
+        e.prev('input').attr('type', 'password');
+    }
+
+    function showPassword(e) {
+        // Correctly find the icon within the target element (the show-password span)
+        var icon = e.find('svg');
+        icon.removeClass('fa-eye').addClass('fa-eye-slash');
+        e.removeClass('hide').addClass('show');
+        e.prev('input').attr('type', 'text');
+    }
+</script>
+@endsection

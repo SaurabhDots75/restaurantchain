@@ -16,6 +16,7 @@
                 <table class="management-table table table-bordered">
                     <thead>
                         <tr>
+                            <th>Sr No</th>
                             <th>Category Name</th>
                             <th>Question</th>
                             <th>Answer</th>
@@ -24,14 +25,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($faqs as $faq)
+                        @foreach ($faqs as $key => $faq)
                         <tr class="{{$faq->is_deleted ? 'bg-danger' : '' }}">
+                            <td>{{ $i + $loop->index + 1 }}</td>
                             <td>{{ isset($faq->category_name)?$faq->category_name:'No Category' }}</td>
                             <td>{{ $faq->title }}</td>
                             <td>
                                 <?php echo html_entity_decode($faq->description); ?>
                             </td>
-                            <td>{{ $faq->created_at }}</td>
+                            <td>{{ $faq->created_at->format('d-M-Y h:i:s')}}</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" title="Edit"
                                     href="{{ route('admin.faqs.edit', base64_encode($faq->id)) }}"><i
@@ -53,7 +55,7 @@
                     </tbody>
                 </table>
                 <div class="pagination-container float-right">
-                    {{ $faqs->links() }}
+                    {!! $faqs->links('pagination::bootstrap-5') !!}
                 </div>
             </div>
         </div>

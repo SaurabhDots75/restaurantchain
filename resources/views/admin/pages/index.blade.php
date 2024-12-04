@@ -19,6 +19,7 @@
                             <table id="" class="management-table table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>Sr No</th>
                                         <th>Title</th>
                                         <th>Slug</th>
                                         <th>Created</th>
@@ -27,12 +28,13 @@
                                 </thead>
                                 <tbody>
                                     @if (!empty($pages))
-                                        @foreach ($pages as $page)
+                                        @foreach ($pages as $key => $page)
                                             <tr class="{{ $page->is_deleted ? 'bg-danger' : '' }}"
                                                 title="{{ $page->is_deleted ? 'This record is deleted' : '' }}">
+                                                <td>{{ $i + $loop->index + 1 }}</td>
                                                 <td>{{ $page->title }}</td>
                                                 <td>{{ $page->slug }}</td>
-                                                <td>{{ $page->created_at }}</td>
+                                                <td>{{ $page->created_at->format('d-M-Y h:i:s')}}</td>
                                                 <td>
                                                     @if ($page->status == 1)
                                                         <!-- <a title="Change Status"
