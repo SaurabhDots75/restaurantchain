@@ -14,7 +14,7 @@
         @endif
                     <div class="pull-right">
                         <a href="" id="btnOutput" type="button" class="view-btn">Save Changes</a>
-                        <a href="{{ route('admin.home') }}" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Cancel</a>
+                        <a href="{{ route('admin.home') }}" class="view-btn"> Cancel</a>
                     </div>
 
                     <div class="card-body">
