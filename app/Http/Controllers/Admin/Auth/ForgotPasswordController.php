@@ -71,14 +71,19 @@ class ForgotPasswordController extends Controller
        *
        * @return response()
        */
-      public function showResetPasswordForm($token): View
+      public function showResetPasswordForm($token)
       {
         $updatePassword = DB::table('password_resets')
                               ->where([
                                 'token' => $token
                               ])
                               ->first();
-         return view('auth.forgetPasswordLink', ['token' => $token,'email'=>$updatePassword->email]);
+        if(isset($updatePassword) && !empty($updatePassword)){
+          return view('auth.forgetPasswordLink', ['token' => $token,'email'=>$updatePassword->email]);
+        }else{
+          return redirect()->route('admin.login')
+                        ->with('success','Your password reset link has either expired or has already been used.');
+        }
       }
   
       /**
