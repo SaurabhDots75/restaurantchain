@@ -342,4 +342,5 @@
 <script type="text/javascript" src="{{asset('/front/js/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/front/js/custom.js')}}"></script>
 <script type="text/javascript" src="{{asset('/front/js/bootstrap.bundle.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('/front/js/font-awesome.js')}}"></script>
 </html>

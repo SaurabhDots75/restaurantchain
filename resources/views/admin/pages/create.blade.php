@@ -2,6 +2,12 @@
 @section('content')
 <div class="content">
    <!-- Breadcrumbs-->
+
+   <!-- DataTables Example -->
+   <div class="dashboard-panel">
+   <div class="role-management">
+   <div class="content">
+
    @if(session()->has('alert-danger'))
    <div class="alert alert-danger">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{ session()->get('alert-danger') }}
@@ -22,10 +28,7 @@
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ $errors->first('status') }}
    </div>
    @endif
-   <!-- DataTables Example -->
-   <div class="dashboard-panel">
-   <div class="role-management">
-   <div class="content">
+
 <div class="pull-left"><h2>Add Page</h2></div>
       <div class="form-setting">
          <form id="cmsForm" action="{{ route('admin.pages.store') }}" enctype="multipart/form-data" method="post" >
