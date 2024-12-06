@@ -113,9 +113,15 @@ class FaqCategoryController extends Controller
      * @param string $faqid
      * @return void
      */
-    public function destroy(string $faqid)
+    public function destroy(Request $request)
     {
-        FaqCategory::find($faqid)->delete();
-        return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Updated Successfully');
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = FaqCategory::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 }

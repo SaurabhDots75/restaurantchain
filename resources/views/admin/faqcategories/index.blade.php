@@ -29,11 +29,7 @@
                            <td>
                               <a class="btn btn-primary btn-sm" title="Edit" href="{{ route('admin.faqcategories.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
 
-                              <form method="POST" action="{{ route('admin.faqcategories.destroy', $faq->id) }}" style="display:inline">
-                                 @csrf
-                                 @method('DELETE')
-                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Confirm deletion?');"><i class="fa-solid fa-trash-can"></i></button>
-                              </form>
+                              <a id="delete-record{{$faq->id}}" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
                            </td>
                         </tr>
                         @endforeach
@@ -48,4 +44,61 @@
 <!-- /.content -->
 </div>
 </div>
+@endsection
+
+@section('custom_js_scripts')
+<script>
+    $(document).ready(function() {
+        $(document).on('click', "[id^=delete-record]", function () {
+            var index = parseInt($(this).attr("id").replace("delete-record", ''));
+            // Show a confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This action cannot be undone!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Make an AJAX request to delete the record
+                    $.ajax({
+                        url: "/admin/faqcategories/destroy",  // URL to your deletion endpoint
+                        type: 'POST',           // HTTP method (could also be DELETE)
+                        data: {
+                            _method: 'DELETE',  // Spoof the DELETE method
+                            id: index,          // Pass the index or record ID to the server
+                            _token: $('meta[name="csrf-token"]').attr('content')  // CSRF token for security
+                        },
+                        success: function(response) {
+                            // Handle successful deletion
+                            Swal.fire(
+                                'Deleted!',
+                                'The record has been deleted.',
+                                'success'
+                            );
+                            Swal.fire(
+                                'Deleted!',
+                                'The record has been deleted.',
+                                'success'
+                            ).then(() => {
+                                // Optionally, remove the record from the UI
+                                window.location.reload();
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle error if deletion fails
+                            Swal.fire(
+                                'Error!',
+                                'There was an issue deleting the record.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection

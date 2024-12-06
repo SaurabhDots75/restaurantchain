@@ -116,10 +116,16 @@ class FaqController extends Controller
      * @param string $faqid
      * @return void
      */
-    public function destroy(string $faqid)
+    public function destroy(Request $request)
     {
-        Faq::find($faqid)->delete();
-        return redirect()->route('admin.faqs.index')->with('alert-success', 'Faq Category Deleted Successfully');
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = Faq::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 
     /**

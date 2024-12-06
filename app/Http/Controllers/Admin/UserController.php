@@ -138,10 +138,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(Request $request)
     {
-        User::find($id)->delete();
-        return redirect()->route('admin.users.index')
-                        ->with('success','User deleted successfully');
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = User::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 }

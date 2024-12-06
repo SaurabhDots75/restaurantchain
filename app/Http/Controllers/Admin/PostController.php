@@ -140,10 +140,16 @@ class PostController extends Controller
      * @param string $id
      * @return void
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        Post::find($id)->delete();
-        return redirect()->route('admin.posts.index')->with('alert-success', 'Post Deleted Successfully');
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = Post::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 
     /**

@@ -124,10 +124,16 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $pageid)
+    public function destroy(Request $request)
     {
-        Page::where('id', $pageid)->delete();
-        return redirect()->route('admin.pages.index')->with('alert-success', 'Page Deleted Successfully');
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = Page::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
     /**
      * Status
