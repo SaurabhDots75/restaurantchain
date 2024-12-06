@@ -6,7 +6,7 @@
     <div class="content">
     <div class="pull-left"><h2>Faq Categories</h2></div>
                <div class="pull-right">
-                  <a class="view-btn" href="{{ url('admin/faqcategories/create')}}">Add New Faq category</a>
+                  <a class="view-btn" href="{{ url('admin/faqcategories/create')}}">Add FAQ Category</a>
                </div>
                <!-- /.card-header -->
                <div class="tablescroll-tableroll">
@@ -26,10 +26,10 @@
                            <td>{{ $i + $loop->index + 1 }}</td>
                            <td>{{$faq->title}}</td>
                            <td>{{$faq->created_at->format('d-M-Y h:i:s')}}</td>
-                           <td>
-                              <a class="btn btn-primary btn-sm" title="Edit" href="{{ route('admin.faqcategories.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
+                            <td>
+                              <a class="btn btn-primary btn-sm" title="Edit Role" href="{{ route('admin.faqcategories.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
 
-                              <a id="delete-record{{$faq->id}}" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
+                              <a id="delete-record{{$faq->id}}" title="Delete Role" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
                            </td>
                         </tr>
                         @endforeach

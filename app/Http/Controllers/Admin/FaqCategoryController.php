@@ -47,6 +47,9 @@ class FaqCategoryController extends Controller
         $input = $request->all();
         $request->validate([
             'title' => 'required|max:255',
+        ],[
+            'title.required' => 'The FAQ Category is mandatory.',
+            'title.max' => 'The FAQ Category may not be greater than 255 characters.',
         ]);
         FaqCategory::create($input);
         return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Added Successfully');
@@ -102,6 +105,9 @@ class FaqCategoryController extends Controller
         $input = $request->all();
         $request->validate([
             'title' => 'required|max:255',
+        ],[
+            'title.required' => 'The FAQ Category is mandatory.',
+            'title.max' => 'The FAQ Category may not be greater than 255 characters.',
         ]);
         $faqcategories->fill($input)->save();
         return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Updated Successfully');

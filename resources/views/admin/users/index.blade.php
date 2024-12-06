@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Users Management</h2>
+                <h2>Users</h2>
             </div>
             <div class="pull-right">
                 @can('user-create')
-                <a class="view-btn" href="{{ route('admin.users.create') }}"><i class="fa fa-plus"></i>
-                    Create New User</a>
+                <a class="view-btn" href="{{ route('admin.users.create') }}">
+                    Create User</a>
                 @endcan
             </div>
         </div>
@@ -58,7 +58,6 @@
         @endforeach
     </table>
 </div>
-<button class="btn btn-success">Click Me!</button>
 </div>
 </div>
 {!! $data->links('pagination::bootstrap-5') !!}

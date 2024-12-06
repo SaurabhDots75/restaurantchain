@@ -12,7 +12,7 @@
                         </div>
                     @endif
                     <div class="pull-right">
-                            <a href="{{ url('admin/pages/create') }}" class="view-btn">Add New Page</a>
+                            <a href="{{ url('admin/pages/create') }}" class="view-btn">Add Page</a>
                             <!--<a class="view-btn search" href="javascript:;"><i class="fa fa-search"></i></a>-->
                          </div>
                          <div class="tablescroll-tableroll">

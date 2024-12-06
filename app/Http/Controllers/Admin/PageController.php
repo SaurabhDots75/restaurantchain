@@ -45,8 +45,12 @@ class PageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'status' => 'required',
-
+            'slug' => 'required',
+        ],[
+            'title.required' => 'The Page Name is mandatory.',
+            'title.max' => 'The Page Name may not be greater than 255 characters.',
+            'slug.required' => 'The Slug is mandatory.',
+            'description.required' => 'The Description is mandatory.',
         ]);
         if ($request->hasFile('image')) {
             $image = singleStorageImageUpload($request->file('image'), 'Post', '1200', '600');
@@ -106,8 +110,12 @@ class PageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'status' => 'required',
-
+            'slug' => 'required',
+        ],[
+            'title.required' => 'The Page Name is mandatory.',
+            'title.max' => 'The Page Name may not be greater than 255 characters.',
+            'description.required' => 'The Description is mandatory.',
+            'slug.required' => 'The Slug is mandatory.',
         ]);
         /*image update*/
         if ($request->hasFile('image')) {

@@ -2,6 +2,8 @@
 @section('content')
 <div class="content">
    <!-- Breadcrumbs-->
+   <!-- DataTables Example -->
+   <div class="dashboard-panel">
    @if(session()->has('alert-danger'))
    <div class="alert alert-danger">
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> {{ session()->get('alert-danger') }}
@@ -22,8 +24,6 @@
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ $errors->first('status') }}
    </div>
    @endif
-   <!-- DataTables Example -->
-   <div class="dashboard-panel">
    <div class="role-management">
    <div class="content">
       <div class="form-setting">
@@ -39,7 +39,7 @@
                         <div class="form-group">
                            <div class="form-label-group">
                               <label for="product_name">Question</label>
-                              <input type="text" id="title" name="title" class="form-control" placeholder="Title" >
+                              <input type="text" id="title" name="title" class="form-control" >
                            </div>
                         </div>
                         <div class="form-group">
@@ -64,15 +64,6 @@
 								</select>
 						   </div>
 					  </div>
-                     <div class="form-group">
-                        <div class="form-label-group">
-                           <select id="status" name="status" class="form-control">
-                              <option value="">Select Status</option>
-                              <option value="1" selected>Enable</option>
-                              <option value="0">Disable</option>
-                           </select>
-                        </div>
-                     </div>
                      <div class="form-group">
                         <button type="submit" class="view-btn">Submit</button>
                         <a href="{{ route('admin.faqs.index') }}" class="view-btn"> Cancel</a>

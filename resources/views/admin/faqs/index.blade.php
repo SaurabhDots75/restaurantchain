@@ -6,10 +6,10 @@
     <div class="role-management">
         <div class="content">
             <div class="pull-left">
-                <h2>Faqs</h2>
+                <h2>Faq</h2>
             </div>
             <div class="pull-right">
-                <a class="view-btn" href="{{ url('admin/faqs/create') }}" class="btn btn-primary">Add New Faq</a>
+                <a class="view-btn" href="{{ url('admin/faqs/create') }}" class="btn btn-primary">Add Faq</a>
             </div>
 
             <div class="tablescroll-tableroll">
@@ -35,13 +35,8 @@
                             </td>
                             <td>{{ $faq->created_at->format('d-M-Y h:i:s')}}</td>
                             <td>
-                                <a class="btn btn-primary btn-sm" title="Edit"
-                                    href="{{ route('admin.faqs.edit', base64_encode($faq->id)) }}"><i
-                                        class="fa fa-edit " aria-hidden="true"></i></a>
-
-
-                                <a id="delete-record{{$faq->id}}" type="submit" class="btn btn-danger btn-sm"><i
-                                        class="fa-solid fa-trash-can"></i></a>
+                                <a class="btn btn-primary btn-sm" title="Edit FAQ" href="{{ route('admin.faqs.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
+                                <a id="delete-record{{$faq->id}}" title="Delete FAQ" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
                             </td>
                         </tr>
                         @endforeach

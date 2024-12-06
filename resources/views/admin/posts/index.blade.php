@@ -9,7 +9,7 @@
                <h2>Posts</h2>
             </div>
             <div class="pull-right">
-               <a class="view-btn" href="{{ route('admin.posts.create')}}">Add New Blog</a>
+               <a class="view-btn" href="{{ route('admin.posts.create')}}">Add Post</a>
             </div>
             <!-- /.card-header -->
             <div class="tablescroll-tableroll">

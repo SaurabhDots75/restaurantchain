@@ -44,8 +44,11 @@ class FaqController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'status' => 'required',
 
+        ],[
+            'title.required' => 'The Question is mandatory.',
+            'title.max' => 'The Question may not be greater than 255 characters.',
+            'description.required' => 'The Answer is mandatory.',
         ]);
         Faq::create($input);
         return redirect()->route('admin.faqs.index')->with('alert-success', 'Faq Category Added Successfully');
@@ -103,7 +106,10 @@ class FaqController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'status' => 'required',
+        ],[
+            'title.required' => 'The Question is mandatory.',
+            'title.max' => 'The Question may not be greater than 255 characters.',
+            'description.required' => 'The Answer is mandatory.',
         ]);
 
         $faqs->fill($input)->save();
