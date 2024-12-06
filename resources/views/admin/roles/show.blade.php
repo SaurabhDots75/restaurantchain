@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class="show-role">
+    <div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="role-name">
@@ -23,11 +23,13 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Permissions:</strong>
+                    <div class="createroll-checkbox">
                     @if(!empty($rolePermissions))
                     @foreach($rolePermissions as $v)
                     <label class="label label-success">{{ $v->name }}</label>
                     @endforeach
                     @endif
+                </div>
                 </div>
             </div>
         </div>

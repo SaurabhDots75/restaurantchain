@@ -56,6 +56,7 @@ a.view-btn.search {padding: 10px 15px;}
 .desk-mt{ margin-top: 30px;}
 .desk-md {margin-bottom: 30px;}
 .desk-mr {margin-right: 20px;}
+.alert-success a.close, .alert-danger a.close {display: none;}
 
 
 .sb-nav-fixed .sb-topnav{ background-color: #Fff !important; box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.05); height: auto;}
@@ -183,7 +184,7 @@ top: 0;left: 0;-webkit-transition: all 0.5s;-ms-transition: all 0.5s;transition:
 .role-management {background: #fff;padding: 20px;border-radius: 20px;}
 table.role-management-table {background: #fff;overflow: hidden;}
 .management-table tr th {border: 1px solid #e7e7e7; background: #7694ba; color: #fff;}
-.management-table tr td {border: 1px solid #e7e7e7; color: #000; font-weight: 500; background: #fff;}
+.management-table tr td {border: 1px solid #e7e7e7; color: #000; font-weight: 500; background: #fff; word-break: break-all;}
 .management-table tr td label.badge {padding: 9px 15px;border-radius: 5px;font-weight: 500;}
 
 .management-table tr td .switch {display: inline-block;position: relative;width: 50px;height: 25px;border-radius: 20px;background: #dfd9ea;transition: background 0.28s cubic-bezier(0.4, 0, 0.2, 1);vertical-align: middle;cursor: pointer;}
@@ -212,7 +213,7 @@ color: #000;font-weight: 500; font-size: 15px;}
 .show-role .form-group strong {margin: 0 10px 0 0px;}
 .show-role .form-group label {width: auto;background: #dceaff;padding: 8px 15px;border-radius: 7px;text-transform: capitalize;color: #000;font-weight: 500;}
 .show-role .role-name {display: flex;margin: 0 0 24px;}
-.show-role .role-name span {color: #000;font-weight: bold;margin: 0 0 0 10px;}
+.show-role .role-name span {color:#0d51aa;font-weight: bold;margin: 0 0 0 10px;}
 /*show roll css end*/
 
 /*edit user css*/
@@ -247,9 +248,12 @@ background: #0d51aa;color: #fff;border: 1px solid #0d51aa;padding: 2px 10px;font
 .edit-item-menu .form-setting .input-group .input-group-append button {height: 100%;border-radius: 0 10px 10px 0;border: 1px solid #cce0f3;background: #0d51aa;color: #fff;
 font-size: 18px;padding: 0 10px;}
 .form-setting form .form-label-group textarea {border: 1px solid #cce0f3;font-size: 14px;padding: 10px 15px;resize: none;}
+.setting-menu .edit-menuadd .sortableLists .btn-group .clickable{margin: 0px 2px 0 0px;}
 
 .form-setting form .card.card-header .form-group img {margin: 0 0 15px;}
 .form-setting form .card.card-header .form-group:first-child {margin: 0px 0 25px;}
+.setting-menu .edit-menuadd {border: 1px solid #cce0f3;font-size: 14px;padding: 18px 23px;background: #f5faff;border-radius: 15px;height: 100%;display: block;}
+.setting-menu .edit-menuadd .sortableLists span.txt {width: 100%;display: inline-block;color: #000;text-transform: capitalize;font-weight: 600;margin: 0 0 4px;}
 
 
 .file-upload{display:block;text-align:center;font-family: Helvetica, Arial, sans-serif;font-size: 12px; width: 400px;}

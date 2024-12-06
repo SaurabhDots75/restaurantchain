@@ -26,8 +26,12 @@ Route::get('/', function () {
 Route::get('/product-listing', function () {
     return view('front.product-listing');
 });
-Route::get('/product-detail', function () {
+Route::get('/product-details', function () {
     return view('front.product-details');
+});
+
+Route::get('/cart', function () {
+    return view('front.cart');
 });
 
 Route::get('/contact-us', function () {
@@ -41,6 +45,27 @@ Route::get('/blog', function () {
 Route::get('/blog-detail', function () {
     return view('front.blog-detail');
 });
+
+Route::get('/privacy-notice', function () {
+    return view('front.privacy-notice');
+});
+
+Route::get('/conditions-of-use', function () {
+    return view('front.conditions-of-use');
+});
+
+Route::get('/shipping-info', function () {
+    return view('front.shipping-info');
+});
+
+Route::get('/quotes-proofs', function () {
+    return view('front.quotes-proofs');
+});
+
+Route::get('/sitemap', function () {
+    return view('front.sitemap');
+});
+
 
 
 Route::prefix('admin')->name('admin.')->group(function () {

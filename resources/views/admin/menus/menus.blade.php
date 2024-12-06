@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="dashboard-panel">
-<div class="role-management">
+<div class="role-management setting-menu">
 <div class="content">
 <div class="pull-left"><h2>Menu</h2></div>
 <div class="container-fluid">
@@ -14,56 +14,62 @@
         @endif
                     <div class="pull-right">
                         <a href="" id="btnOutput" type="button" class="view-btn">Save Changes</a>
-                        <a href="{{ route('admin.home') }}" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Cancel</a>
+                        <a href="{{ route('admin.home') }}" class="view-btn">Cancel</a>
                     </div>
 
-                    <div class="card-body">
-                        <ul id="myEditor" class="sortableLists list-group">
-                        </ul>
-                    </div>
+
                     
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="edit-item-menu">
-                    <div class="card-header">Edit item</div>
-                    <div class="form-setting">
-                        <form id="frmEdit" class="form-horizontal">
-                            <div class="form-label-group">
-                                <label for="text">Text</label>
-                                <div class="input-group">
-                                    <input required="required" type="text" class="form-control item-menu" name="text" id="text" placeholder="Text">
-                                    <div class="input-group-append">
-                                        <button type="button" id="myEditor_icon" class="btn btn-outline-secondary"></button>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="edit-item-menu">
+                        <div class="card-header">Edit item fdfsd</div>
+                        <div class="form-setting">
+                            <form id="frmEdit" class="form-horizontal">
+                                <div class="form-label-group">
+                                    <label for="text">Text</label>
+                                    <div class="input-group">
+                                        <input required="required" type="text" class="form-control item-menu" name="text" id="text" placeholder="Text">
+                                        <div class="input-group-append">
+                                            <button type="button" id="myEditor_icon" class="btn btn-outline-secondary"></button>
+                                        </div>
                                     </div>
+                                    <input type="hidden" name="icon" class="item-menu">
                                 </div>
-                                <input type="hidden" name="icon" class="item-menu">
-                            </div>
-                            <div class="form-label-group">
-                                <label for="href">URL</label>
-                                <input required="required" type="text" class="form-control item-menu" id="href" name="href" placeholder="URL">
-                            </div>
-                            <div class="form-label-group">
-                                <label for="target">Target</label>
-                                <select name="target" id="target" class="form-control item-menu">
-                                    <option value="_self">Self</option>
-                                    <option value="_blank">Blank</option>
-                                    <option value="_top">Top</option>
-                                </select>
-                            </div>
-                            <div class="form-label-group">
-                                <label for="title">Tooltip</label>
-                                <input type="text" name="title" class="form-control item-menu" id="title" placeholder="Tooltip">
-                            </div>
-                        </form>
-                        <div class="card-footer">
-                        <button type="button" id="btnUpdate" class="view-btn" disabled><i class="fas fa-sync-alt"></i> Update</button>
-                        <button type="button" id="btnAdd" class="view-btn"><i class="fas fa-plus"></i> Add</button>
-                    </div>
-                    </div>
+                                <div class="form-label-group">
+                                    <label for="href">URL</label>
+                                    <input required="required" type="text" class="form-control item-menu" id="href" name="href" placeholder="URL">
+                                </div>
+                                <div class="form-label-group">
+                                    <label for="target">Target</label>
+                                    <select name="target" id="target" class="form-control item-menu">
+                                        <option value="_self">Self</option>
+                                        <option value="_blank">Blank</option>
+                                        <option value="_top">Top</option>
+                                    </select>
+                                </div>
+                                <div class="form-label-group">
+                                    <label for="title">Tooltip</label>
+                                    <input type="text" name="title" class="form-control item-menu" id="title" placeholder="Tooltip">
+                                </div>
+                            </form>
+                            <div class="card-footer">
+                            <button type="button" id="btnUpdate" class="view-btn" disabled>Update</button>
+                            <button type="button" id="btnAdd" class="view-btn">Add</button>
+                        </div>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
+
+                <div class="col-md-4 mt">
+                    <div class="edit-menuadd">
+                        <ul id="myEditor" class="sortableLists list-group"></ul>
+                    </div>
+                </div>
+
+        </div>
             <form action="{{url('admin/menus/save')}}" id="menu_form" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="out" id="out" value="">

@@ -6,7 +6,7 @@
         <div class="col-lg-2 side-panel">
             <div class="card">
                 <!-- this is commented area -->
-                <div class="bg-primary card-header">Products</div>
+                <div class="bg-primary card-header">Products </div>
                 <div class="component">
                     <div class="demo">
                         <ul class="accordion">
