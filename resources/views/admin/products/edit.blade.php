@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-          <button type="submit" class="btn btn-primary btn-sm mb-2 mt-2"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+          <button type="submit" class="btn btn-primary btn-sm mb-2 mt-2"> Submit</button>
         </div>
     </div>
 </form>

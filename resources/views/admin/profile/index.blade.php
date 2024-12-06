@@ -62,8 +62,8 @@
             </div>
         </div>
         <div class="btnsubmit">
-            <button type="submit" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
-            <a href="{{ route('admin.home') }}" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Cancel</a>
+            <button type="submit" class="view-btn"> Submit</button>
+            <a href="{{ route('admin.home') }}" class="view-btn"> Cancel</a>
         </div>
 </form>
 </div>
@@ -71,9 +71,32 @@
 @endsection
 @section('custom_js_scripts')
 <script>
-      $("#multiple").select2({
-          placeholder: "Select Role",
-          allowClear: true
-      });
+    $("#multiple").select2({
+        placeholder: "Select Role",
+        allowClear: true
+    });
+
+    $(document).ready(function() {
+        $('.show-password').on('click', function(e) {
+            var target = e.currentTarget;
+            $(target).hasClass('show') ? hidePassword($(target)) : showPassword($(target));
+        });
+    });
+
+    function hidePassword(e) {
+        // Correctly find the icon within the target element (the show-password span)
+        var icon = e.find('svg');
+        icon.removeClass('fa-eye-slash').addClass('fa-eye');
+        e.removeClass('show').addClass('hide');
+        e.prev('input').attr('type', 'password');
+    }
+
+    function showPassword(e) {
+        // Correctly find the icon within the target element (the show-password span)
+        var icon = e.find('svg');
+        icon.removeClass('fa-eye').addClass('fa-eye-slash');
+        e.removeClass('hide').addClass('show');
+        e.prev('input').attr('type', 'text');
+    }
 </script>
 @endsection

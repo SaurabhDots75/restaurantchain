@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="btnsubmit">
-            <button type="submit" class="view-btn"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+            <button type="submit" class="view-btn"> Submit</button>
             <a href="{{ route('admin.users.index') }}" class="view-btn"> Cancel</a>
         </div>
 </form>
