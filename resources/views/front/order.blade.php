@@ -33,7 +33,12 @@
                         </li>
                         <li>
                             <p class="nest">Products by Industry</p>
+
+
                             <ul class="inner">
+
+
+
                                 <li>
                                     <p class="nest">HVAC Service</p>
                                     <ul class="inner">
@@ -129,7 +134,6 @@
 
                             </ul>
                         </li>
-
                         <li><a href="#">Aluminum Portfolios</a></li>
                         <li><a href="#">Appointment Cards</a></li>
                         <li><a href="#">Banners</a></li>
@@ -141,127 +145,93 @@
             </div>
         </div>
         <div class="col-lg-10 content-area">
+            <div class="mid-section-home">
 
-            <div class="cart-panel">
-                <h1>Cart</h1>
-                <nav class="breadcrumb" role="navigation">
+                <div class="order">
+                    <h1>Order</h1>
+
+                    <h5>Thank You. Your order has been received.</h5>
+                <div class="order-received">
                     <ul>
-                        <li><a href="#">PrintIt4Less</a></li>
-                        <li>Cart</li>
+                        <li>Order Number: <span>190</span></li>
+                        <li>Date: <span>December 06, 2024</span></li>
+                        <li>Email: <span><a href="#">customer@email.com</a></span></li>
+                        <li>total: <span>$150.00</span></li>
                     </ul>
-                </nav>
-
-
-                <table class="table">
-                    <tr>
-                        <th>Close</th>
-                        <th>Product Image</th>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Subtotal</th>
-                    </tr>
-                    <tr>
-                        <td data-th="Close" class="close"><i class="fa-solid fa-xmark"></i></td>
-                        <td data-th="Product Image" class="product-img"><img src="/front/images/INVOICESv2.jpg" data-src="" alt="Invoice Forms"></td>
-                        <td data-th="Product"><a class="product-heading" href="#" alt="">Custom Form 3 part Small-Hard Back</a>
-                            <a href="#" class="tm-cart-edit-options">Edit options</a>
-                            <dl>
-                                <dt>Quantity:</dt>
-                                <dd>500</dd>
-
-                                <dt>Paper Type:</dt>
-                                <dd>3 part (white/yellow/manila)</dd>
-
-                                <dt>Ink Color:</dt>
-                                <dd>Blue</dd>
-
-                                <dt>Back Printing:</dt>
-                                <dd>Front & Back + $18.00</dd>
-
-                                <dt>Sequential Numbering:</dt>
-                                <dd>Red + $15.00</dd>
-
-                                <dt>Starting Number:</dt>
-                                <dd>4</dd>
-
-                                <dt>Perforating All Pages:</dt>
-                                <dd>4Yes + $15.00</dd>
-
-                                <dt>Drilling:</dt>
-                                <dd>2 holes top + $15.00 </dd>
-
-                                <dt>Request digital proof:</dt>
-                                <dd>Yes. Approval needed before print.</dd>
-                            </dl>
-                        </td>
-                        <td data-th="Price" class="product-amount">$185.00</td>
-                        <td data-th="Subtotal" class="product-amount">$185.00</td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td data-th="Close" class="close"><i class="fa-solid fa-xmark"></i></td>
-                        <td data-th="Product Image" class="product-img"><img src="/front/images/INVOICESv2.jpg" data-src="" alt="Invoice Forms"></td>
-                        <td data-th="Product"><a class="product-heading" href="#" alt="">Custom Form 3 part Small-Hard Back</a>
-                            <a href="#" class="tm-cart-edit-options">Edit options</a>
-                            <dl>
-                                <dt>Quantity:</dt>
-                                <dd>500</dd>
-
-                                <dt>Paper Type:</dt>
-                                <dd>3 part (white/yellow/manila)</dd>
-
-                                <dt>Ink Color:</dt>
-                                <dd>Blue</dd>
-
-                                <dt>Back Printing:</dt>
-                                <dd>Front & Back + $18.00</dd>
-
-                                <dt>Sequential Numbering:</dt>
-                                <dd>Red + $15.00</dd>
-                            </dl>
-                        </td>
-                        <td data-th="Price" class="product-amount">$185.00</td>
-                        <td data-th="Subtotal" class="product-amount">$185.00</td>
-                    </tr>
-
-
-
-                </table>
-
-                <div class="cart-totals">
-                    <h2>Cart totals</h2>
-                    <table class="table">
-                        <tr>
-                            <th>Subtotal</td>
-                            <td data-th="Subtotal">$185.00</td>
-                        </tr>
-                        <tr>
-                            <th>Shipping</td>
-                            <td data-th="Shipping">Enter your address to view shipping options.<a href="#"
-                                    class="shipping-calculator-button"><i class="fa-solid fa-calculator"></i>Calculate
-                                    shipping</a></td>
-                        </tr>
-                        <tr>
-                            <th>Tax</td>
-                            <td data-th="Tax">$12.95</a></td>
-                        </tr>
-                        <tr>
-                            <th>Total</td>
-                            <td data-th="Total"><strong>$197.95</strong></td>
-                        </tr>
-
-                    </table>
-
-                    <a href="/shop/" class="print-btn button btns">Proceed to checkout</a>
                 </div>
 
+                    <div class="payment-method">
+                        <h5>Payment Method <span>Check Payments</span></h4>
+                    </div>
+
+                    <div class="order-detail-table">
+                    <h2>Order Detail</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th>Product</th>
+                            <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>Album x 1</th>
+                            <td>$15.00</td>
+                            </tr>
+                            <tr>
+                            <td>Album x 1</th>
+                            <td>$15.00</td>
+                            </tr>
+                            <tr>
+                            <td>Belt x 1</th>
+                            <td colspan="2">$55.00</td>   
+                            </tr>
+                            <tr>
+                            <td>Belt x 1</th>
+                            <td colspan="2">$55.00</td>   
+                            </tr>
+                            <tr>
+                            <td>Subtotal:</th>
+                            <td colspan="2">$140.00</td>   
+                            </tr>
+
+                            <tr>
+                            <td>Payment Method:</th>
+                            <td colspan="2">Check Payment</td>   
+                            </tr>
+
+                            <tr>
+                            <td>Total:</th>
+                            <td colspan="2">$140.00</td>   
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    </div>
+
+                    <div class="order-billingaddress">
+                        <h2>Billing Address</h2>
+
+                        <div class="bill-detail">
+                            <ul>
+                                <li>Customer Name</li>
+                                <li>Business Name</li>
+                                <li>XXXX Lorem ipsum dolar simple dummy text</li>
+                                <li><i class="fa-solid fa-phone"></i><a href="#">123 456 7890</a></li>
+                                <li><i class="fa-solid fa-envelope"></i><a href="#">customer@email.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
 
 
             </div>
         </div>
+
     </div>
+</div>
+</div>
 </div>
 </div>
 

@@ -248,6 +248,7 @@ background: #0d51aa;color: #fff;border: 1px solid #0d51aa;padding: 2px 10px;font
 .edit-item-menu .form-setting .input-group .input-group-append button {height: 100%;border-radius: 0 10px 10px 0;border: 1px solid #cce0f3;background: #0d51aa;color: #fff;
 font-size: 18px;padding: 0 10px;}
 .form-setting form .form-label-group textarea {border: 1px solid #cce0f3;font-size: 14px;padding: 10px 15px;resize: none;}
+.form-setting form .form-label-group select {border: 1px solid #cce0f3;font-size: 14px;padding: 10px 15px;resize: none;}
 .setting-menu .edit-menuadd .sortableLists .btn-group .clickable{margin: 0px 2px 0 0px;}
 
 .form-setting form .card.card-header .form-group img {margin: 0 0 15px;}
@@ -364,6 +365,10 @@ display: flex;align-items: center;justify-content: center;}
 /*setting css*/
 .form-setting form .col-md-6 {width: 100%; margin-bottom: 30px;}
 /*setting css end*/
+
+/*edit user css*/
+.edituserform form .edituserform-row .form-group input.form-control{ font-size: 13px;}
+/*edit user css end*/
 
 /*media library css*/
 .drop-images-files {grid-template-columns: repeat(6, 1fr);}

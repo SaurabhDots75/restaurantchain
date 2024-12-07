@@ -34,6 +34,10 @@ Route::get('/cart', function () {
     return view('front.cart');
 });
 
+Route::get('/checkout', function () {
+    return view('front.checkout');
+});
+
 Route::get('/contact-us', function () {
     return view('front.contact-us');
 });
@@ -64,6 +68,10 @@ Route::get('/quotes-proofs', function () {
 
 Route::get('/sitemap', function () {
     return view('front.sitemap');
+});
+
+Route::get('/order', function () {
+    return view('front.order');
 });
 
 
