@@ -13,7 +13,7 @@
         </div>
         @endif
                     <div class="pull-right">
-                        <a href="" id="btnOutput" type="button" class="view-btn">Save Changes</a>
+                        <button id="btnOutput" type="button" class="view-btn">Save Changes</button>
                         <a href="{{ route('admin.home') }}" class="view-btn">Cancel</a>
                     </div>
 

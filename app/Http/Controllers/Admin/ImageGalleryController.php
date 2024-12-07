@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ImageGallery;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ImageGalleryController extends Controller
 {
@@ -28,12 +29,18 @@ class ImageGalleryController extends Controller
     public function upload(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10048',
+        ], [
+            'image.required' => 'The image is mandatory.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'image.max' => 'The image may not be greater than 2MB.',
         ]);
         $input['image'] = time() . '.' . $request->image->getClientOriginalExtension();
-        $request->image->move(public_path('images'), $input['image']);
-        $input['title'] = $request->title;
+        // Store the image in the 'public' disk (which points to 'storage/app/public')
+        $imagePath = $request->file('image')->storeAs('images', $input['image'], 'public');
+        // Store the path in the database (if needed)
+        $input['image_path'] = $imagePath;
         ImageGallery::create($input);
         return redirect()->route('admin.image-gallery')->with('success', 'Image Uploaded successfully.');
     }
@@ -45,11 +52,20 @@ class ImageGalleryController extends Controller
      */
     public function destroy(Request $request)
     {
-        $getDelete = ImageGallery::find($request->deleteId)->first();
-        if (File::exists(public_path('/images/'.$getDelete->image))) {
-            File::delete(public_path('/images/'.$getDelete->image));
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = ImageGallery::find($recordId);
+
+        $imagePath = 'images/' . $record->image;
+
+        // Check if the file exists and delete it
+        if (Storage::disk('public')->exists($imagePath)) {
+            Storage::disk('public')->delete($imagePath);
         }
-        $getDelete->delete();
-        return back()->with('success', 'Image removed successfully.');
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 }
