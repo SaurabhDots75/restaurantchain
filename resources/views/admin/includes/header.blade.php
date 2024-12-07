@@ -23,10 +23,10 @@
                 </a>
                 <div class="collapse" id="collapseSettings" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="{{ route('admin.settings') }}">Basic Website Setting</a>
+                        <a class="nav-link" href="{{ route('admin.settings') }}"><i class="fa-solid fa-gear"></i>&nbsp; Basic Website Setting</a>
                         <!-- <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a> -->
-                        <a class="nav-link" href="{{ route('admin.footer-settings') }}">Footer Setting</a>
-                        <a class="nav-link" href="{{ route('admin.menus') }}">Menu</a>
+                        <a class="nav-link" href="{{ route('admin.footer-settings') }}"><i class="fa-solid fa-gear"></i> &nbsp; Footer Setting</a>
+                        <a class="nav-link" href="{{ route('admin.menus') }}"><i class="fa-solid fa-bars"></i> &nbsp; Menu</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePosts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -102,8 +102,7 @@
                     Users
                 </a>
                 <a class="nav-link" href="{{ route('admin.image-gallery') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                    Media
+                    <i class="fa-solid fa-photo-film"></i>&nbsp; Media
                 </a>
             </div>
         </div>
