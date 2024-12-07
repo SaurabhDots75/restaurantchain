@@ -82,7 +82,7 @@ class ForgotPasswordController extends Controller
           return view('auth.forgetPasswordLink', ['token' => $token,'email'=>$updatePassword->email]);
         }else{
           return redirect()->route('admin.login')
-                        ->with('success','Your password reset link has either expired or has already been used.');
+                        ->with('success','Your reset password link has expired or has already been used.');
         }
       }
   

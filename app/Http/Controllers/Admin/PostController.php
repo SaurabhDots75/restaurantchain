@@ -49,7 +49,12 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'status' => 'required',
+            'slug' => 'required',
+        ],[
+            'title.required' => 'The Page Name is mandatory.',
+            'title.max' => 'The Page Name may not be greater than 255 characters.',
+            'slug.required' => 'The Slug is mandatory.',
+            'description.required' => 'The Description is mandatory.',
         ]);
         if ($request->hasFile('image')) {
             $image = singleStorageImageUpload($request->file('image'), 'Post', '500', '300');
@@ -117,6 +122,12 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
+            'slug' => 'required',
+        ],[
+            'title.required' => 'The Page Name is mandatory.',
+            'title.max' => 'The Page Name may not be greater than 255 characters.',
+            'slug.required' => 'The Slug is mandatory.',
+            'description.required' => 'The Description is mandatory.',
         ]);
         /*image update*/
         if ($request->hasFile('image')) {
@@ -140,10 +151,16 @@ class PostController extends Controller
      * @param string $id
      * @return void
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        Post::find($id)->delete();
-        return redirect()->route('admin.posts.index')->with('alert-success', 'Post Deleted Successfully');
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = Post::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 
     /**

@@ -47,6 +47,9 @@ class FaqCategoryController extends Controller
         $input = $request->all();
         $request->validate([
             'title' => 'required|max:255',
+        ],[
+            'title.required' => 'The FAQ Category is mandatory.',
+            'title.max' => 'The FAQ Category may not be greater than 255 characters.',
         ]);
         FaqCategory::create($input);
         return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Added Successfully');
@@ -102,6 +105,9 @@ class FaqCategoryController extends Controller
         $input = $request->all();
         $request->validate([
             'title' => 'required|max:255',
+        ],[
+            'title.required' => 'The FAQ Category is mandatory.',
+            'title.max' => 'The FAQ Category may not be greater than 255 characters.',
         ]);
         $faqcategories->fill($input)->save();
         return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Updated Successfully');
@@ -113,9 +119,15 @@ class FaqCategoryController extends Controller
      * @param string $faqid
      * @return void
      */
-    public function destroy(string $faqid)
+    public function destroy(Request $request)
     {
-        FaqCategory::find($faqid)->delete();
-        return redirect()->route('admin.faqcategories.index')->with('alert-success', 'Faq Category Updated Successfully');
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = FaqCategory::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 }

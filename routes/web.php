@@ -121,17 +121,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Settings Route
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         Route::post('/profile/{userid}', [ProfileController::class, 'update'])->name('profile.update');
-        Route::get('/settings', [SettingController::class, 'index'])->name('settings');
+        Route::get('/settings/basic-setting', [SettingController::class, 'index'])->name('settings');
         Route::post('/settings-update', [SettingController::class, 'update']);
         // Header Settings Route
-        Route::get('/header-settings', [SettingController::class, 'headerSetting'])->name('header-settings');
+        Route::get('/settings/header-settings', [SettingController::class, 'headerSetting'])->name('header-settings');
         Route::post('/header-settings-update', [SettingController::class, 'footerSettingUpdate']);
         // Footer Settings Route
-        Route::get('/footer-settings', [SettingController::class, 'footerSetting'])->name('footer-settings');
+        Route::get('/settings/footer-settings', [SettingController::class, 'footerSetting'])->name('footer-settings');
         Route::post('/footer-settings-update', [SettingController::class, 'footerSettingUpdate']);
 
         //Appreance > Menus Routes
-        Route::get('/menus', [MenuController::class, 'index'])->name('menus');
+        Route::get('/settings/menus', [MenuController::class, 'index'])->name('menus');
         Route::post('/menus/save', [MenuController::class, 'save']);
 
         // Post Category Routes

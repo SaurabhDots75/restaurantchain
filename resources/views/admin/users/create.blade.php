@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
                 <strong>Role:</strong>
-                <select name="roles[]" class="form-control" id="multiple" multiple>
+                <select name="roles[]" class="form-control" id="multiple" >
                     @foreach ($roles as $value => $label)
                         <option value="{{ $value }}">
                             {{ $label }}
@@ -62,11 +62,6 @@
 @endsection
 @section('custom_js_scripts')
 <script>
-    $("#multiple").select2({
-        multiple: true,
-        placeholder: "Select Role",
-        allowClear: true
-    });
     $(document).ready(function() {
         $('.show-password').on('click', function(e) {
             var target = e.currentTarget;

@@ -45,8 +45,12 @@ class PageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'status' => 'required',
-
+            'slug' => 'required',
+        ],[
+            'title.required' => 'The Page Name is mandatory.',
+            'title.max' => 'The Page Name may not be greater than 255 characters.',
+            'slug.required' => 'The Slug is mandatory.',
+            'description.required' => 'The Description is mandatory.',
         ]);
         if ($request->hasFile('image')) {
             $image = singleStorageImageUpload($request->file('image'), 'Post', '1200', '600');
@@ -106,8 +110,12 @@ class PageController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'status' => 'required',
-
+            'slug' => 'required',
+        ],[
+            'title.required' => 'The Page Name is mandatory.',
+            'title.max' => 'The Page Name may not be greater than 255 characters.',
+            'description.required' => 'The Description is mandatory.',
+            'slug.required' => 'The Slug is mandatory.',
         ]);
         /*image update*/
         if ($request->hasFile('image')) {
@@ -124,10 +132,16 @@ class PageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, $pageid)
+    public function destroy(Request $request)
     {
-        Page::where('id', $pageid)->delete();
-        return redirect()->route('admin.pages.index')->with('alert-success', 'Page Deleted Successfully');
+        $recordId = $request->input('id');
+        // Perform deletion logic, e.g., delete from database
+        $record = Page::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
     /**
      * Status

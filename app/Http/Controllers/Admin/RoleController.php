@@ -139,15 +139,14 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(Request $request)
     {
-        $getRoleUserCount = DB::table("model_has_roles")->where('role_id',$id)->count();
+        $recordId = $request->input('id');
+        $getRoleUserCount = DB::table("model_has_roles")->where('role_id',$recordId)->count();
         if(isset($getRoleUserCount) && $getRoleUserCount == 0) {
-            Role::where('id',$id)->delete();
-            return redirect()->route('admin.roles.index')
-                            ->with('success','Role deleted successfully');
+            Role::where('id',$recordId)->delete();
+            return response()->json(['success' => true], 200);
         }
-        return redirect()->route('admin.roles.index')
-                        ->with('success','The role is currently assigned to a user and cannot be deleted.');
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 }

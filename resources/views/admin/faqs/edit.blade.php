@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="content">
+   
+   <!-- DataTables Example -->
+   <div class="dashboard-panel">
+
    <!-- Breadcrumbs-->
    @if(session()->has('alert-danger'))
    <div class="alert alert-danger">
@@ -22,13 +26,11 @@
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ $errors->first('status') }}
    </div>
    @endif
-   <!-- DataTables Example -->
-   <div class="dashboard-panel">
    <div class="role-management">
    <div class="content">
       <div class="pull-left">
-                    <h2>Edit Faq</h2>
-       </div>
+         <h2>Edit FAQ</h2>
+      </div>
        <div class="form-setting">
          <form id="cmsForm" action="{{ route('admin.faqs.update', base64_encode($faqs->id)) }}" enctype="multipart/form-data" method="POST">
             @csrf
@@ -40,14 +42,14 @@
                         <div class="form-group">
                            <div class="form-label-group">
                               <label for="product_name">Question</label>
-                              <input type="text" id="title" name="title" value="{{ $faqs->title }}" class="form-control" placeholder="Faq Name">
+                              <input type="text" id="title" name="title" value="{{ $faqs->title }}" class="form-control">
                            </div>
                         </div>
                         
                         <div class="form-group">
                            <div class="form-label-group">
                                <label for="product_name">Answer</label>
-							  <textarea id="description" name="description" class="form-control ckeditor" placeholder="Faq Description" >{{ $faqs->description }}</textarea>
+							  <textarea id="description" name="description" class="form-control ckeditor" >{{ $faqs->description }}</textarea>
                            </div>
                         </div>
                      </div>
@@ -55,7 +57,6 @@
                </div>
                <div class="col-md-4 mt">
                   <div class="card card-header">
-                        
                     <div class="form-group">
                      <div class="form-label-group">
                      <label for="product_name">Categories</label>
@@ -65,18 +66,7 @@
                            @endforeach
                         </select>
                      </div>
-               </div> 
-                     <div class="form-group">
-                        <div class="form-label-group">
-                           <select id="status" name="status" class="form-control">
-                              <option value="">Select Status</option>
-                              <option value="1" {{ $faqs->status=='1' ? 'selected' : '' }} >Enable</option>
-                              <option value="0" {{ $faqs->status=='0' ? 'selected' : '' }} >Disable</option>
-                           </select>
-                        </div>
-                     </div>
-                    
-                     
+               </div>
                      <div class="form-group">
                         <button type="submit" class="view-btn">Submit</button>
                         <a href="{{ route('admin.faqs.index') }}" class="view-btn"> Cancel</a>
