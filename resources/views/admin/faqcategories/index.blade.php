@@ -91,7 +91,7 @@
                             // Handle error if deletion fails
                             Swal.fire(
                                 'Error!',
-                                'There was an issue deleting the record.',
+                                xhr.responseJSON.message,
                                 'error'
                             );
                         }

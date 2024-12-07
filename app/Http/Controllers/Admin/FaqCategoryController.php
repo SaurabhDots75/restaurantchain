@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FaqCategory;
+use App\Models\Faq;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\FaqCategoryLang;
@@ -122,12 +123,19 @@ class FaqCategoryController extends Controller
     public function destroy(Request $request)
     {
         $recordId = $request->input('id');
-        // Perform deletion logic, e.g., delete from database
+        $getfaqCount = Faq::where('categories', $recordId)->count();
+        // Find the record in the FaqCategory table
         $record = FaqCategory::find($recordId);
-        if ($record) {
-            $record->delete();
-            return response()->json(['success' => true], 200);
+        if (!$record) {
+            // If record is not found, return response immediately
+            return response()->json(['success' => false, 'message' => 'Record not found'], 404);
         }
-        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
+        // If record is found and there are related FAQs, prevent deletion
+        if ($getfaqCount > 0) {
+            return response()->json(['success' => false, 'message' => 'Please remove all FAQ before deleting the category'], 404);
+        }
+        // Delete the record and return success
+        $record->delete();
+        return response()->json(['success' => true], 200);
     }
 }
