@@ -23,17 +23,10 @@
                 </a>
                 <div class="collapse {{ Request::is('admin/settings*') ? 'show' : '' }}" id="collapseSettings" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-<<<<<<< HEAD
-                        <a class="nav-link" href="{{ route('admin.settings') }}"><i class="fa-solid fa-gear"></i>&nbsp; Basic Website Setting</a>
-                        <!-- <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a> -->
-                        <a class="nav-link" href="{{ route('admin.footer-settings') }}"><i class="fa-solid fa-gear"></i> &nbsp; Footer Setting</a>
-                        <a class="nav-link" href="{{ route('admin.menus') }}"><i class="fa-solid fa-bars"></i> &nbsp; Menu</a>
-=======
-                        <a class="nav-link {{ Request::is('admin/settings/basic-setting') ? 'active' : '' }}" href="{{ route('admin.settings') }}">Basic Website Setting</a>
-                        <!-- <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a> -->
-                        <a class="nav-link {{ Request::is('admin/settings/footer-settings') ? 'active' : '' }}" href="{{ route('admin.footer-settings') }}">Footer Setting</a>
-                        <a class="nav-link {{ Request::is('admin/settings/menus') ? 'active' : '' }}" href="{{ route('admin.menus') }}">Menu</a>
->>>>>>> 999bd3c4f2fe71bfd924e348a22793d7a26d4ff5
+                        <a class="nav-link {{ Request::is('admin/settings/basic-setting') ? 'active' : '' }}" href="{{ route('admin.settings') }}"><i class="fa-solid fa-gear"></i>&nbsp;Basic Website Setting</a>
+                        {{-- <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a> --}}
+                        <a class="nav-link {{ Request::is('admin/settings/footer-settings') ? 'active' : '' }}" href="{{ route('admin.footer-settings') }}"><i class="fa-solid fa-gear"></i> &nbsp;Footer Setting</a>
+                        <a class="nav-link {{ Request::is('admin/settings/menus') ? 'active' : '' }}" href="{{ route('admin.menus') }}"><i class="fa-solid fa-bars"></i> &nbsp;Menu</a>
                     </nav>
                 </div>
                 <a class="nav-link {{ Request::is('admin/posts*') ? 'active' : 'collapsed' }}" href="{{ route('admin.posts.index') }}">
