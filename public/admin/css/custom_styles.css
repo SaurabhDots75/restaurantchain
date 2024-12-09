@@ -343,7 +343,8 @@ display: flex;align-items: center;justify-content: center;}
 .latest-sale-product .latest-sale-left .amount-date h4{ font-size: 14px;}
 .tablescroll-tableroll {width: 100%;overflow: scroll;display: block;}
 .tablescroll-tableroll table.management-table {width: 1000px;}
-.management-table tr th, .management-table tr td{ font-size: 14px;}
+.management-table tr th, .management-table tr td{ font-size: 13px; white-space: nowrap;}
+#layoutSidenav_nav .sb-sidenav .sb-sidenav-menu a.nav-link{ font-size: 14px;}
 
 /*media library css*/
 .drop-images-files {grid-template-columns: repeat(8, 1fr);}

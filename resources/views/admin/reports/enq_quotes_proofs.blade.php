@@ -37,7 +37,7 @@
                     <td>{{ $report->company_name }}</td>
                     <td>{{ $report->email }}</td>
                     <td>{{ $report->mobile }}</td>
-                    <td>{{ (isset($report->city)$report->city:'').'<br>'.(isset($report->state)?$report->state:'') }}</td>
+                    <td>{!! (isset($report->city)?$report->city:'').'<br>'.(isset($report->state)?$report->state:'') !!}</td>
                     <td>{{ $report->project_type }}</td>
                     <td>{{$report->created_at->format('d-M-Y h:i:s')}}</td>
                     <td>
