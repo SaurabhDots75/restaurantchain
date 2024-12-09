@@ -91,7 +91,7 @@
                     </nav>
                 </div> -->
 
-                <div class="sb-sidenav-menu-heading">Reports Sections</div>
+                <div class="sb-sidenav-menu-heading">Reports Section</div>
                 <a class="nav-link {{ Request::is('admin/reports*') ? 'active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="{{ Request::is('admin/settings*') ? 'true' : 'false' }}" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
                     Reports
