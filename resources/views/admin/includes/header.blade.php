@@ -90,6 +90,19 @@
                         </div>
                     </nav>
                 </div> -->
+
+                <div class="sb-sidenav-menu-heading">Reports Sections</div>
+                <a class="nav-link {{ Request::is('admin/reports*') ? 'active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSettings" aria-expanded="{{ Request::is('admin/settings*') ? 'true' : 'false' }}" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
+                    Resports
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse {{ Request::is('admin/reports*') ? 'show' : '' }}" id="collapseSettings" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link {{ Request::is('admin/report/enq-report') ? 'active' : '' }}" href="{{ route('admin.enq-report') }}"><i class="fa-solid fa-gear"></i>&nbsp;Enquiry Report</a>
+                        <a class="nav-link {{ Request::is('admin/report/proofs-quotes-report') ? 'active' : '' }}" href="{{ route('admin.proofs-quotes-report') }}"><i class="fa-solid fa-gear"></i>&nbsp;Quotes & Proofs Report</a>
+                    </nav>
+                </div>
                 <div class="sb-sidenav-menu-heading">Masters</div>
                 <a class="nav-link {{ Request::is('admin/roles*') ? 'active' : '' }}" href="{{ route('admin.roles.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>

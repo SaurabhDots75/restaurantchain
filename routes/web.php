@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ImageGalleryController;
+use App\Http\Controllers\Admin\EnqReportController;
 
 Route::get('/', function () {
     return view('front.index');
@@ -145,6 +146,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('image-gallery', [ImageGalleryController::class, 'index']);
         Route::post('image-gallery', [ImageGalleryController::class, 'upload'])->name('image-gallery');
         Route::delete('image-gallery-delete', [ImageGalleryController::class, 'destroy'])->name('image-gallery-delete');
+
+        Route::get('/reports/enq-report', [EnqReportController::class, 'index'])->name('enq-report');
+        Route::get('/reports/proofs-quotes-report', [EnqReportController::class, 'proofsQuotesReports'])->name('proofs-quotes-report');
+        Route::delete('/reports/enq-report', [EnqReportController::class, 'destroy']);
+        Route::delete('/reports/proofs-quotes-report', [EnqReportController::class, 'destroyProofsQuotes']);
     });
 
     /*------------------------------------------
