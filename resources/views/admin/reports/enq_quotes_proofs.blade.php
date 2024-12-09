@@ -22,12 +22,11 @@
                 <tr>
                     <th>Sr No</th>
                     <th>Name</th>
-                    <th>company_name</th>
+                    <th>Company Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
-                    <th>city</th>
-                    <th>state</th>
-                    <th>project_type</th>
+                    <th>Address</th>
+                    <th>Project Type</th>
                     <th>Created</th>
                     <th>Action</th>
                 </tr>
@@ -38,8 +37,7 @@
                     <td>{{ $report->company_name }}</td>
                     <td>{{ $report->email }}</td>
                     <td>{{ $report->mobile }}</td>
-                    <td>{{ $report->city }}</td>
-                    <td>{{ $report->state }}</td>
+                    <td>{{ (isset($report->city)$report->city:'').'<br>'.(isset($report->state)?$report->state:'') }}</td>
                     <td>{{ $report->project_type }}</td>
                     <td>{{$report->created_at->format('d-M-Y h:i:s')}}</td>
                     <td>
