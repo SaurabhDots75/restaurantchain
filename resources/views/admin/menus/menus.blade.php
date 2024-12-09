@@ -31,9 +31,6 @@
                                     <label for="text">Text</label>
                                     <div class="input-group">
                                         <input required="required" type="text" class="form-control item-menu" name="text" id="text" placeholder="Text">
-                                        <div class="input-group-append">
-                                            <button type="button" id="myEditor_icon" class="btn btn-outline-secondary"></button>
-                                        </div>
                                     </div>
                                     <input type="hidden" name="icon" class="item-menu">
                                 </div>

@@ -23,7 +23,7 @@
                 @endif
                 @if ($message = Session::get('success'))
                 <div class="alert alert-success alert-block">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <!-- <button type="button" class="close" data-dismiss="alert">×</button> -->
                     <strong>{{ $message }}</strong>
                 </div>
                 @endif
@@ -51,7 +51,8 @@
             <div class="drop-images-files">
                 @if($images->count())
                     @foreach($images as $image)
-                        <div class="dropboximg" id="image-details{{$image->id}}" class="btn btn-primary" data-bs-toggle="modal"><img src="{{ asset('storage/images/'.$image->image) }}" alt="" class="img-fluid"></div>
+                        <div class="dropboximg" id="image-details-custom{{$image->id}}" class="btn btn-primary" data-bs-toggle="modal"><img src="{{ asset('storage/images/'.$image->image) }}" alt="" class="img-fluid"><a id="delete-record{{$image->id}}">
+                                       <div class="closeupload"><i class="fa-solid fa-xmark"></i></div></a></div>
                     @endforeach
                 @endif
             </div>
@@ -155,7 +156,7 @@
             openEffect: "none",
             closeEffect: "none"
         });
-        $(document).on('click', "[id^=image-details]", function () {
+        $(document).on('click', "[id^=image-details_changes]", function () {
             var index = parseInt($(this).attr("id").replace("image-details", ''));
             $('#image_id').val(index);
             var imgSrc = $(this).find('img').attr('src');
@@ -168,7 +169,8 @@
 
 
         $(document).on('click', "[id^=delete-record]", function () {
-            var index = $('#image_id').val();
+            var index = parseInt($(this).attr("id").replace("delete-record", ''));
+            // var index = $('#image_id').val();
             
             // Show a confirmation dialog
             Swal.fire({
