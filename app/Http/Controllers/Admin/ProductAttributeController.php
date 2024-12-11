@@ -11,12 +11,12 @@ class ProductAttributeController extends Controller
     public function index(Request $request)
     {
         $attributes = Attribute::with('variations')->paginate(10);
-        return view('admin.attributes.index', compact('attributes'))->with('i', ($request->input('page', 1) - 1) * 10);
+        return view('admin.attribute.index', compact('attributes'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     public function create()
     {
-        return view('admin.attributes.create');
+        return view('admin.attribute.create');
     }
 
     public function store(Request $request)
@@ -45,7 +45,7 @@ class ProductAttributeController extends Controller
     public function edit($id)
     {
         $attribute = Attribute::with('variations')->findOrFail($id);
-        return view('admin.attributes.edit', compact('attribute'));
+        return view('admin.attribute.edit', compact('attribute'));
     }
 
     public function update(Request $request, $id)
