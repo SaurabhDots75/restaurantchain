@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PostCategoryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqController;
@@ -91,7 +92,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Password Reset Routes
     // Routes for Forget Password
     Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
     Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
     Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
@@ -151,6 +152,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/reports/proofs-quotes-report', [EnqReportController::class, 'proofsQuotesReports'])->name('proofs-quotes-report');
         Route::delete('/reports/enq-report', [EnqReportController::class, 'destroy']);
         Route::delete('/reports/proofs-quotes-report', [EnqReportController::class, 'destroyProofsQuotes']);
+
+        // Product Category Routes
+        Route::get('/products/categories', [CategoryController::class, 'index'])->name('categories');
+        Route::get('/products/categories/create/{catslug?}', [CategoryController::class, 'create'])->name('create');
+        Route::post('/products/categories/add', [CategoryController::class, 'add'])->name('add');
+        Route::delete('/products/delete-categories', [CategoryController::class, 'destroy']);
+        Route::get('/categories/hierarchy', [CategoryController::class, 'getHierarchy'])->name('categories.hierarchy');
     });
 
     /*------------------------------------------
