@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ImageGalleryController;
 use App\Http\Controllers\Admin\EnqReportController;
+use App\Http\Controllers\Admin\ProductAttributeController;
 
 Route::get('/', function () {
     return view('front.index');
@@ -159,6 +160,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/products/categories/add', [CategoryController::class, 'add'])->name('add');
         Route::delete('/products/delete-categories', [CategoryController::class, 'destroy']);
         Route::get('/categories/hierarchy', [CategoryController::class, 'getHierarchy'])->name('categories.hierarchy');
+
+        Route::resource('/products/product-attributes', ProductAttributeController::class)
+        ->names([
+            'index' => 'products.product-attributes.index',
+            'create' => 'products.product-attributes.create',
+            'store' => 'products.product-attributes.store',
+            'show' => 'products.product-attributes.show',
+            'edit' => 'products.product-attributes.edit',
+            'update' => 'products.product-attributes.update',
+            'destroy' => 'products.product-attributes.destroy',
+        ]);
     });
 
     /*------------------------------------------
