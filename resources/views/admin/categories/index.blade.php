@@ -38,12 +38,11 @@
                   <tr>
                      <td>{{ $i + $loop->index + 1 }}</td>
                      <td>{{$value->title}}</td>
-
                      <td>{{$value->slug}}</td>
                      <td>{{$value->parent_details}}</td>
                      <td>{{$value->created_at->format('d-M-Y h:i:s')}}</td>
                      <td>
-                        <a title="Edit" href="{{asset('admin/products/categories/create/'.$value->slug)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit " aria-hidden="true"></i></a>
+                        <a title="Edit" href="{{asset('admin/products/categories/create/'.$value->slug)}}" class="btn btn-primary btn-sm"><i class="fa fa-edit " aria-hidden="true"></i></a>
                         <a id="delete-record{{$value->id}}" title="Delete Role" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
                      </td>
                   </tr>

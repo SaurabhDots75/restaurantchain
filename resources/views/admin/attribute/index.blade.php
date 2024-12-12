@@ -1,38 +1,48 @@
 @extends('admin.layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Product Attributes</h1>
-    <a href="{{ route('admin.products.product-attributes.create') }}" class="btn btn-primary mb-3">Add Attribute</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Variations</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($attributes as $attribute)
-            <tr>
-                <td>{{ $i + $loop->index + 1 }}</td>
-                <td>{{ $attribute->name }}</td>
-                <td>{{ $attribute->description }}</td>
-                <td>
-                    @foreach ($attribute->variations as $variation)
-                        <span class="badge bg-secondary">{{ $variation->value }}</span>
-                    @endforeach
-                </td>
-                <td>
-                    <a href="{{ route('admin.products.product-attributes.edit', $attribute->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                    <a id="delete-record{{$attribute->id}}" title="Delete Role" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+<div class="dashboard-panel">
+   <div class="role-management">
+      <div class="content">
+         <div class="pull-left">
+            <h2>Attributes</h2>
+         </div>
+         <div class="pull-right">
+            <a class="view-btn" href="{{ route('admin.products.product-attributes.create') }}">Add Attribute</a>
+         </div>
+         <div class="tablescroll-tableroll">
+            <table class="management-table table table-bordered table-hover">
+               <thead>
+                     <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Variations</th>
+                        <th scope="col">Actions</th>
+                     </tr>
+               </thead>
+               <tbody>
+                     @foreach ($attributes as $attribute)
+                     <tr>
+                        <td>{{ $i + $loop->index + 1 }}</td>
+                        <td>{{ $attribute->name }}</td>
+                        <td>{{ $attribute->description }}</td>
+                        <td>
+                           @foreach ($attribute->variations as $variation)
+                                 <span class="badge bg-secondary">{{ $variation->value }}</span>
+                           @endforeach
+                        </td>
+                        <td>
+                           <a href="{{ route('admin.products.product-attributes.edit', $attribute->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit " aria-hidden="true"></i></a>
+                           <a id="delete-record{{$attribute->id}}" title="Delete Role" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                     </tr>
+                     @endforeach
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
 </div>
 @endsection
 @section('custom_js_scripts')
