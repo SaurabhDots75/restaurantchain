@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Admin\SlugController;
 
 class ProductController extends Controller
 {
@@ -14,13 +16,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
-    {
-         $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
-         $this->middleware('permission:product-create', ['only' => ['create','store']]);
-         $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:product-delete', ['only' => ['destroy']]);
-    }
+    // function __construct()
+    // {
+    //      $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
+    //      $this->middleware('permission:product-create', ['only' => ['create','store']]);
+    //      $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
+    //      $this->middleware('permission:product-delete', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +32,7 @@ class ProductController extends Controller
     {
         $products = Product::latest()->paginate(10);
 
-        return view('products.index',compact('products'))
+        return view('admin.products.index',compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
     }
     
@@ -41,7 +43,7 @@ class ProductController extends Controller
      */
     public function create(): View
     {
-        return view('products.create');
+        return view('admin.products.create');
     }
     
     /**
@@ -52,15 +54,35 @@ class ProductController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+        // Validate the request input
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'long_description' => 'required|string',
+        ],[
+            'name.required' => 'The Name is mandatory.',
+            'name.max' => 'The Name may not be greater than 255 characters.',
+            'slug.required' => 'The Slug may not be greater than 255 characters.',
+            'long_description.required' => 'The Description is mandatory.',
         ]);
-    
-        Product::create($request->all());
-    
-        return redirect()->route('products.index')
-                        ->with('success','Product created successfully.');
+
+        // Generate or use the custom slug
+        if (empty($request->table_id)) {
+            $newCustomSlug = generateSlug('Product', $request); // Pass the $request object
+        } else {
+            $newCustomSlug = $validatedData['slug'] ?? '';
+        }
+
+        // Set the slug in lowercase
+        $validatedData['slug'] = strtolower($newCustomSlug);
+
+        // Create the product using validated data
+        Product::create($validatedData);
+
+        // Redirect to the products index with a success message
+        return redirect()
+            ->route('admin.products.index')
+            ->with('success', 'Product created successfully.');
     }
     
     /**
@@ -71,7 +93,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        return view('products.show',compact('product'));
+        return view('admin.products.show',compact('product'));
     }
     
     /**
@@ -82,7 +104,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
-        return view('products.edit',compact('product'));
+        return view('admin.products.edit',compact('product'));
     }
     
     /**
@@ -94,14 +116,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product): RedirectResponse
     {
-         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'long_description' => 'required|string',
+        ],[
+            'name.required' => 'The Name is mandatory.',
+            'name.max' => 'The Name may not be greater than 255 characters.',
+            'slug.required' => 'The Slug may not be greater than 255 characters.',
+            'long_description.required' => 'The Description is mandatory.',
         ]);
+
+        // Generate or use the custom slug
+        if (empty($request->table_id)) {
+            $newCustomSlug = generateSlug('Product', $request); // Pass the $request object
+        } else {
+            $newCustomSlug = $validatedData['slug'] ?? '';
+        }
+
+        // Set the slug in lowercase
+        $validatedData['slug'] = strtolower($newCustomSlug);
     
         $product->update($request->all());
     
-        return redirect()->route('products.index')
+        return redirect()->route('admin.products.index')
                         ->with('success','Product updated successfully');
     }
     
@@ -111,11 +149,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product): RedirectResponse
+    public function destroy(Request $request)
     {
-        $product->delete();
-    
-        return redirect()->route('products.index')
-                        ->with('success','Product deleted successfully');
+        $recordId = $request->input('id');
+        $record = Product::find($recordId);
+        if ($record) {
+            $record->delete();
+            return response()->json(['success' => true], 200);
+        }
+        return response()->json(['success' => false, 'message' => 'Record not found'], 404);
     }
 }

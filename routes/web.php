@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\VerificationController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -116,6 +117,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
         Route::resource('/users', UserController::class);
+        Route::resource('/products', ProductController::class);
         Route::resource('/posts', PostController::class);
         Route::resource('/pages', PageController::class);
         Route::resource('/faqcategories', FaqCategoryController::class);
