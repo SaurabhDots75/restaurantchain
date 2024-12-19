@@ -3,17 +3,21 @@
 @section('content')
 <section class="bg-light py-3 py-md-5">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-        <div class="card border border-light-subtle rounded-3 shadow-sm mt-5">
-          <div class="card-body p-3 p-md-4 p-xl-5">
-            <div class="text-center mb-3">
-              <a href="#!">
-                <img src="{{asset('/front/images/logo.png')}}" alt="BootstrapBrain Logo" width="250">
-              </a>
-            </div>
-            <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Reset Password</h2>
+  <div class="login-panel">
+  <div class="login">
+
+
+
+        
+  <div class="card-header">
+    <div class="logo">
+              <a href="#"><img src="{{asset('/front/images/logo.png')}}" alt="BootstrapBrain Logo"></a>
+    </div>
+</div>
+            <div class="login-card">
+            
             <form method="POST" action="{{ route('admin.forget.password.post') }}">
+            <h3>Reset Password</h3>
               @csrf
 
               @if (Session::has('message'))
@@ -28,27 +32,16 @@
                   </div>
               @enderror
 
-              <div class="row gy-2 overflow-hidden">
 
-                <div class="col-12">
-                  <div class="form-floating mb-3">
+                  <div class="login-field">
                     <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="name@example.com" required>
-                    <label for="email" class="form-label">{{ __('Email Address') }}</label>
                   </div>
-                </div>
 
-                <div class="col-12">
-                  <div class="d-grid my-3">
-                    <button class="btn btn-primary btn-lg" type="submit">{{ __('Send Password Reset Link') }}</button>
-                  </div>
-                </div>
-
-              </div>
+                    <button class="btn btn-primary" type="submit">{{ __('Send Password Reset Link') }}</button>
             </form>
           </div>
-        </div>
-      </div>
-    </div>
+          </div>
+          </div>
   </div>
 </section>
 @endsection

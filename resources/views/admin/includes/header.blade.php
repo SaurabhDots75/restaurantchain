@@ -107,7 +107,7 @@
                     Users
                 </a>
                 <a class="nav-link {{ Request::is('admin/image-gallery*') ? 'active' : '' }}" href="{{ route('admin.image-gallery') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-photo-film"></i></div>
                     Media
                 </a>
             </div>

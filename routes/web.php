@@ -74,6 +74,15 @@ Route::get('/order', function () {
     return view('front.order');
 });
 
+Route::get('/my-account', function () {
+    return view('front.my-account');
+});
+
+Route::get('/dashboard', function () {
+    return view('front.dashboard');
+});
+
+
 
 
 Route::prefix('admin')->name('admin.')->group(function () {

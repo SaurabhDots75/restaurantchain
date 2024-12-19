@@ -63,6 +63,9 @@ h4{ margin: 0;font-family: 'Montserrat', sans-serif;}
 transition: all 0.2s ease;border: 1px solid transparent;text-transform: uppercase;font-weight: 600;}
 .btns:hover{background: rgb(13 81 170 / 20%);border: 1px solid #0d51aa;transition: all 0.2s ease;color: #0d51aa;}
 
+input.input-box, select.form-select {border: 1px solid #cce0f3;padding: 8px 10px;border-radius: 5px; width: 100%;}
+label {width: 100%;font-size: 14px;font-weight: 600;color: #000;}
+
 .desk-mt{margin-top: 30px;}
 
 /*header css*/
@@ -347,7 +350,7 @@ border-top-color: transparent;position: absolute;top: -.75em;left: 0;margin: -1e
 .checkbox-create-acc .checkbox-create-radio .payment_box input.input-box {border: 1px solid #c2b9ce;width: 100%;padding: 8px 10px;}
 .checkbox-create-acc .checkbox-create-radio .payment_box .payment_box-field {margin: 0 0 20px;}
 .checkbox-create-acc form {margin: 15px 0 0;border-top: 1px solid #caa8f3;padding: 8px 0 0;color: #a00;font-weight: 600;}
-.paypal-btn {background: #ffc439;min-width: 500px;max-width: 750px;text-align: center;padding: 9px 0;border-radius: 5px;margin: 16px 12px 0;}
+.checkbox-create-acc form label {width: 90%;}
 /*checkout page css end*/
 
 /*order css*/
@@ -483,6 +486,52 @@ z-index: -1;overflow: hidden;}
 .sitemap ul li a:hover{color:#0d51aa;}
 /*sitemap css end*/
 
+/*my account css*/
+.myaccount-panel {display: grid;grid-template-columns: repeat(2, 1fr); margin: 0 0 30px;}
+.myaccount-box {width: 95%;border: 1px solid #e7e7e7;padding: 25px;}
+.myaccount-box h2 {width: 100%;margin: 0 0 15px;}
+.myaccount-box .myaccount-form {display: flex;flex-wrap: wrap; justify-content: space-between;}
+.myaccount-box .myaccount-form .account-field.account-register {width: 49%;}
+.myaccount-box .myaccount-form .account-field {width: 100%;margin: 0 0 15px;}
+.myaccount-box .myaccount-form label {font-size: 15px;margin: 0 0 2px;}
+.myaccount-box .myaccount-form .form-check {width: 100%;    margin: 0 0 15px;}
+.myaccount-box .myaccount-form a.lost-pass {width: 100%;margin: 12px 0 0;color: #000;font-weight: 600;font-size: 18px;}
+/*my account css end*/
+
+/*my account dashboard css*/
+.front-dashboard{background: #e6ecf3;width: 100%;display: inline-block;padding: 30px 30px;border-radius: 30px;margin-bottom: 50px;}
+.myaccount-dashboard{ min-height: 500px;}
+.myaccount-dashboard ul.nav {background: #0d51aa;overflow: hidden; border-radius: 8px;}
+.myaccount-dashboard ul.nav li.nav-item button {background: none; color: #fff; padding: 10px 18px;}
+.myaccount-dashboard .tab-content h5 {color: #000;font-size: 16px;}
+.myaccount-dashboard .tab-content p {color: #000;font-weight: 600;}
+.myaccount-dashboard .tab-content p a {color: #0d51aa;}
+.tablescroll-tableroll table td .btns {padding: 4px 13px;font-size: 12px;}
+.myaccount-dashboard .tab-content .tablescroll-tableroll table tr th {border: 1px solid #e7e7e7;background: #7694ba;color: #fff;}
+.tab-pane .billing-address {display: grid;grid-template-columns: repeat(2, 1fr);}
+.tab-pane .billing-address .billing-address-box {width: 95%;border:1px solid #e3e3e3;padding: 20px;border-radius: 15px; background: #fff;}
+.tab-pane .billing-address a {width: 100%;text-align: right;display: inline-block;color: #0d51aa;font-weight: 600;}
+.tab-pane .billing-address ul {padding: 0;}
+.tab-pane .billing-address ul li{list-style: none;}
+.tab-pane .billingaddressform{ margin-top: 20px;}
+.tab-pane .billingaddressform .tabing-field-sec {width: 100%;padding: 20px 20px;border: 1px solid #e3e3e3;margin-top: 20px;border-radius: 20px; height: 100%; background: #fff;}
+.tabing-field-sec form .tabing-filed {margin: 0 0 10px;}
+.tabing-field-sec form .tabing-filed.quote-filedtwo {display: flex;flex-wrap: wrap;justify-content: space-between;}
+.tabing-field-sec form .tabing-filed.quote-filedtwo input.input-box {width: 49%;}
+.tabing-field-sec form .tabing-filed input.input-box.address-one {margin: 15px 0 0;}
+.billingaddressform a.btns {display: inline-block;width: auto;margin-top: 40px;margin-left:0;margin-bottom: 0;}
+
+.add-payment-method .payment-msg {width: 100%;background: #e5e5e5;border-top: 2px solid #0d51aa;padding: 12px 15px;margin: 0 0 40px;}
+.add-payment-method .payment-msg h5{ margin: 0;}
+.paypal-btn {background: #ffc439;min-width: 500px;max-width: 750px;text-align: center;padding: 9px 0;border-radius: 5px;margin: 16px 12px 0;}
+
+.tab-pane h2 {width: 100%;}.tab-pane .account-detail {display: flex;flex-wrap: wrap;justify-content: space-between;}
+.tab-pane .account-detail .accountdetailfiled {width: 49%;margin: 0 0 10px;}
+.tab-pane .account-detail.accpassword {margin-top: 30px; margin-bottom: 30px;}
+.tab-pane .account-detail.accpassword .accountdetailfiled {width: 100%;}
+.myaccount-dashboard .tab-content .paymethod {border: none;border-radius: 15px;background: #fff;padding: 20px;}
+/*my account dashboard css end*/
+
 /*footer css*/
 .footer {text-align: center;margin: 50px auto;color: #8c8c8c;margin-bottom: 0;width: 100%;background: #e9ecef;padding: 30px 0 0;margin-top: auto;}
 .footer .footer-logo {display: block;width: 230px;margin: 0 auto 30px;}
@@ -502,6 +551,8 @@ footer .copyright {color: #000;text-align: center;background:#dddddd;margin: 0;p
 /*footer css end*/
 
 @media (max-width:1600px){
+input.input-box{ font-size: 14px;}
+
 .printit4less-mid .side-panel{ width: 25%;}
 .printit4less-mid .content-area {width: 75%;}
 
@@ -577,6 +628,16 @@ nav.navbar a.btn {font-size: 12px;}
 /*quotes proofs css*/
 .quote-filed.quote-filedtwo input.input-box{ width: 100%; margin: 0px 0 10px;}
 /*quotes proofs css end*/
+
+/*my account dashboard css*/
+.myaccount-dashboard #pills-tabContent .tablescroll-tableroll {overflow: scroll;}
+.myaccount-dashboard #pills-tabContent .tablescroll-tableroll table {width: 1100px;}
+/*my account dashboard css end*/
+
+/*my account css*/
+.myaccount-panel{grid-template-columns: repeat(1, 1fr);}
+.myaccount-box:last-child {margin-top: 30px;}
+/*my account css end*/
 }
 
 @media (max-width:991px){
@@ -697,7 +758,17 @@ nav.navbar{ top: 0;}
 .order-received ul li:nth-child(2) {border: none;}
 /*order css end*/
 
+/*my account dashboard css*/
+.tab-pane .billing-address {grid-template-columns: repeat(1, 1fr);}
+.tab-pane .billing-address .billing-address-box:last-child {margin-top: 30px;}
+.tabing-field-sec form .tabing-filed.quote-filedtwo input.input-box {width: 100%;margin: 0px 0 10px;}
+.tab-pane .billingaddressform .col-lg-6 {margin: 0 0 20px;}
+.tab-pane .billingaddressform .col-lg-6:last-child {margin: 0;}
+.tab-pane .account-detail .accountdetailfiled {width:100%;margin: 0 0 10px;}
+/*my account dashboard css end*/
+
 /*footer css*/
+.myaccount-dashboard .tab-content h5 {margin: 0 0 20px;}
 .footer .social-icons { padding: 0;}
 .footer .bottom-nav ul li{margin: 0 8px 15px;}
 /*footer css end*/
@@ -759,6 +830,10 @@ nav.navbar{ top: 0;}
 .order-received ul li {width: 100%;border-right: none;border-bottom: dashed 2px #ccc;padding: 0 0 20px;}
 .order-received ul li:nth-child(2) {border: none;border-bottom: dashed 2px #ccc;}
 /*order css end*/
+
+/*my account dashboard css*/
+.myaccount-dashboard ul.nav li.nav-item button {padding: 5px 10px;font-size: 13px;}
+/*my account dashboard css end*/
 
 /*footer css*/
 .footer .cc-logos {gap: 0px;}

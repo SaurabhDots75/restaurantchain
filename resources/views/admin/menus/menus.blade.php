@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="edit-item-menu">
-                        <div class="card-header">Edit item fdfsd</div>
+                        <div class="card-header">Edit item</div>
                         <div class="form-setting">
                             <form id="frmEdit" class="form-horizontal">
                                 <div class="form-label-group">
