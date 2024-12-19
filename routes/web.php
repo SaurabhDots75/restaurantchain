@@ -9,16 +9,20 @@ use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\Auth\VerificationController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PostCategoryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ImageGalleryController;
+use App\Http\Controllers\Admin\EnqReportController;
+use App\Http\Controllers\Admin\ProductAttributeController;
 
 Route::get('/', function () {
     return view('front.index');
@@ -99,7 +103,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Password Reset Routes
     // Routes for Forget Password
     Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+    Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
     Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
     Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
@@ -122,6 +126,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
         Route::resource('/users', UserController::class);
+        Route::resource('/products', ProductController::class);
         Route::resource('/posts', PostController::class);
         Route::resource('/pages', PageController::class);
         Route::resource('/faqcategories', FaqCategoryController::class);
@@ -154,6 +159,29 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('image-gallery', [ImageGalleryController::class, 'index']);
         Route::post('image-gallery', [ImageGalleryController::class, 'upload'])->name('image-gallery');
         Route::delete('image-gallery-delete', [ImageGalleryController::class, 'destroy'])->name('image-gallery-delete');
+
+        Route::get('/reports/enq-report', [EnqReportController::class, 'index'])->name('enq-report');
+        Route::get('/reports/proofs-quotes-report', [EnqReportController::class, 'proofsQuotesReports'])->name('proofs-quotes-report');
+        Route::delete('/reports/enq-report', [EnqReportController::class, 'destroy']);
+        Route::delete('/reports/proofs-quotes-report', [EnqReportController::class, 'destroyProofsQuotes']);
+
+        // Product Category Routes
+        Route::get('/products/categories', [CategoryController::class, 'index'])->name('categories');
+        Route::get('/products/categories/create/{catslug?}', [CategoryController::class, 'create'])->name('create');
+        Route::post('/products/categories/add', [CategoryController::class, 'add'])->name('add');
+        Route::delete('/products/delete-categories', [CategoryController::class, 'destroy']);
+        Route::get('/categories/hierarchy', [CategoryController::class, 'getHierarchy'])->name('categories.hierarchy');
+
+        Route::resource('/products/product-attributes', ProductAttributeController::class)
+        ->names([
+            'index' => 'products.product-attributes.index',
+            'create' => 'products.product-attributes.create',
+            'store' => 'products.product-attributes.store',
+            'show' => 'products.product-attributes.show',
+            'edit' => 'products.product-attributes.edit',
+            'update' => 'products.product-attributes.update',
+            'destroy' => 'products.product-attributes.destroy',
+        ]);
     });
 
     /*------------------------------------------

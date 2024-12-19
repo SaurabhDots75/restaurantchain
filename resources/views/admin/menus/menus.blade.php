@@ -13,7 +13,7 @@
         </div>
         @endif
                     <div class="pull-right">
-                        <a href="" id="btnOutput" type="button" class="view-btn">Save Changes</a>
+                        <button id="btnOutput" type="button" class="view-btn">Save Changes</button>
                         <a href="{{ route('admin.home') }}" class="view-btn">Cancel</a>
                     </div>
 
@@ -24,16 +24,13 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="edit-item-menu">
-                        <div class="card-header">Edit item</div>
+                        <div class="card-header">Add/Edit</div>
                         <div class="form-setting">
                             <form id="frmEdit" class="form-horizontal">
                                 <div class="form-label-group">
                                     <label for="text">Text</label>
                                     <div class="input-group">
                                         <input required="required" type="text" class="form-control item-menu" name="text" id="text" placeholder="Text">
-                                        <div class="input-group-append">
-                                            <button type="button" id="myEditor_icon" class="btn btn-outline-secondary"></button>
-                                        </div>
                                     </div>
                                     <input type="hidden" name="icon" class="item-menu">
                                 </div>

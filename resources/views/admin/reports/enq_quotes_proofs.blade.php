@@ -1,54 +1,65 @@
 @extends('admin.layouts.app')
-@section('content')
-<!-- Main content -->
-<div class="dashboard-panel">
-<div class="role-management">
-    <div class="content">
-    <div class="pull-left"><h2>Faq Categories</h2></div>
-               <div class="pull-right">
-                  <a class="view-btn" href="{{ url('admin/faqcategories/create')}}">Add FAQ Category</a>
-               </div>
-               <!-- /.card-header -->
-               <div class="tablescroll-tableroll">
-                  <table id="example2" class="management-table table table-bordered">
-                     <thead>
-                        <tr>
-                           <th>Sr No</th>
-                           <th>Faq Category</th>
-                           <th>Created</th>
-                           <th>Action</th>
-                        </tr>
-                     </thead>
-                     <tbody>
-                        @if(!empty($faqcategories))
-                        @foreach($faqcategories as $key => $faq)
-                        <tr>
-                           <td>{{ $i + $loop->index + 1 }}</td>
-                           <td>{{$faq->title}}</td>
-                           <td>{{$faq->created_at->format('d-M-Y h:i:s')}}</td>
-                            <td>
-                              <a class="btn btn-primary btn-sm" title="Edit Role" href="{{ route('admin.faqcategories.edit', base64_encode($faq->id)) }}"><i class="fa fa-edit " aria-hidden="true"></i></a>
 
-                              <a id="delete-record{{$faq->id}}" title="Delete Role" type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
-                           </td>
-                        </tr>
-                        @endforeach
-                        @endif
-                     </tbody>
-                  </table>
-               </div>
-               {!! $faqcategories->links('pagination::bootstrap-5') !!}
-            <!-- /.card -->
-   <!-- /.container-fluid -->
+@section('content')
+<div class="dashboard-panel">
+    <div class="role-management">
+        <div class="row">
+            <div class="col-lg-12 margin-tb">
+                <div class="pull-left">
+                    <h2>Quotes and Proofs Reports</h2>
+                </div>
+                <div class="pull-right">
+                </div>
+            </div>
+        </div>
+        @session('success')
+        <div class="alert alert-success" role="alert">
+            {{ $value }}
+        </div>
+        @endsession
+        <div class="tablescroll-tableroll">
+            <table class="management-table table table-bordered">
+                <tr>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>Company Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>Project Type</th>
+                    <th>Created</th>
+                    <th>Action</th>
+                </tr>
+                @foreach ($getEnqReport as $key => $report)
+                <tr>
+                    <td>{{ $i + $loop->index + 1 }}</td>
+                    <td>{{ (isset($report->first_name)?$report->first_name:'').' '.(isset($report->last_name)?$report->last_name:'') }}</td>
+                    <td>{{ $report->company_name }}</td>
+                    <td>{{ $report->email }}</td>
+                    <td>{{ $report->mobile }}</td>
+                    <td>{!! (isset($report->city)?$report->city:'').'<br>'.(isset($report->state)?$report->state:'') !!}</td>
+                    <td>{{ $report->project_type }}</td>
+                    <td>{{$report->created_at->format('d-M-Y h:i:s')}}</td>
+                    <td>
+                        @can('role-delete')
+                            <a id="delete-record{{$report->id}}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
+                        @endcan
+                    </td>
+                </tr>
+                @endforeach
+            </table>
+        </div>
+    </div>
 </div>
-<!-- /.content -->
-</div>
-</div>
+{!! $getEnqReport->links('pagination::bootstrap-5') !!}
+
+
 @endsection
 
 @section('custom_js_scripts')
 <script>
     $(document).ready(function() {
+
         $(document).on('click', "[id^=delete-record]", function () {
             var index = parseInt($(this).attr("id").replace("delete-record", ''));
             // Show a confirmation dialog
@@ -64,7 +75,7 @@
                 if (result.isConfirmed) {
                     // Make an AJAX request to delete the record
                     $.ajax({
-                        url: "/admin/faqcategories/destroy",  // URL to your deletion endpoint
+                        url: "/admin/reports/proofs-quotes-report",  // URL to your deletion endpoint
                         type: 'POST',           // HTTP method (could also be DELETE)
                         data: {
                             _method: 'DELETE',  // Spoof the DELETE method
@@ -91,7 +102,7 @@
                             // Handle error if deletion fails
                             Swal.fire(
                                 'Error!',
-                                xhr.responseJSON.message,
+                                'There was an issue deleting the record.',
                                 'error'
                             );
                         }

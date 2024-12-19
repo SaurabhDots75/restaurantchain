@@ -23,17 +23,10 @@
                 </a>
                 <div class="collapse {{ Request::is('admin/settings*') ? 'show' : '' }}" id="collapseSettings" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-<<<<<<< HEAD
-                        <a class="nav-link" href="{{ route('admin.settings') }}"><i class="fa-solid fa-gear"></i>&nbsp; Basic Website Setting</a>
-                        <!-- <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a> -->
-                        <a class="nav-link" href="{{ route('admin.footer-settings') }}"><i class="fa-solid fa-gear"></i> &nbsp; Footer Setting</a>
-                        <a class="nav-link" href="{{ route('admin.menus') }}"><i class="fa-solid fa-bars"></i> &nbsp; Menu</a>
-=======
-                        <a class="nav-link {{ Request::is('admin/settings/basic-setting') ? 'active' : '' }}" href="{{ route('admin.settings') }}">Basic Website Setting</a>
-                        <!-- <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a> -->
-                        <a class="nav-link {{ Request::is('admin/settings/footer-settings') ? 'active' : '' }}" href="{{ route('admin.footer-settings') }}">Footer Setting</a>
-                        <a class="nav-link {{ Request::is('admin/settings/menus') ? 'active' : '' }}" href="{{ route('admin.menus') }}">Menu</a>
->>>>>>> 999bd3c4f2fe71bfd924e348a22793d7a26d4ff5
+                        <a class="nav-link {{ Request::is('admin/settings/basic-setting') ? 'active' : '' }}" href="{{ route('admin.settings') }}"><i class="fa-solid fa-gear"></i>&nbsp;Basic Website Setting</a>
+                        {{-- <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a> --}}
+                        <a class="nav-link {{ Request::is('admin/settings/footer-settings') ? 'active' : '' }}" href="{{ route('admin.footer-settings') }}"><i class="fa-solid fa-gear"></i> &nbsp;Footer Setting</a>
+                        <a class="nav-link {{ Request::is('admin/settings/menus') ? 'active' : '' }}" href="{{ route('admin.menus') }}"><i class="fa-solid fa-bars"></i> &nbsp;Menu</a>
                     </nav>
                 </div>
                 <a class="nav-link {{ Request::is('admin/posts*') ? 'active' : 'collapsed' }}" href="{{ route('admin.posts.index') }}">
@@ -66,37 +59,31 @@
                         <a class="nav-link {{ Request::is('admin/faqs*') ? 'active' : '' }}" href="{{ route('admin.faqs.index') }}"><div class="sb-nav-link-icon"><i class="fa-solid fa-question"></i></div> FAQ</a>
                     </nav>
                 </div>
-                <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                    Pages
+
+                <div class="sb-sidenav-menu-heading">Product Section</div>
+                <a class="nav-link {{ Request::is('admin/products*') ? 'active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="{{ Request::is('admin/settings*') ? 'true' : 'false' }}" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
+                    Products
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                            Authentication
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="login.html">Login</a>
-                                <a class="nav-link" href="register.html">Register</a>
-                                <a class="nav-link" href="password.html">Forgot Password</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                            Error
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="401.html">401 Page</a>
-                                <a class="nav-link" href="404.html">404 Page</a>
-                                <a class="nav-link" href="500.html">500 Page</a>
-                            </nav>
-                        </div>
+                <div class="collapse {{ Request::is('admin/products*') ? 'show' : '' }}" id="collapseReports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link {{ Request::is('admin/products/categories') ? 'active' : '' }}" href="{{ route('admin.categories') }}"><i class="fa-solid fa-gear"></i>&nbsp;Category</a>
+                        <a class="nav-link {{ Request::is('admin/products/product-attributes') ? 'active' : '' }}" href="{{ route('admin.products.product-attributes.index') }}"><i class="fa-solid fa-gear"></i>&nbsp;Attributes</a>
                     </nav>
-                </div> -->
+                </div>
+                <div class="sb-sidenav-menu-heading">Reports Section</div>
+                <a class="nav-link {{ Request::is('admin/reports*') ? 'active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="{{ Request::is('admin/settings*') ? 'true' : 'false' }}" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
+                    Reports
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse {{ Request::is('admin/reports*') ? 'show' : '' }}" id="collapseReports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link {{ Request::is('admin/reports/enq-report') ? 'active' : '' }}" href="{{ route('admin.enq-report') }}"><i class="fa-solid fa-gear"></i>&nbsp;Enquiry Report</a>
+                        <a class="nav-link {{ Request::is('admin/reports/proofs-quotes-report') ? 'active' : '' }}" href="{{ route('admin.proofs-quotes-report') }}"><i class="fa-solid fa-gear"></i>&nbsp;Quotes & Proofs Report</a>
+                    </nav>
+                </div>
                 <div class="sb-sidenav-menu-heading">Masters</div>
                 <a class="nav-link {{ Request::is('admin/roles*') ? 'active' : '' }}" href="{{ route('admin.roles.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
