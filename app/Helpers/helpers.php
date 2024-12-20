@@ -31,12 +31,14 @@ if (!function_exists("getFaqsAllCategory")) {
 if (!function_exists("generateSlug")) {
     function generateSlug($modelName,$request)
     {
+        $slugController = new SlugController;
         if (isset($request->table_id) && !empty($request->table_id) && $request->slug_bk != $request->slug) {
-            $slugController = new SlugController;
             return $slugController->makeNewSlugName($modelName, $request->name, $request->slug);
+        }elseif(isset($request->table_id) && !empty($request->table_id) && $request->slug_bk == $request->slug){
+           
+            return $request->slug_bk;
         }
 
-        $slugController = new SlugController;
         return $slugController->makeNewSlugName($modelName, $request->name, $request->slug);
     }
 }

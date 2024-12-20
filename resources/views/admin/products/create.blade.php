@@ -22,7 +22,7 @@
                     <h2>Add Product</h2>
                 </div>
                 <div class="form-setting">
-                    <form id="cmsForm" action="{{ route('admin.products.store') }}" enctype="multipart/form-data" method="post">
+                    <form id="cmsForm" action="{{ route('admin.product-pages.store') }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-8">
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="view-btn"> Submit</button>
-                                        <a href="{{ route('admin.products.index') }}" class="view-btn"> Cancel</a>
+                                        <a href="{{ route('admin.product-pages.index') }}" class="view-btn"> Cancel</a>
                                     </div>
                                 </div>
                             </div>

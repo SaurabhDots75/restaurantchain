@@ -22,11 +22,11 @@
                     <h2>Edit Product</h2>
                 </div>
                 <div class="form-setting">
-                    <form id="cmsForm" action="{{ route('admin.products.update',$product->id) }}" enctype="multipart/form-data" method="post">
+                    <form id="cmsForm" action="{{ route('admin.product-pages.update',$product->id) }}" enctype="multipart/form-data" method="post">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" name="table_id" id="table_id" value="{{isset($getData->id)?$getData->id:''}}">
-                        <input type="hidden" name="slug_bk" id="slug_bk" value="{{isset($getData->slug)?$getData->slug:''}}">
+                        <input type="hidden" name="table_id" id="table_id" value="{{isset($product->id)?$product->id:''}}">
+                        <input type="hidden" name="slug_bk" id="slug_bk" value="{{isset($product->slug)?$product->slug:''}}">
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="card card-primary">
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="view-btn"> Submit</button>
-                                        <a href="{{ route('admin.products.index') }}" class="view-btn"> Cancel</a>
+                                        <a href="{{ route('admin.product-pages.index') }}" class="view-btn"> Cancel</a>
                                     </div>
                                 </div>
                             </div>
