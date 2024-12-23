@@ -78,15 +78,6 @@ Route::get('/order', function () {
     return view('front.order');
 });
 
-Route::get('/my-account', function () {
-    return view('front.my-account');
-});
-
-Route::get('/dashboard', function () {
-    return view('front.dashboard');
-});
-
-
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -126,7 +117,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
         Route::resource('/users', UserController::class);
-        Route::resource('/products', ProductController::class);
+        Route::resource('/product-pages', ProductController::class);
         Route::resource('/posts', PostController::class);
         Route::resource('/pages', PageController::class);
         Route::resource('/faqcategories', FaqCategoryController::class);
@@ -177,7 +168,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             'index' => 'products.product-attributes.index',
             'create' => 'products.product-attributes.create',
             'store' => 'products.product-attributes.store',
-            'show' => 'products.product-attributes.show',
+            // 'show' => 'products.product-attributes.show',
             'edit' => 'products.product-attributes.edit',
             'update' => 'products.product-attributes.update',
             'destroy' => 'products.product-attributes.destroy',

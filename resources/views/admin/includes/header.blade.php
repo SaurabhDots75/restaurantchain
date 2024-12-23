@@ -61,15 +61,16 @@
                 </div>
 
                 <div class="sb-sidenav-menu-heading">Product Section</div>
-                <a class="nav-link {{ Request::is('admin/products*') ? 'active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="{{ Request::is('admin/settings*') ? 'true' : 'false' }}" aria-controls="collapseLayouts">
+                <a class="nav-link {{ (Request::is('admin/products*') || Request::is('admin/product-pages*')) ? 'active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="{{ Request::is('admin/settings*') ? 'true' : 'false' }}" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
                     Products
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse {{ Request::is('admin/products*') ? 'show' : '' }}" id="collapseReports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse {{ (Request::is('admin/products*') || Request::is('admin/product-pages*')) ? 'show' : '' }}" id="collapseReports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link {{ Request::is('admin/products/categories') ? 'active' : '' }}" href="{{ route('admin.categories') }}"><i class="fa-solid fa-list"></i>&nbsp;Category</a>
                         <a class="nav-link {{ Request::is('admin/products/product-attributes') ? 'active' : '' }}" href="{{ route('admin.products.product-attributes.index') }}"><i class="fa-solid fa-gear"></i>&nbsp;Attributes</a>
+                        <a class="nav-link {{ Request::is('admin/product-pages*') ? 'active' : '' }}" href="{{ route('admin.product-pages.index') }}"><i class="fa-solid fa-gear"></i>&nbsp;Products</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Reports Section</div>
@@ -94,7 +95,7 @@
                     Users
                 </a>
                 <a class="nav-link {{ Request::is('admin/image-gallery*') ? 'active' : '' }}" href="{{ route('admin.image-gallery') }}">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-photo-film"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Media
                 </a>
             </div>

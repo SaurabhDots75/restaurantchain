@@ -11,7 +11,7 @@
                 </div>
                 <div class="pull-right">
                     @can('product-create')
-                    <a class="view-btn" href="{{ route('admin.products.create') }}">Add Product</a>
+                    <a class="view-btn" href="{{ route('admin.product-pages.create') }}">Add Product</a>
                     @endcan
                 </div>
             </div>
@@ -39,10 +39,10 @@
                         <td>{{ (($product->is_featured == 1)?'Featured':'Not Featured') }}</td>
                         <td>{{ $product->long_description }}</td>
                         <td>
-                            <form action="{{ route('admin.products.destroy',$product->id) }}" method="POST">
-                                <a class="btn btn-info btn-sm" href="{{ route('admin.products.show',$product->id) }}"><i class="fa-solid fa-list"></i> Show</a>
+                            <form action="{{ route('admin.product-pages.destroy',$product->id) }}" method="POST">
+                                <a class="btn btn-info btn-sm" href="{{ route('admin.product-pages.show',$product->id) }}"><i class="fa-solid fa-list"></i> Show</a>
                                 @can('product-edit')
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.products.edit',$product->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('admin.product-pages.edit',$product->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                                 @endcan
 
                                 @csrf
@@ -85,7 +85,7 @@
                 if (result.isConfirmed) {
                     // Make an AJAX request to delete the record
                     $.ajax({
-                        url: "/admin/products/destroy", // URL to your deletion endpoint
+                        url: "/admin/product-pages/destroy", // URL to your deletion endpoint
                         type: 'POST', // HTTP method (could also be DELETE)
                         data: {
                             _method: 'DELETE', // Spoof the DELETE method

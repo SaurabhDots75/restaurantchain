@@ -81,7 +81,7 @@ class ProductController extends Controller
 
         // Redirect to the products index with a success message
         return redirect()
-            ->route('admin.products.index')
+            ->route('admin.product-pages.index')
             ->with('success', 'Product created successfully.');
     }
     
@@ -91,8 +91,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product): View
+    public function show($productId): View
     {
+        $product = Product::where('id',$productId)->first();
         return view('admin.products.show',compact('product'));
     }
     
@@ -102,8 +103,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product): View
+    public function edit($id): View
     {
+        $product = Product::where('id',$id)->first();
         return view('admin.products.edit',compact('product'));
     }
     
@@ -114,7 +116,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product): RedirectResponse
+    public function update(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -128,18 +130,15 @@ class ProductController extends Controller
         ]);
 
         // Generate or use the custom slug
-        if (empty($request->table_id)) {
-            $newCustomSlug = generateSlug('Product', $request); // Pass the $request object
-        } else {
-            $newCustomSlug = $validatedData['slug'] ?? '';
-        }
-
+        $newCustomSlug = generateSlug('Product', $request); // Pass the $request object
+        
         // Set the slug in lowercase
         $validatedData['slug'] = strtolower($newCustomSlug);
+        
+        $product = Product::findOrFail($request->table_id);
+        $product->update($validatedData);
     
-        $product->update($request->all());
-    
-        return redirect()->route('admin.products.index')
+        return redirect()->route('admin.product-pages.index')
                         ->with('success','Product updated successfully');
     }
     
