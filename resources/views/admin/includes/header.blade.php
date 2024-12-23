@@ -68,7 +68,7 @@
                 </a>
                 <div class="collapse {{ Request::is('admin/products*') ? 'show' : '' }}" id="collapseReports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link {{ Request::is('admin/products/categories') ? 'active' : '' }}" href="{{ route('admin.categories') }}"><i class="fa-solid fa-gear"></i>&nbsp;Category</a>
+                        <a class="nav-link {{ Request::is('admin/products/categories') ? 'active' : '' }}" href="{{ route('admin.categories') }}"><i class="fa-solid fa-list"></i>&nbsp;Category</a>
                         <a class="nav-link {{ Request::is('admin/products/product-attributes') ? 'active' : '' }}" href="{{ route('admin.products.product-attributes.index') }}"><i class="fa-solid fa-gear"></i>&nbsp;Attributes</a>
                     </nav>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="collapse {{ Request::is('admin/reports*') ? 'show' : '' }}" id="collapseReports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link {{ Request::is('admin/reports/enq-report') ? 'active' : '' }}" href="{{ route('admin.enq-report') }}"><i class="fa-solid fa-gear"></i>&nbsp;Enquiry Report</a>
-                        <a class="nav-link {{ Request::is('admin/reports/proofs-quotes-report') ? 'active' : '' }}" href="{{ route('admin.proofs-quotes-report') }}"><i class="fa-solid fa-gear"></i>&nbsp;Quotes & Proofs Report</a>
+                        <a class="nav-link {{ Request::is('admin/reports/proofs-quotes-report') ? 'active' : '' }}" href="{{ route('admin.proofs-quotes-report') }}"><i class="fa-solid fa-receipt"></i>&nbsp;Quotes & Proofs Report</a>
                     </nav>
                 </div>
                 <div class="sb-sidenav-menu-heading">Masters</div>

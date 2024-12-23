@@ -59,6 +59,12 @@
                                 <div class="card card-header">
                                     <div class="form-group">
                                         <div class="form-label-group">
+                                            <label for="product_name">Featured Image</label>
+                                            @include('admin.includes.media_gallery')
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-label-group">
                                             <label for="product_name">Meta Title</label>
                                             <input type="text" id="meta_title" name="meta_title" class="form-control">
                                         </div>
