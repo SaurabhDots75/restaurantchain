@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\ImageGalleryController;
 use App\Http\Controllers\Admin\EnqReportController;
 use App\Http\Controllers\Admin\ProductAttributeController;
+use App\Http\Controllers\Admin\ImageUploadController;
 
 Route::get('/', function () {
     return view('front.index');
@@ -173,6 +174,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
             'update' => 'products.product-attributes.update',
             'destroy' => 'products.product-attributes.destroy',
         ]);
+
+        Route::get('/upload-image', [ImageUploadController::class, 'index'])->name('upload.index');
+        Route::post('/upload-image', [ImageUploadController::class, 'upload'])->name('upload.image');
+        Route::get('/images/fetch', [ImageUploadController::class, 'fetchAll'])->name('images.fetch');
+
     });
 
     /*------------------------------------------

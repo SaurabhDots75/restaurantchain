@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -77,8 +78,12 @@ class ProductController extends Controller
         $validatedData['slug'] = strtolower($newCustomSlug);
 
         // Create the product using validated data
-        Product::create($validatedData);
+        $getLastProductId = Product::create($validatedData);
 
+        if(isset($request->image_id) && !empty($request->image_id)){
+            ProductImage::create(['product_id'=> $getLastProductId->id,'image_id'=> $request->image_id, 'image_alt'=> $request->image_alt]);
+        }
+        
         // Redirect to the products index with a success message
         return redirect()
             ->route('admin.product-pages.index')

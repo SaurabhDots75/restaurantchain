@@ -1,11 +1,10 @@
 <div class="addfeaturesimg">
 
-<div class="featuresimgtop"><img src="{{asset('admin/assets/img/tshirt-blue.png')}}" alt="" class="addfeaturesimg"></div>
-
-    <a type="submit" class="view-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Set Featured images</a>
+<div class="featuresimgtop"><img src="{{asset('admin/assets/img/tshirt-blue.png')}}" alt="" class="addsinglefeaturesimg"></div>
+    <a type="submit" id="set_featured_iamges" class="view-btn" data-bs-toggle="modal" data-bs-target="#imageModalChanges">Set Featured images</a>
 </div>
 
-<div class="modal fade featured-img" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade featured-img" id="imageModalChanges" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -29,8 +28,7 @@
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="drop-fileuploadflex">
                             <div class="drop-fileupload">
-                                <h3>Drop Files To Upload <span>or</span></h3>
-                                <a type="submit" class="view-btn">Select File</a>
+                                <input type="file" id="imageInput" name="image" />
                                 <h4>Maximum upload file size: 750MB:</h4>
                             </div>
                         </div>
@@ -38,55 +36,8 @@
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="featuresimggallery">
                             <div class="featuresimgbox-sec">
-                                <div class="featuresimgbox">
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-black.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock active"><img
-                                            src="{{asset('admin/assets/img/tshirt-blue.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-same.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-white.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-black.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-blue.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-same.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-white.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-black.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-blue.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-same.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-white.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-black.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-blue.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-same.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
-                                    <div class="featuresimgboxblock"><img
-                                            src="{{asset('admin/assets/img/tshirt-white.png')}}" alt=""
-                                            class="addfeaturesimg"></div>
+                                <div id="imageGallery" class="featuresimgbox">
+                                    
                                 </div>
                             </div>
                             <div class="featuresimg-atachment">
@@ -95,51 +46,120 @@
                                     <div class="atachment-info">
                                         <div class="atachment-info-img"><img
                                                 src="{{asset('admin/assets/img/tshirt-black.png')}}" alt=""
-                                                class="addfeaturesimg"></div>
+                                                class="addsinglefeaturesimg"></div>
                                         <div class="atachment-info-detail">
-                                            <h5>sku-number.png</h5>
-                                            <span>December 19, 2024</span>
-                                            <span>26 KB</span>
+                                            {{--<span>December 19, 2024</span>
+                                            <span id="imageStorageSize">26 KB</span>
                                             <span>630 by 640 Pixele</span>
-                                            <a class="attachment-editimg">Edit Image</a>
-                                            <a class="attachment-editimg attachment-delete">Delete Permaentaly</a>
+                                            <a class="attachment-editimg attachment-delete">Delete Permaentaly</a>--}}
                                         </div>
                                     </div>
 
                                     <div class="atachment-form">
-                                            <div class="atachment-field">
-                                                <label>Alt Text</label>
-                                                <textarea class="textbox"></textarea>
-                                            </div>
-                                            <div class="atachment-field">
-                                                <label>Title</label>
-                                                <input class="textbox" placeholder="SKU Number">
-                                            </div>
-                                            <div class="atachment-field">
-                                                <label>Caption</label>
-                                                <textarea class="textbox"></textarea>
-                                            </div>
-                                            <div class="atachment-field">
-                                                <label>Description</label>
-                                                <textarea class="textbox"></textarea>
-                                            </div>
-                                            <div class="atachment-field">
-                                                <label>File URL:</label>
-                                                <textarea class="textbox"></textarea>
-                                            </div>
-                                            <a type="submit" class="view-btn">Copy URL to clipboard</a>
+                                        <div class="atachment-field">
+                                            <label for="image_alt">Alt Text</label>
+                                            <input type="text" id="image_alt" name="image_alt">
                                         </div>
-
+                                        <div class="atachment-field">
+                                            <label for="file_url">File URL:</label>
+                                            <textarea class="textbox" id="file_url"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="view-btn">Set Featured Image</button>
+                <button type="button" id="hideFeaturedImages" class="view-btn">Set Featured Image</button>
             </div>
         </div>
     </div>
 </div>
+
+@section('custom_js_scripts')
+
+<script>
+    $(document).ready(function () {
+        fetchImages();
+        // Handle form submission
+
+        $('#imageInput').on('change', function (e) {
+            let formData = new FormData();
+            let file = e.target.files[0]; // Get the selected file
+            formData.append('image', file);
+
+            // Send AJAX request
+            $.ajax({
+                url: "{{ route('admin.upload.image') }}", // Laravel route
+                method: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF token for Laravel
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        fetchImages();
+                        // Display the uploaded image
+                        // $('#uploadedImage').html(`<img src="/storage/${response.image.image}" alt="Uploaded Image" width="200px">`);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    let message = 'An error occurred';
+                    // Check if the response contains a message
+                    if (jqXHR.responseJSON && jqXHR.responseJSON.message) {
+                        message = jqXHR.responseJSON.message;
+                    } else if (errorThrown) {
+                        message = errorThrown;
+                    }
+                    alert(message);
+                }
+            });
+        });
+        $(document).on('click','.featuresimgboxblock', function () {
+            // Remove 'active' class from all divs
+            $('.featuresimgboxblock').removeClass('active');
+            // Add 'active' class to the clicked div
+            $(this).addClass('active');
+            var imgSrc = $('.featuresimgboxblock.active').find('img').attr('src');
+            $('.addsinglefeaturesimg').attr('src',imgSrc);
+            $('#image_id').val($(this).data('image'));
+            $('#file_url').val(imgSrc);
+            $('#imageStorageSize').text(imgSrc.size);
+        });
+
+        $('#hideFeaturedImages').on('click',function(){
+            $('#imageModalChanges').modal('hide');
+            $('#set_featured_iamges').text("Change Image");
+        });
+
+    });
+
+    // Function to fetch and display all images
+    function fetchImages() {
+        $.ajax({
+            url: "{{ route('admin.images.fetch') }}",
+            method: "GET",
+            success: function (response) {
+                $('#imageGallery').empty(); // Clear the gallery
+                if (response.length > 0) {
+                    response.forEach(function (image) {
+                        $('#imageGallery').append(`<div class="featuresimgboxblock" data-image="${image.id}"><img class="addfeaturesimg" src="${image.image}" alt="Image"></div>`);
+                    });
+                } else {
+                    $('#imageGallery').append('<p>No images found!</p>');
+                }
+            },
+            error: function () {
+                alert('Failed to load images.');
+            }
+        });
+    }
+</script>
+@endsection

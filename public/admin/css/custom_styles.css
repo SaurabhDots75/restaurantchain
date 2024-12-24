@@ -256,7 +256,7 @@ font-size: 18px;padding: 0 10px; display: none;}
 .form-setting form .form-label-group select {border: 1px solid #cce0f3;font-size: 14px;padding: 10px 15px;resize: none;}
 .setting-menu .edit-menuadd .sortableLists .btn-group .clickable{margin: 0px 2px 0 0px;}
 
-.form-setting form .card.card-header .form-group img {margin: 0 0 15px;}
+.form-setting form .card.card-header .form-group img {margin: 0 0 15px;height: 100px;width: 100px;}
 .form-setting form .card.card-header .form-group:first-child {margin: 0px 0 25px;}
 .setting-menu .edit-menuadd {border: 1px solid #cce0f3;font-size: 14px;padding: 18px 23px;background: #f5faff;border-radius: 15px;height: 100%;display: block;}
 .setting-menu .edit-menuadd .sortableLists span.txt {width: 100%;display: inline-block;color: #000;text-transform: capitalize;font-weight: 600;margin: 0 0 4px;}
@@ -294,7 +294,7 @@ font-size: 18px;padding: 0 10px; display: none;}
 color: #fff;font-family: 'fontawesome', sans-serif;display: flex;align-items: center;justify-content: center;font-size: 18px;}
 .featuresimgbox-sec .featuresimgbox .featuresimgboxblock {border:1px solid #e9e9e9;display: flex;align-items: center;justify-content: center;padding: 15px 0; cursor: pointer;
 width: 100%; height: 180px;}
-.featuresimgbox-sec .featuresimgbox .featuresimgboxblock img {margin: 0;}
+.featuresimgbox-sec .featuresimgbox .featuresimgboxblock img {margin: 0; height:100px; width:100px;}
 
 .featuresimggallery .featuresimg-atachment {width: 25%;background: #F6F7F7;border-left: 1px solid #dee2e6;padding: 15px 20px;}
 .featuresimggallery .featuresimg-atachment h5 {font-size: 16px;font-weight: 600;}

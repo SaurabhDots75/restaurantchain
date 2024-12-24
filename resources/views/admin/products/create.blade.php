@@ -62,6 +62,7 @@
                                             <label for="product_name">Featured Image</label>
                                             @include('admin.includes.media_gallery')
                                         </div>
+                                        <input type="hidden" id="image_id" name="image_id">
                                     </div>
                                     <div class="form-group">
                                         <div class="form-label-group">
