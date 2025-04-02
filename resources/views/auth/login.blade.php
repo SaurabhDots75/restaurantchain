@@ -6,7 +6,7 @@
             <div class="login">
                 <!--<div class="card-header">{{ __('Login') }}</div>-->
 
-                <div class="card-header"><div class="logo"><a href="#"><img src="{{asset('/front/images/logo.png')}}" alt=""></a></div></div>
+                <div class="card-header"><div class="logo"><a href="#"><img src="{{asset('/images/logo.png')}}" alt=""></a></div></div>
                 @if(session('error'))
                     <div class="alert alert-danger">
                         {{ session('error') }}

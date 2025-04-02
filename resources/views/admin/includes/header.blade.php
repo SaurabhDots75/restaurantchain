@@ -60,7 +60,7 @@
                     </nav>
                 </div>
 
-                <div class="sb-sidenav-menu-heading">Product Section</div>
+                {{-- <div class="sb-sidenav-menu-heading">Product Section</div>
                 <a class="nav-link {{ (Request::is('admin/products*') || Request::is('admin/product-pages*')) ? 'active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="{{ Request::is('admin/settings*') ? 'true' : 'false' }}" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
                     Products
@@ -72,7 +72,7 @@
                         <a class="nav-link {{ Request::is('admin/products/product-attributes') ? 'active' : '' }}" href="{{ route('admin.products.product-attributes.index') }}"><i class="fa-solid fa-gear"></i>&nbsp;Attributes</a>
                         <a class="nav-link {{ Request::is('admin/product-pages*') ? 'active' : '' }}" href="{{ route('admin.product-pages.index') }}"><i class="fa-solid fa-gear"></i>&nbsp;Products</a>
                     </nav>
-                </div>
+                </div> --}}
                 <div class="sb-sidenav-menu-heading">Reports Section</div>
                 <a class="nav-link {{ Request::is('admin/reports*') ? 'active' : 'collapsed' }}" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReports" aria-expanded="{{ Request::is('admin/settings*') ? 'true' : 'false' }}" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-gear"></i></div>
