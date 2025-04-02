@@ -121,7 +121,7 @@
                         <div class="form-group">
                            <div class="form-label-group">
                               <label for="product_name">Description <span class="text-danger">*</span></label>
-                              <textarea id="description" name="description" class="form-control ckeditor"></textarea>
+                              <textarea id="description" name="description" class="form-control ckeditor"> {{ $pages->description ?? '' }}</textarea>
                            </div>
                         </div>
                      </div>

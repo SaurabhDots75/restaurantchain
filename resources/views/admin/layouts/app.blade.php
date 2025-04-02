@@ -18,6 +18,7 @@
         <link href="{{asset('/admin')}}/css/custom_styles.css" rel="stylesheet" />
         <link href="{{asset('/admin')}}/css/selecttwo.css" rel="stylesheet" />
         <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+        
         @yield('custom_css')
     </head>
     <body class="sb-nav-fixed">
@@ -53,6 +54,7 @@
                 </li>
             </ul>
         </nav>
+        
         <div id="layoutSidenav">
             @include('admin.includes.header')
             <div id="layoutSidenav_content">

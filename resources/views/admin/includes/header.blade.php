@@ -29,7 +29,7 @@
                         <a class="nav-link {{ Request::is('admin/settings/menus') ? 'active' : '' }}" href="{{ route('admin.menus') }}"><i class="fa-solid fa-bars"></i> &nbsp;Menu</a>
                     </nav>
                 </div>
-                <a class="nav-link {{ Request::is('admin/posts*') ? 'active' : 'collapsed' }}" href="{{ route('admin.posts.index') }}">
+                {{-- <a class="nav-link {{ Request::is('admin/posts*') ? 'active' : 'collapsed' }}" href="{{ route('admin.posts.index') }}">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-signs-post"></i></div>
                     Posts
                 </a>
@@ -38,7 +38,7 @@
                         <!-- <a class="nav-link" href="{{ route('admin.postcategories') }}"><div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div> Post Category</a> -->
                         <a class="nav-link" href="{{ route('admin.posts.index') }}"><div class="sb-nav-link-icon"><i class="fa-solid fa-signs-post"></i></div> Post</a>
                     </nav>
-                </div>
+                </div> --}}
                 <a class="nav-link {{ Request::is('admin/pages*') ? 'active' : 'collapsed' }}" href="{{ route('admin.pages.index') }}" >
                     <div class="sb-nav-link-icon"><i class="fa-regular fa-file"></i></div>
                     Pages

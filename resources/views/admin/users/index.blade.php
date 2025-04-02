@@ -34,7 +34,7 @@
         <tr>
             <td>{{ $i + $loop->index + 1 }}</td>
             <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
+            <td>{{ Str::lower($user->email) }}</td>
             <td>
                 @if(!empty($user->getRoleNames()))
                 @foreach($user->getRoleNames() as $v)
@@ -50,9 +50,9 @@
                 <a class="btn btn-primary btn-sm" href="{{ route('admin.users.edit',$user->id) }}"><i
                         class="fa-solid fa-pen-to-square"></i></a>
                 @endcan
-                @can('user-delete')
+                {{-- @can('user-delete')
                     <a id="delete-record{{$user->id}}" href="javascript:void(0)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
-                @endcan
+                @endcan --}}
             </td>
         </tr>
         @endforeach

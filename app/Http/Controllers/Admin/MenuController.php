@@ -65,7 +65,6 @@ class MenuController extends Controller
 	{
 		$data = $request->all();
 		$data_array = json_decode($data['out']);
-
 		Menus::truncate();
 		foreach ($data_array as $value) { // Level 1
 			// Save the date for level 1

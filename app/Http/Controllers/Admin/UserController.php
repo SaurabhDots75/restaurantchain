@@ -40,7 +40,7 @@ class UserController extends Controller
      */
     public function create(): View
     {
-        $roles = Role::whereNot('name','Super Admin')->pluck('name','name')->all();
+        $roles = Role::whereNot('name','Super Admin')->whereNot('name','Admin')->pluck('name','name')->all();
         return view('admin.users.create',compact('roles'));
     }
     
@@ -91,7 +91,7 @@ class UserController extends Controller
     public function edit($id): View
     {
         $user = User::find($id);
-        $roles = Role::whereNot('name','Super Admin')->pluck('name','name')->all();
+        $roles = Role::whereNot('name','Super Admin')->whereNot('name','Admin')->pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
     
         return view('admin.users.edit',compact('user','roles','userRole'));

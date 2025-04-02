@@ -58,7 +58,9 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->update($input);
     
-        return redirect()->route('admin.profile')
-                        ->with('success','Profile updated successfully');
+        session()->flash('success', 'Profile updated successfully');
+
+        return redirect()->route('admin.profile');
+        
     }
 }

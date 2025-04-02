@@ -87,6 +87,7 @@ class PageController extends Controller
             return 'URL NOT FOUND';
         }
         $pages = Page::find($id);
+
         if (empty($pages)) {
             return 'URL NOT FOUND';
         }
