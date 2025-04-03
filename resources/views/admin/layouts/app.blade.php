@@ -18,7 +18,7 @@
         <link href="{{asset('/admin')}}/css/custom_styles.css" rel="stylesheet" />
         <link href="{{asset('/admin')}}/css/selecttwo.css" rel="stylesheet" />
         <link href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
         @yield('custom_css')
     </head>
     <body class="sb-nav-fixed">
