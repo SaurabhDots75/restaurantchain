@@ -1,72 +1,73 @@
 @extends('admin.layouts.app')
-
 @section('content')
 <div class="dashboard-panel">
-    <div class="role-management">
-        <div class="row">
-            <div class="col-lg-12 margin-tb">
-                <div class="pull-left">
-                    <h2>Roles</h2>
-                </div>
-                <div class="pull-right">
-                    @can('role-create')
-                    <a class="view-btn" href="{{ route('admin.roles.create') }}"><i class="fa fa-plus"></i> Create Role</a>
-                    @endcan
-                </div>
+<div class="role-management">
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Restaurant Management</h2>
+            </div>
+            <div class="pull-right">
+                <a class="view-btn" href="{{ route('admin.restaurants.create') }}">
+                    Create Restaurant</a>
             </div>
         </div>
-        @session('success')
-        <div class="alert alert-success" role="alert">
-            {{ $value }}
-        </div>
-        @endsession
-        <div class="tablescroll-tableroll">
-            <table class="management-table table table-bordered">
+    </div>
+    @session('success')
+    <div class="alert alert-success" role="alert">
+        {{ $value }}
+    </div>
+    @endsession
+    <div class="tablescroll-tableroll">
+        <table class="management-table table table-bordered">
+            <thead>
                 <tr>
-                    <th>Sr No</th>
+                    <th>No</th>
                     <th>Name</th>
-                    {{-- <th>Status</th> --}}
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
                     <th>Created</th>
                     <th>Action</th>
                 </tr>
-                @foreach ($roles as $key => $role)
+            </thead>
+            <tbody>
+                @foreach ($restaurants as $key => $restaurant)
                 <tr>
-                    <td>{{ $i + $loop->index + 1 }}</td>
-                    <td>{{ $role->name }}</td>
-                    {{-- <td>
-                        <input type="checkbox" hidden="hidden" id="username">
-                        <label class="switch" for="username"></label>
-                    </td> --}}
-                    <td>{{$role->created_at->format('d-M-Y h:i:s')}}</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $restaurant->name }}</td>
+                    <td>{{ $restaurant->address }}</td>
+                    <td>{{ $restaurant->phone }}</td>
+                    <td>{{ Str::lower($restaurant->email) }}</td>
+                    <td>{{ $restaurant->created_at->format('d-M-Y h:i:s') }}</td>
                     <td>
-                        <a class="btn btn-info btn-sm" href="{{ route('admin.roles.show',$role->id) }}"><i
-                                class="fa-solid fa-eye"></i></a>
-                        @can('role-edit')
-                        <a class="btn btn-primary btn-sm" href="{{ route('admin.roles.edit',$role->id) }}"><i
-                                class="fa-solid fa-pen-to-square"></i></a>
-                        @endcan
-
-                        @can('role-delete')
-                            <a id="delete-record{{$role->id}}" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
-                        @endcan
+                        <a class="btn btn-info btn-sm" href="{{ route('admin.restaurants.show', $restaurant->id) }}">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('admin.restaurants.edit', base64_encode($restaurant->id)) }}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a id="delete-recordrestaurant{{ $restaurant->id }}" href="javascript:void(0)" class="btn btn-danger btn-sm delete-btn">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
 </div>
-{!! $roles->links('pagination::bootstrap-5') !!}
-
+</div>
+{!! $restaurants->links('pagination::bootstrap-5') !!}
 
 @endsection
-
 @section('custom_js_scripts')
 <script>
     $(document).ready(function() {
 
-        $(document).on('click', "[id^=delete-record]", function () {
-            var index = parseInt($(this).attr("id").replace("delete-record", ''));
+        $(document).on('click', "[id^=delete-recordrestaurant]", function () {
+            var index = parseInt($(this).attr("id").replace("delete-recordrestaurant", ''));
+
             // Show a confirmation dialog
             Swal.fire({
                 title: 'Are you sure?',
@@ -80,7 +81,7 @@
                 if (result.isConfirmed) {
                     // Make an AJAX request to delete the record
                     $.ajax({
-                        url: "/admin/roles/destroy",  // URL to your deletion endpoint
+                        url: "/admin/restaurants/destroy",  // URL to your deletion endpoint
                         type: 'POST',           // HTTP method (could also be DELETE)
                         data: {
                             _method: 'DELETE',  // Spoof the DELETE method

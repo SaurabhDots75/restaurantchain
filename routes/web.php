@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\ImageGalleryController;
 use App\Http\Controllers\Admin\EnqReportController;
 use App\Http\Controllers\Admin\ProductAttributeController;
 use App\Http\Controllers\Admin\ImageUploadController;
+use App\Http\Controllers\Admin\RestaurantController;
 
 Route::get('/', function () {
     return view('front.index');
@@ -83,6 +84,8 @@ Route::get('/order', function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
+    Route::get('/verifyotp', [LoginController::class, 'verifyotp'])->name('verifyotp');
+    Route::post('/verifyotpsubmit', [LoginController::class, 'verifyotpsubmit'])->name('verifyotpsubmit');
     // Login Routes
     Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login']);
@@ -114,10 +117,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     All Admin Routes List
     --------------------------------------------
     --------------------------------------------*/
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['authadmin'])->group(function () {
+
         Route::get('/home', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
         Route::resource('/users', UserController::class);
+        Route::resource('/restaurants', RestaurantController::class);
         Route::resource('/product-pages', ProductController::class);
         Route::resource('/posts', PostController::class);
         Route::resource('/pages', PageController::class);

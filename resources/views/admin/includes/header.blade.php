@@ -90,9 +90,15 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Roles
                 </a>
+                @can('user-list')
                 <a class="nav-link {{ Request::is('admin/users*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                     Users
+                </a>
+                @endcan
+                <a class="nav-link {{ Request::is('admin/restaurants*') ? 'active' : '' }}" href="{{ route('admin.restaurants.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Restaurant Management
                 </a>
                 <a class="nav-link {{ Request::is('admin/image-gallery*') ? 'active' : '' }}" href="{{ route('admin.image-gallery') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>

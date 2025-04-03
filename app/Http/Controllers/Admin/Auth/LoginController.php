@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Otp;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class LoginController extends Controller
 {
@@ -27,7 +32,11 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+
+     protected function redirectTo()
+     {
+         return '/admin/home'; 
+     }
 
     /**
      * Create a new controller instance.
@@ -36,7 +45,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout', 'verifyotp' ,'verifyotpsubmit']);
     }
 
     /**
@@ -47,26 +56,57 @@ class LoginController extends Controller
     public function login(Request $request): RedirectResponse
     {
         $input = $request->all();
-     
+
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-     
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-        {
-            if (auth()->user()->type == 'admin') {
-                return redirect()->route('admin.home');
-            } elseif (auth()->user()->type == 'manager') {
-                return redirect()->route('admin.manager.home');
-            }else{
-                return redirect()->route('admin.home');
-            }
-        }else{
+        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+            $user = Auth::user();
+            $otp = rand(100000, 999999);
+            Otp::updateOrCreate(
+                ['user_id' => $user->id],
+                ['otp_code' => $otp, 'expires_at' => Carbon::now()->addMinutes(10)]
+            );
+
+            Session::put('mfa_user_id', $user->id);
+            return redirect()->route('admin.verifyotp');
+        } else {
             return redirect()->route('admin.login')
-                 ->with('error', 'The email address or password you entered is incorrect.');
+                ->with('error', 'The email address or password you entered is incorrect.');
         }
+
     }
+
+    public function verifyotp(Request $request)
+    {
+        return view('auth.otp');
+    }
+
+    public function verifyotpsubmit(Request $request)
+        {
+            $userId = Session::get('mfa_user_id');
+
+            $request->validate([
+                'otp' => 'required|digits:6',
+            ]);
+
+            
+
+            if (!$userId) {
+                return redirect()->route('admin.login')->with('error', 'Session expired, please log in again.');
+            }
+
+            $otp = Otp::where('user_id', $userId)->where('otp_code', $request->otp)->first();
+
+            if ($otp ) {
+                Session::forget('mfa_user_id');
+                Session::put('otp_verified', true);
+                return redirect()->route('admin.home');
+            } else {
+                return redirect()->route('admin.otp')->with('error', 'Invalid or expired OTP.');
+            }
+        }
 
     public function logout(Request $request)
     {

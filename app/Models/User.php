@@ -22,8 +22,14 @@ class User extends Authenticatable
         'profile_pic',
         'email',
         'password',
-        'type'
+        'type',
+        'phone',
+        'two_factor_secret',
+        'restaurant_id',
+        'phone_verified_at',
     ];
+
+ 
 
     /**
      * The attributes that should be hidden for serialization.
@@ -33,7 +39,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
     ];
+
 
     /**
      * Get the attributes that should be cast.
@@ -59,5 +67,10 @@ class User extends Authenticatable
         return new Attribute(
             get: fn ($value) =>  ["user", "admin", "manager"][$value],
         );
+    }
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
     }
 }
