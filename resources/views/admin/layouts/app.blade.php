@@ -9,7 +9,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'Print 4 Less') }}</title>
-        <link rel="icon" type="image/png" sizes="32x32" href="https://www.printit4less.com/wp-content/themes/PrintIt4Less/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('images/favicon.png')}}">
         <!-- Scripts -->
         <!-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) -->
         <link href="{{asset('/admin')}}/css/styles.css" rel="stylesheet" />

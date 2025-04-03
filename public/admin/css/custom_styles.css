@@ -61,7 +61,7 @@ a.view-btn.search {padding: 10px 15px;}
 
 .sb-nav-fixed .sb-topnav{ background-color: #Fff !important; box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.05); height: auto;}
 .navbar a.navbar-brand img {width: 100%;}
-.sb-nav-fixed .sb-topnav button#sidebarToggle {color: #ec1c24;font-size: 24px;margin: 0 0 0 22px;}
+.sb-nav-fixed .sb-topnav button#sidebarToggle {color: #fffb04;font-size: 24px;margin: 0 0 0 22px;}
 .sb-topnav.navbar #sidebarToggle {color: #fff;}
 .sb-topnav.navbar form .input-group .btn.btn-primary {background: #0d51aa;border-color: #0d51aa;}
 .sb-topnav.navbar li.nav-item.dropdown .nav-link {position: relative;width: 45px; font-size:0;}

@@ -25,7 +25,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link {{ Request::is('admin/settings/basic-setting') ? 'active' : '' }}" href="{{ route('admin.settings') }}"><i class="fa-solid fa-gear"></i>&nbsp;Basic Website Setting</a>
                         {{-- <a class="nav-link active" href="{{ route('admin.header-settings') }}">Header Setting</a> --}}
-                        <a class="nav-link {{ Request::is('admin/settings/footer-settings') ? 'active' : '' }}" href="{{ route('admin.footer-settings') }}"><i class="fa-solid fa-gear"></i> &nbsp;Footer Setting</a>
+                        {{-- <a class="nav-link {{ Request::is('admin/settings/footer-settings') ? 'active' : '' }}" href="{{ route('admin.footer-settings') }}"><i class="fa-solid fa-gear"></i> &nbsp;Footer Setting</a> --}}
                         <a class="nav-link {{ Request::is('admin/settings/menus') ? 'active' : '' }}" href="{{ route('admin.menus') }}"><i class="fa-solid fa-bars"></i> &nbsp;Menu</a>
                     </nav>
                 </div>
