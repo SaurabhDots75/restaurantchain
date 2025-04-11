@@ -31,16 +31,40 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <h3>Permission:</h3>
-                        <div class="createroll-checkbox">
-                            @foreach($permission as $value)
-                            <label><input type="checkbox" name="permission[{{$value->id}}]" value="{{$value->id}}"
-                                    class="name">
-                                {{ $value->name }}</label>
-
+                        <h3>Permissions:</h3>
+                        <div class="accordion" id="permissionsAccordion">
+                            @foreach($permissions as $group => $perms)
+                            <div class="accordion-item mb-2">
+                                <h2 class="accordion-header" id="heading-{{ $group }}">
+                                    <button class="accordion-button {{ !$loop->first ? 'collapsed' : '' }}" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse-{{ $group }}"
+                                        aria-expanded="{{ $loop->first ? 'true' : 'false' }}"
+                                        aria-controls="collapse-{{ $group }}">
+                                        {{ $group }} Permissions
+                                    </button>
+                                </h2>
+                                <div id="collapse-{{ $group }}"
+                                    class="accordion-collapse collapse {{ $loop->first ? 'show' : '' }}"
+                                    aria-labelledby="heading-{{ $group }}" data-bs-parent="#permissionsAccordion">
+                                    <div class="accordion-body">
+                                        @foreach($perms as $permission)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox"
+                                                name="permission[{{ $permission->id }}]" value="{{ $permission->id }}"
+                                                id="perm-{{ $permission->id }}">
+                                            <label class="form-check-label" for="perm-{{ $permission->id }}">
+                                                {{ ucwords(str_replace('-', ' ', $permission->name)) }}
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
+                    
+                    
                 </div>
                 <div class="desk-mt">
                     <button type="submit" class="view-btn desk-mr"> Submit</button>

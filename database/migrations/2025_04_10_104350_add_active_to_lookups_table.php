@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('restaurant_id'); // Temporary column
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('lookups', function (Blueprint $table) {
+            $table->boolean('is_active')->default(true); // Add 'active' column with a default value
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::table('lookups', function (Blueprint $table) {
+            //
+        });
     }
 };

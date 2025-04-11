@@ -7,26 +7,33 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class MenuItem extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'restaurant_id',
-        'name',
-        'description',
-        'price',
-        'category',
-        'status', // available, unavailable
+        'restaurant_id', 
+        'menu_id', 
+        'category_id', 
+        'name', 
+        'description', 
+        'image', 
+        'price', 
+        'discount_price', 
+        'is_veg', 
+        'status', 
+        'preparation_time', 
+        'stock_quantity'
     ];
-
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
+    
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
     }
-
-    /**
-     * Relationship with OrderItems
-     */
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
+    
 }

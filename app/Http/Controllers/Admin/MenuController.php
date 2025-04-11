@@ -3,107 +3,134 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Models\Menus;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
-		$getData =  Menus::where('parent', 0)->orderBy('id')->get();
-		$menusArray = array();
-		if (count($getData) > 0) {
+		$query = Menu::query();
 
-			foreach ($getData as $key => $value) {
-				$menusArray[$key]['text'] = $value['title'];
-				$menusArray[$key]['href'] = $value['slug'];
-				$menusArray[$key]['icon'] = $value['icon'];
-				$menusArray[$key]['target'] = $value['target'];
-				$menusArray[$key]['title'] = $value['tooltip'];
-				$menusArray[$key]['id'] = $value['id'];
 
-				$child = $this->getChildData($value['id'], 0);
-				if (count($child) > 0) {
-					$menusArray[$key]['children'] = $child;
-				}
-			}
+		if ($request->filled('name')) {
+			$query->where('name', 'like', '%' . $request->name . '%');
 		}
 
-		$data = json_encode($menusArray);
 
-		return view('admin.menus.menus', compact('data'));
+		if ($request->has('is_active') && $request->is_active !== '') {
+			$query->where('is_active', $request->is_active);
+		}
+
+		$menus = $query->orderBy('sort_order', 'asc')->paginate(10);
+
+		return view('admin.menus.index', compact('menus'));
 	}
 
-	public function getChildData($parent_id, $level)
+	public function create()
 	{
-
-		$getData =  Menus::where('parent', $parent_id)->orderBy('id')->get();
-		$menusArray = array();
-		$level++;
-		foreach ($getData as $key => $value) {
-			$menusArray[$key]['text'] = $value['title'];
-			$menusArray[$key]['href'] = $value['slug'];
-			$menusArray[$key]['icon'] = $value['icon'];
-			$menusArray[$key]['target'] = $value['target'];
-			$menusArray[$key]['title'] = $value['tooltip'];
-
-			$child = $this->getChildData($value['id'], $level);
-			if (count($child) > 0) {
-				$menusArray[$key]['children'] = $child;
-			}
-		}
-		return $menusArray;
-	}
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function save(Request $request)
-	{
-		$data = $request->all();
-		$data_array = json_decode($data['out']);
-		Menus::truncate();
-		foreach ($data_array as $value) { // Level 1
-			// Save the date for level 1
-			$menus = new Menus();
-			$menus->title = $value->text;
-			$menus->slug = $value->href;
-			$menus->icon = $value->icon;
-			$menus->target = $value->target;
-			$menus->tooltip = $value->title;
-			$menus->save();
-
-			$menusId = $menus->id;
-
-			$this->saveChildData($value, $menusId, 0);
-		}
-		return redirect()->back()->with('status', 'Menus Successfully Updated.');
+		return view('admin.menus.create', []);
 	}
 
 
-
-	public function saveChildData($data, $parentId, $level)
+	public function store(Request $request)
 	{
-		$level++;
-		if (isset($data->children) && count($data->children) > 0) {
-			foreach ($data->children as $value) { // Level 2
-				// Save the date for level 2
-				$menus = new Menus();
-				$menus->parent = $parentId;
-				$menus->title = $value->text;
-				$menus->slug = $value->href;
-				$menus->icon = $value->icon;
-				$menus->target = $value->target;
-				$menus->tooltip = $value->title;
-				$menus->save();
 
-				$menusId = $menus->id;
 
-				$this->saveChildData($value, $menusId, $level);
-			}
+		$validated = $request->validate([
+			'name' => 'required|string|max:255',
+			'description' => 'nullable|string|max:1000',
+			'start_time' => 'required|date_format:H:i',
+			'end_time' => 'required|date_format:H:i',
+			'days_active' => 'required|array',
+			'days_active.*' => 'in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
+			'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+		]);
+
+
+		$imagePath = null;
+		if ($request->hasFile('image')) {
+			$imagePath = $request->file('image')->store('menus', 'public');
 		}
+
+
+		$menu = new Menu();
+		$menu->name = $validated['name'];
+		$menu->description = $validated['description'];
+		$menu->start_time = $validated['start_time'];
+		$menu->end_time = $validated['end_time'];
+		$menu->days_active = json_encode($validated['days_active']);
+		$menu->image = $imagePath;
+		$menu->restaurant_id = $request->restaurant_id ?? '5';
+
+		$menu->save();
+
+
+		return redirect()->route('admin.menus.index')->with('success', 'Menu created successfully!');
+	}
+	public function edit($id)
+	{
+		$menu = Menu::findOrFail($id); // Retrieve the menu item by ID
+
+		return view('admin.menus.edit', compact('menu')); // Pass the menu to the view
+	}
+
+	public function update(Request $request, $id)
+	{
+		$validated = $request->validate([
+			'name' => 'required|string|max:255',
+			'description' => 'nullable|string|max:1000',
+			'start_time' => 'required|date_format:H:i',
+			'end_time' => 'required|date_format:H:i',
+			'days_active' => 'required|array',
+			'days_active.*' => 'in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
+			'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+		]);
+
+		$menu = Menu::findOrFail($id); // Retrieve the menu item by ID
+
+		if ($request->hasFile('image')) {
+			$imagePath = $request->file('image')->store('menus', 'public');
+			$menu->image = $imagePath;
+		}
+
+		$menu->name = $validated['name'];
+		$menu->description = $validated['description'];
+		$menu->start_time = $validated['start_time'];
+		$menu->end_time = $validated['end_time'];
+		$menu->days_active = json_encode($validated['days_active']);
+		$menu->restaurant_id = $request->restaurant_id ?? '5';
+
+		$menu->save();
+
+		return redirect()->route('admin.menus.index')->with('success', 'Menu updated successfully!');
+	}
+
+	public function destroy($id)
+	{
+		$menu = Menu::findOrFail($id);
+
+		if ($menu->image) {
+			Storage::disk('public')->delete($menu->image);
+		}
+
+		$menu->delete();
+
+		return redirect()->route('admin.menus.index')->with('success', 'Menu deleted successfully.');
+	}
+	public function show($id)
+	{
+		$menu = Menu::findOrFail($id);
+
+		if ($menu->image) {
+			Storage::disk('public')->delete($menu->image);
+		}
+
+		$menu->delete();
+
+		return redirect()->route('admin.menus.index')->with('success', 'Menu deleted successfully.');
 	}
 }

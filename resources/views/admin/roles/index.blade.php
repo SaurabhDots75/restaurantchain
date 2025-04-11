@@ -9,6 +9,9 @@
                     <h2>Roles</h2>
                 </div>
                 <div class="pull-right">
+                    <button class="view-btn dropdown-toggle mr-2" type="button" data-bs-toggle="collapse" data-bs-target="#searchCollapse">
+                        Search
+                    </button>
                     @can('role-create')
                     <a class="view-btn" href="{{ route('admin.roles.create') }}"><i class="fa fa-plus"></i> Create Role</a>
                     @endcan
@@ -20,6 +23,34 @@
             {{ $value }}
         </div>
         @endsession
+
+        <div class="collapse {{ request()->except('page') ? 'show' : '' }}" id="searchCollapse">
+            <div class="card card-body">
+                <form action="{{ route('admin.roles.index') }}" method="GET">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="name" class="form-control" value="{{ request('name') }}" placeholder="Enter name">
+                        </div>
+        
+                    
+                      
+                    </div>
+        
+                    <div class="row mt-3">
+                        <div class="col-lg-12 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="la la-search"></i> Search
+                            </button>
+                            <a href="{{ route('admin.roles.index') }}" class="btn btn-secondary">
+                                <i class="la la-close"></i> Clear Search
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
         <div class="tablescroll-tableroll">
             <table class="management-table table table-bordered">
                 <tr>
@@ -42,7 +73,7 @@
                         <a class="btn btn-info btn-sm" href="{{ route('admin.roles.show',$role->id) }}"><i
                                 class="fa-solid fa-eye"></i></a>
                         @can('role-edit')
-                        <a class="btn btn-primary btn-sm" href="{{ route('admin.roles.edit',$role->id) }}"><i
+                        <a class="btn btn-primary btn-sm" href="{{ route('admin.roles.edit', base64_encode($role->id)) }}"><i
                                 class="fa-solid fa-pen-to-square"></i></a>
                         @endcan
 

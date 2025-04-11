@@ -2,33 +2,77 @@
 
 @section('content')
 <div class="dashboard-panel">
-<h2 class="card-header">Show User</h2>
-<a class="view-btn" href="{{ route('admin.users.index') }}"><i class="fa fa-arrow-left"></i> Back</a>
-<div class="showuser">
+    <h2 class="card-header">Show User</h2>
+    <a class="view-btn" href="{{ route('admin.users.index') }}">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+
+    <div class="showuser">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Name:</strong>
-                    {{ $user->name }}
+
+            @if (!empty($user->name))
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <strong>Name:</strong> {{ $user->name }}
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
-                <div class="form-group">
-                    <strong>Email:</strong> 
-                    <span class="emailusername">{{ $user->email }}</span>
+            @endif
+
+            @if (!empty($user->email))
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <strong>Email:</strong> <span class="emailusername">{{ $user->email }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
-                <div class="form-group">
-                    <strong>Roles:</strong>
-                    @if(!empty($user->getRoleNames()))
-                    @foreach($user->getRoleNames() as $v)
-                    <label>{{ $v }}</label>
-                    @endforeach
-                    @endif
+            @endif
+
+            @if (!empty($user->phone))
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <strong>Phone:</strong> {{ $user->phone }}
+                    </div>
                 </div>
-            </div>
+            @endif
+
+            @if (!empty($user->address))
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <strong>Address:</strong> {{ $user->address }}
+                    </div>
+                </div>
+            @endif
+
+            @if (!empty($user->getRoleNames()) && $user->getRoleNames()->isNotEmpty())
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <strong>Roles:</strong>
+                        @foreach($user->getRoleNames() as $role)
+                            <label class="badge bg-primary">{{ $role }}</label>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
+            @if (!empty($user->restaurant))
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <strong>Restaurant:</strong> {{ $user->restaurant->name }}
+                    </div>
+                </div>
+            @endif
+
+            @if (!empty($user->profile_image))
+                <div class="col-md-12 mt-3">
+                    <div class="form-group">
+                        <strong>Profile Image:</strong><br>
+                        <a href="{{ Storage::url($user->profile_image) }}" data-fancybox="gallery" data-caption="Profile Image">
+                            <img src="{{ Storage::url($user->profile_image) }}" alt="Profile Image" width="100" style="cursor:pointer;">
+                        </a>
+                    </div>
+                </div>
+            @endif
+
         </div>
+    </div>
 </div>
-</div>
-    @endsection
+@endsection

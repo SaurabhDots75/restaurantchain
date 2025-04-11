@@ -25,7 +25,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    // use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -45,7 +45,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except(['logout', 'verifyotp' ,'verifyotpsubmit']);
+        // $this->middleware('guest')->except(['logout', 'verifyotp' ,'verifyotpsubmit']);
     }
 
     /**
@@ -53,6 +53,13 @@ class LoginController extends Controller
      *
      * @return RedirectResponse
      */
+
+     public function showLoginForm()
+     {
+         return view('auth.login');
+     }
+
+
     public function login(Request $request): RedirectResponse
     {
         $input = $request->all();
@@ -63,14 +70,12 @@ class LoginController extends Controller
         ]);
         if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
             $user = Auth::user();
-            $otp = rand(100000, 999999);
-            Otp::updateOrCreate(
-                ['user_id' => $user->id],
-                ['otp_code' => $otp, 'expires_at' => Carbon::now()->addMinutes(10)]
-            );
+            session()->flash('success', 'Login successful!');
 
-            Session::put('mfa_user_id', $user->id);
-            return redirect()->route('admin.verifyotp');
+            if ($user->hasRole('Restaurant')) {
+                return redirect()->route('restaurant.dashboard');
+            }
+            return redirect()->route('admin.home');
         } else {
             return redirect()->route('admin.login')
                 ->with('error', 'The email address or password you entered is incorrect.');
@@ -111,9 +116,12 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         auth()->logout();
+        
         // Invalidate the session and regenerate the CSRF token
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/admin/login'); // Change '/admin/login' to your desired path
+        session()->flash('success', 'You have been logged out successfully');
+
+        return redirect()->route('admin.login'); // Change '/admin/login' to your desired path
     }
 }
