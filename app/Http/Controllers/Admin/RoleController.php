@@ -19,10 +19,10 @@ class RoleController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:role-create', ['only' => ['create','store']]);
-         $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-         $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:roles-index|roles-create|roles-edit|roles-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:roles-create', ['only' => ['create','store']]);
+         $this->middleware('permission:roles-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:roles-delete', ['only' => ['destroy']]);
     }
     
     /**
@@ -30,13 +30,31 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+ 
     public function index(Request $request): View
     {
-        $roles = Role::whereNotIn('name', ['Super Admin', 'Admin'])->paginate(10);
-        return view('admin.roles.index',compact('roles'))
+        $query = Role::query()->whereNotIn('name', ['Super Admin', 'Admin']);
+        $searchVariable = [];
+    
+        $searchData = $request->except(['display', '_token', 'order', 'sortBy', 'page']);
+    
+        foreach ($searchData as $fieldName => $fieldValue) {
+            if (!empty($fieldValue)) {
+                if ($fieldName == "name") {
+                    $query->where("name", 'like', '%' . $fieldValue . '%');
+                } 
+                $searchVariable[$fieldName] = $fieldValue;
+            }
+        }
+    
+        $roles = $query->latest()->paginate(10)->appends($searchVariable);
+    
+        return view('admin.roles.index', compact('roles', 'searchVariable'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
     }
     
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -44,8 +62,10 @@ class RoleController extends Controller
      */
     public function create(): View
     {
-        $permission = Permission::get();
-        return view('admin.roles.create',compact('permission'));
+        $permissions = Permission::all()->groupBy(function ($permission) {
+            return ucfirst(explode('-', $permission->name)[0]); 
+        });
+        return view('admin.roles.create',compact('permissions'));
     }
     
     /**
@@ -96,13 +116,18 @@ class RoleController extends Controller
      */
     public function edit($id): View
     {
-        $role = Role::find($id);
-        $permission = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+        $role = Role::find(base64_decode($id));
+
+        $permissions = Permission::all()->groupBy(function ($permission) {
+            return ucfirst(explode('-', $permission->name)[0]);
+        });
+
+
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",base64_decode($id))
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
     
-        return view('admin.roles.edit',compact('role','permission','rolePermissions'));
+        return view('admin.roles.edit',compact('role','permissions','rolePermissions'));
     }
     
     /**

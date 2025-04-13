@@ -11,14 +11,18 @@ class Order extends Model
     protected $fillable = [
         'restaurant_id',
         'user_id',
-        'status', // pending, preparing, completed, cancelled
         'total_price',
-        'payment_status', // paid, unpaid, refunded
+        'wallet_redeemed',
+        'status',
+        'order_type',
+        'source',
+        'table_number',
+        'delivery_address',
+        'notes',
     ];
-
     public function restaurant()
     {
-        return $this->belongsTo(Restaurant::class);
+        return $this->belongsTo(Restaurant::class); // Or User::class if restaurant is a user
     }
 
     /**
@@ -28,12 +32,11 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
-
     /**
      * Relationship with Order Items
      */
-    // public function orderItems()
-    // {
-    //     return $this->hasMany(OrderItem::class);
-    // }
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

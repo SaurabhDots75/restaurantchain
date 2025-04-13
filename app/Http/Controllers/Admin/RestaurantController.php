@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RestaurantController extends Controller
 {
+
     public $model = 'restaurants';
 
     public function __construct(Restaurant $restaurant)
@@ -24,10 +26,35 @@ class RestaurantController extends Controller
      */
     public function index(Request $request): View
     {
-        $restaurants = Restaurant::latest()->paginate(10);
-        return view('admin.restaurants.index', compact('restaurants'))
+        $query = Restaurant::query();
+        $searchVariable = [];
+        $searchData = $request->except(['display', '_token', 'order', 'sortBy', 'page']);
+
+        foreach ($searchData as $fieldName => $fieldValue) {
+            if (!empty($fieldValue)) {
+                if ($fieldName == "name") {
+                    $query->where("name", 'like', '%' . $fieldValue . '%');
+                } elseif ($fieldName == "email") {
+                    $query->where("email", 'like', '%' . $fieldValue . '%');
+                } elseif ($fieldName == "address") {
+                    $query->where("address", 'like', '%' . $fieldValue . '%');
+                } elseif ($fieldName == "phone") {
+                    $query->where("phone", 'like', '%' . $fieldValue . '%');
+                }
+
+                $searchVariable[$fieldName] = $fieldValue;
+            }
+        }
+
+        $query = $query->orderBy('created_at', 'desc');
+
+        $restaurants = $query->paginate($request->input('per_page', 10));
+
+
+        return view('admin.restaurants.index', compact('restaurants', 'searchVariable'))
             ->with('i', ($request->input('page', 1) - 1) * 10);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,23 +70,52 @@ class RestaurantController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:500',
-            'phone' => 'required|digits_between:10,15|unique:restaurants,phone',
-            'email' => 'required|email|unique:restaurants,email',
+            'name'               => 'required|string|max:255',
+            'address'            => 'required|string|max:500',
+            'phone'              => 'required|digits_between:10,15|unique:restaurants,phone',
+            'email'              => 'required|email|unique:restaurants,email',
+            'city'               => 'nullable|string|max:255',
+            'state'              => 'nullable|string|max:255',
+            'country'            => 'nullable|string|max:255',
+            'zip_code'           => 'nullable|string|max:20',
+            'description'        => 'nullable|string|max:1000',
+            'opening_time'       => 'nullable|date_format:H:i',
+            'closing_time'       => 'nullable|date_format:H:i',
+            'registration_number' => 'nullable|string|max:255',
+            'website_url'        => 'nullable|url|max:255',
+            'delivery_enabled'   => 'nullable',
+            'dine_in_enabled'    => 'nullable',
+            'pickup_enabled'     => 'nullable',
+            'logo'               => 'nullable|image|mimes:jpg,jpeg,png,bmp,gif,svg|max:2048',
+            'cover_image'        => 'nullable|image|mimes:jpg,jpeg,png,bmp,gif,svg|max:2048',
         ]);
-    
+
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
-    
-        Restaurant::create($request->all());
-    
-        return redirect()->route('admin.restaurants.index')->with('success', 'Restaurant created successfully.');
+
+        
+        $input = $request->all();
+
+        
+        if ($request->hasFile('logo')) {
+            $input['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        if ($request->hasFile('cover_image')) {
+            $input['cover_image'] = $request->file('cover_image')->store('cover_images', 'public');
+        }
+
+        
+        Restaurant::create($input);
+
+        
+        return redirect()->route('admin.restaurants.index')
+            ->with('success', 'Restaurant created successfully.');
     }
-    
+
     /**
      * Display the specified resource.
      */
@@ -84,33 +140,69 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        // Find the restaurant
         $restaurant = Restaurant::findOrFail($id);
-    
-        // Custom validation rules
+
+        
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:500',
-            'phone' => "required|digits_between:10,15|unique:restaurants,phone,$id",
-            'email' => "required|email|unique:restaurants,email,$id",
+            'name'               => 'required|string|max:255',
+            'address'            => 'required|string|max:500',
+            'phone'              => "required|digits_between:10,15|unique:restaurants,phone,$id",
+            'email'              => "required|email|unique:restaurants,email,$id",
+            'city'               => 'nullable|string|max:255',
+            'state'              => 'nullable|string|max:255',
+            'country'            => 'nullable|string|max:255',
+            'zip_code'           => 'nullable|string|max:20',
+            'description'        => 'nullable|string|max:1000',
+            'opening_time'       => 'nullable|date_format:H:i',
+            'closing_time'       => 'nullable|date_format:H:i',
+            'registration_number' => 'nullable|string|max:255',
+            'website_url'        => 'nullable|url|max:255',
+            'delivery_enabled'   => 'nullable',
+            'dine_in_enabled'    => 'nullable',
+            'pickup_enabled'     => 'nullable',
+            'logo'               => 'nullable|image|mimes:jpg,jpeg,png,bmp,gif,svg|max:2048',
+            'cover_image'        => 'nullable|image|mimes:jpg,jpeg,png,bmp,gif,svg|max:2048',
         ]);
-    
-        // If validation fails, redirect back with errors
+
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }
-    
-        // Update restaurant details
-        $restaurant->update([
-            'name' => $request->input('name'),
-            'address' => $request->input('address'),
-            'phone' => $request->input('phone'),
-            'email' => $request->input('email'),
-        ]);
-    
-        // Redirect back with success message
-        return redirect()->route('admin.restaurants.index')->with('success', 'Restaurant updated successfully.');
+
+        
+        $input = $request->all();
+
+        
+        if ($request->hasFile('logo')) {
+            
+            if ($restaurant->logo) {
+                Storage::delete('public/' . $restaurant->logo);
+            }
+
+            
+            $input['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        
+        if ($request->hasFile('cover_image')) {
+            
+            if ($restaurant->cover_image) {
+                Storage::delete('public/' . $restaurant->cover_image);
+            }
+
+            
+            $input['cover_image'] = $request->file('cover_image')->store('cover_images', 'public');
+        }
+
+        
+        $restaurant->update($input);
+
+        
+        return redirect()->route('admin.restaurants.index')
+            ->with('success', 'Restaurant updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -125,6 +217,15 @@ class RestaurantController extends Controller
             return response()->json(['success' => true], 200);
         }
 
-        return response()->json(['success' => false, 'message' => 'Restaurant not found'], 404);
+        return response()->json(['error' => false, 'message' => 'Restaurant not found'], 404);
+    }
+
+    public function toggleStatus(Request $request)
+    {
+        $restaurant = Restaurant::findOrFail($request->id);
+        $restaurant->is_active = $request->is_active;
+        $restaurant->save();
+
+        return response()->json(['message' => 'Status updated']);
     }
 }

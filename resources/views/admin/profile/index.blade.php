@@ -7,11 +7,7 @@
         <h2>Edit User</h2>
     </div>
 </div>
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
 
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -25,7 +21,7 @@
 @endif
 
 <div class="edituserform">
-<form method="POST" action="{{ route('admin.profile.update', auth()->user()->id) }}">
+<form method="POST" action="{{ route('admin.profile.update', auth()->user()->id) }}" enctype="multipart/form-data">
     @csrf
 
     <div class="edituserform-row">
@@ -35,7 +31,15 @@
                 <input type="text" name="name" placeholder="Name" class="form-control" value="{{ auth()->user()->name }}">
             </div>
 
-           
+            <div class="form-group">
+                <strong>Profile Image:</strong>
+                <input type="file" name="profile_image" class="form-control" accept="image/*">
+                @if (auth()->user()->profile_image)
+                    <a href="{{ Storage::url(auth()->user()->profile_image) }}" data-fancybox="gallery" data-caption="Profile Image">
+                        <img src="{{ Storage::url(auth()->user()->profile_image) }}" alt="Profile Image" width="100" style="cursor: pointer;">
+                    </a>
+                @endif
+            </div>
 
             <div class="form-group">
                 <strong>Email:</strong>

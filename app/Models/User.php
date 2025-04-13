@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Traits\HasPermissions;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles ,  HasPermissions;
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +27,10 @@ class User extends Authenticatable
         'phone',
         'two_factor_secret',
         'restaurant_id',
-        'phone_verified_at',
+        'address',
+        'is_active',
+        'profile_image',
+        'is_deleted',
     ];
 
  
@@ -62,12 +66,12 @@ class User extends Authenticatable
      * @param  string  $value
      * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
-    protected function type(): Attribute
-    {
-        return new Attribute(
-            get: fn ($value) =>  ["user", "admin", "manager"][$value],
-        );
-    }
+    // protected function type(): Attribute
+    // {
+    //     return new Attribute(
+    //         get: fn ($value) =>  ["user", "admin", "manager"][$value],
+    //     );
+    // }
 
     public function restaurant()
     {

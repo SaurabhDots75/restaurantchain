@@ -30,25 +30,35 @@ class ProfileController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'password' => 'same:confirm-password',
+            'password' => [
+                'nullable', 
+                'string',
+                'min:8',
+                'same:confirm-password',
+                'regex:/[a-z]/',     
+                'regex:/[A-Z]/',      
+                'regex:/[0-9]/',      
+                'regex:/[@$!%*?&]/',  
+            ],
         ]);
-
-
-        if ($request->hasFile('profile_pic')) {
-            $image = '';
-            $uploadpath = public_path().'/images/profile_pic';
-            $request->file('profile_pic')->getClientOriginalName();
-            if (!empty($request->file('profile_pic'))) {
-                $image_prefix = 'profile_pic_' . rand(0, 999999999) . '_' . date('d_m_Y_h_i_s');
-                $ext = $request->file('profile_pic')->getClientOriginalExtension();
-                $image = $image_prefix . '.' . $ext;
-                $request->file('profile_pic')->move($uploadpath, $image);
-            }
-        } else {
-            $value = $request->profile_pic_bk;
-        }
-    
         $input = $request->all();
+
+
+     
+        if ($request->hasFile('profile_image')) {
+            $image_prefix = 'profile_pic_' . rand(0, 999999999) . '_' . date('d_m_Y_h_i_s');
+            $ext = $request->file('profile_image')->getClientOriginalExtension();
+            $imageName = $image_prefix . '.' . $ext;
+        
+            $filePath = $request->file('profile_image')->storeAs('profile_images', $imageName, 'public');
+        
+            // Save path relative to the "public" disk
+            $input['profile_image'] = $filePath;
+        } else {
+            $input = Arr::except($input, ['profile_image']);
+        }
+        
+    
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
