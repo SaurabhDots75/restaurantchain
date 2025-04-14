@@ -12,7 +12,7 @@
                             data-bs-target="#searchCollapse">
                             Search
                         </button>
-                        @can('user-create')
+                        @can('staff-create')
                             <a class="view-btn" href="{{ route('admin.staff.create') }}">
                                 Create New Staff</a>
                         @endcan
@@ -91,9 +91,9 @@
                                         href="{{ route('admin.staff.edit', base64_encode($user->id)) }}"><i
                                             class="fa-solid fa-pen-to-square"></i></a>
                                 @endcan
-                                {{-- @can('user-delete')
-                    <a id="delete-record{{$user->id}}" href="javascript:void(0)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
-                @endcan --}}
+                                @can('staff-destroy')
+                                        <a id="delete-record{{$user->id}}" href="javascript:void(0)" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i></a>
+                                    @endcan
                             </td>
                         </tr>
                     @endforeach
@@ -108,6 +108,7 @@
         $(document).ready(function() {
             $(document).on('click', "[id^=delete-record]", function() {
                 var index = parseInt($(this).attr("id").replace("delete-record", ''));
+                var userId = $(this).attr("id").replace("delete-record", ''); 
                 console.log(index);
                 // Show a confirmation dialog
                 Swal.fire({
@@ -120,9 +121,8 @@
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Make an AJAX request to delete the record
                         $.ajax({
-                            url: "/admin/staff/destroy", // URL to your deletion endpoint
+                            url: "{{ route('admin.staff.destroy', ['staff' => 'userid']) }}".replace('userid', userId), // URL to your deletion endpoint
                             type: 'POST', // HTTP method (could also be DELETE)
                             data: {
                                 _method: 'DELETE', // Spoof the DELETE method

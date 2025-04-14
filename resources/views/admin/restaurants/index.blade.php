@@ -183,7 +183,7 @@
 
             $(document).on('click', "[id^=delete-recordrestaurant]", function() {
                 var index = parseInt($(this).attr("id").replace("delete-recordrestaurant", ''));
-
+                var userId = $(this).attr("id").replace("delete-recordrestaurant", ''); 
                 // Show a confirmation dialog
                 Swal.fire({
                     title: 'Are you sure?',
@@ -197,7 +197,7 @@
                     if (result.isConfirmed) {
                         // Make an AJAX request to delete the record
                         $.ajax({
-                            url: "/admin/restaurants/destroy", // URL to your deletion endpoint
+                            url: "{{ route('admin.restaurants.destroy', '__id__') }}".replace('__id__', userId),
                             type: 'POST', // HTTP method (could also be DELETE)
                             data: {
                                 _method: 'DELETE', // Spoof the DELETE method

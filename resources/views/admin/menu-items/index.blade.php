@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                        <h2>Menu Items</h2>
+                        <h2>Food Items</h2>
                     </div>
                     <div class="pull-right">
                         <button class="view-btn dropdown-toggle mr-2" type="button" data-bs-toggle="collapse"
@@ -14,7 +14,7 @@
                             Search
                         </button>
                         <a class="view-btn" href="{{ route('admin.menu-items.create') }}">
-                            Create Menu Item
+                            Create Food Item
                         </a>
                     </div>
                 </div>

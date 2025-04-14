@@ -14,60 +14,60 @@ return new class extends Migration
  
 
         // Payments table
-        if (Schema::hasColumn('payments', 'order_id')) {
-            Schema::table('payments', function (Blueprint $table) {
-                $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            });
-        }
+        // if (Schema::hasColumn('payments', 'order_id')) {
+        //     Schema::table('payments', function (Blueprint $table) {
+        //         $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        //     });
+        // }
 
         // Reviews table
-        Schema::table('reviews', function (Blueprint $table) {
-            if (Schema::hasColumn('reviews', 'user_id')) {
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            }
-            if (Schema::hasColumn('reviews', 'restaurant_id')) {
-                $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
-            }
-            if (Schema::hasColumn('reviews', 'menu_item_id')) {
-                $table->foreign('menu_item_id')->references('id')->on('menu_items')->onDelete('cascade');
-            }
-        });
+        // Schema::table('reviews', function (Blueprint $table) {
+        //     if (Schema::hasColumn('reviews', 'user_id')) {
+        //         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        //     }
+        //     if (Schema::hasColumn('reviews', 'restaurant_id')) {
+        //         $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+        //     }
+        //     if (Schema::hasColumn('reviews', 'menu_item_id')) {
+        //         $table->foreign('menu_item_id')->references('id')->on('menu_items')->onDelete('cascade');
+        //     }
+        // });
 
         // Users table
-        if (Schema::hasColumn('users', 'restaurant_id')) {
-            Schema::table('users', function (Blueprint $table) {
-                $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
-            });
-        }
+        // if (Schema::hasColumn('users', 'restaurant_id')) {
+        //     Schema::table('users', function (Blueprint $table) {
+        //         $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+        //     });
+        // }
 
      
 
         // Orders table
-        Schema::table('orders', function (Blueprint $table) {
-            if (Schema::hasColumn('orders', 'restaurant_id')) {
-                $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
-            }
-            if (Schema::hasColumn('orders', 'user_id')) {
-                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            }
-        });
+        // Schema::table('orders', function (Blueprint $table) {
+        //     if (Schema::hasColumn('orders', 'restaurant_id')) {
+        //         $table->foreign('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+        //     }
+        //     if (Schema::hasColumn('orders', 'user_id')) {
+        //         $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        //     }
+        // });
 
         // Order Items table
-        Schema::table('order_items', function (Blueprint $table) {
-            if (Schema::hasColumn('order_items', 'order_id')) {
-                $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            }
-            if (Schema::hasColumn('order_items', 'menu_item_id')) {
-                $table->foreign('menu_item_id')->references('id')->on('menu_items')->onDelete('cascade');
-            }
-        });
+        // Schema::table('order_items', function (Blueprint $table) {
+        //     if (Schema::hasColumn('order_items', 'order_id')) {
+        //         $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        //     }
+        //     if (Schema::hasColumn('order_items', 'menu_item_id')) {
+        //         $table->foreign('menu_item_id')->references('id')->on('menu_items')->onDelete('cascade');
+        //     }
+        // });
 
         // Order Statuses table
-        if (Schema::hasColumn('order_statuses', 'order_id')) {
-            Schema::table('order_statuses', function (Blueprint $table) {
-                $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            });
-        }
+        // if (Schema::hasColumn('order_statuses', 'order_id')) {
+        //     Schema::table('order_statuses', function (Blueprint $table) {
+        //         $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+        //     });
+        // }
     }
 
     /**

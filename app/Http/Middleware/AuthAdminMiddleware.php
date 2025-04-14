@@ -22,36 +22,51 @@ class AuthAdminMiddleware
         if (!Auth::check()) {
             return redirect()->route('admin.login');
         }
-
-        if (Auth::check() && Auth::user()->hasRole('Super Admin')) {
-            return $next($request);
-        }
-        if (Auth::check() && Auth::user()->hasRole('Customers')) {
-            Auth::logout(); 
+    
+        $user = Auth::user();
+        $routeName = Route::currentRouteName();
+        $cleanedRoute = str_replace('admin.', '', $routeName); // "users.index"
+        $currentPermission = str_replace('.', '-', $cleanedRoute); // "users-index"
+     
+        if ($user->hasRole('Customers')) {
+            Auth::logout();
             return redirect()->route('admin.login')->with('error', 'You are not allowed to access this area.');
         }
-
-      
-        $role = Auth::user()->roles->first();
-        $permissionNames = DB::table('role_has_permissions')
-        ->join('permissions', 'permissions.id', '=', 'role_has_permissions.permission_id')
-        ->where('role_has_permissions.role_id', $role->id)
-        ->pluck('permissions.name')
-        ->toArray();
-        $routeurl  = Route::currentRouteName();
-        
-        $cleanedRoute = str_replace('admin.', '', $routeurl); // "users.index"
-        $currentroute = str_replace('.', '-', $cleanedRoute); // "users-index"
-
-        if( Auth::user()->hasRole('Restaurant') && $currentroute == 'restaurant-dashboard' ){
+    
+        if ($user->hasRole('Super Admin')) {
+            if ($currentPermission === 'restaurant-dashboard') {
+                return redirect()->route('admin.home');
+            }
             return $next($request);
         }
-
-        if (!in_array($currentroute, $permissionNames)) {
+    
+        // If Restaurant
+        if ($user->hasRole('Restaurant')) {
+            // Redirect from admin home to restaurant dashboard
+            if ($currentPermission === 'home') {
+                return redirect()->route('admin.restaurant.dashboard');
+            }
+    
+            // Allow access to restaurant dashboard
+            if ($currentPermission === 'restaurant-dashboard') {
+                return $next($request);
+            }
+        }
+    
+        // Get permissions for the user's role
+        $role = $user->roles->first(); // Assuming single-role per user
+        $permissionNames = DB::table('role_has_permissions')
+            ->join('permissions', 'permissions.id', '=', 'role_has_permissions.permission_id')
+            ->where('role_has_permissions.role_id', $role->id)
+            ->pluck('permissions.name')
+            ->toArray();
+    
+        // Check permission for current route
+        if (!in_array($currentPermission, $permissionNames)) {
             abort(403, 'You are not authorized to access this page.');
         }
-      
-      
+    
         return $next($request);
     }
+    
 }

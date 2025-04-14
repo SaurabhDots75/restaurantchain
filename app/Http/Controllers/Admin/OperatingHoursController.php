@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OperatingHoursController extends Controller
 {
     public function index()
     {
-        $restaurants = Restaurant::all();
+        $query = Restaurant::query();
+        if (Auth::user()->hasRole('Restaurant')) {
+            $query->where('user_id', Auth::user()->id);
+        }
+        $restaurants = $query->get();
         return view('admin.operating-hours.index', compact('restaurants'));
     }
 
@@ -37,7 +42,6 @@ class OperatingHoursController extends Controller
             DB::commit();
             return redirect()->route('admin.operating-hours.index')
                 ->with('success', 'Operating hours updated successfully.');
-
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()

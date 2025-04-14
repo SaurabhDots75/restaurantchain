@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="collapse {{ request()->except('page') ? 'show' : '' }}" id="searchCollapse">
+            <div class="collapse {{ request()->except('page' ,'category_id') ? 'show' : '' }}" id="searchCollapse">
                 <div class="card card-body">
                     <form action="{{ route('admin.subcategory.index') }}" method="GET">
                         <div class="row">
@@ -29,17 +29,7 @@
                                 <input type="text" name="name" class="form-control" value="{{ request('name') }}"
                                     placeholder="Enter subcategory name">
                             </div>
-                            <div class="col-lg-4">
-                                <label class="form-label">Category</label>
-                                <select name="category_id" class="form-control">
-                                    <option value="">Select Category</option>
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                       
                             <div class="col-lg-4">
                                 <label class="form-label">Status</label>
                                 <select name="status" class="form-control">

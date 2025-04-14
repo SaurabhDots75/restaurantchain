@@ -21,7 +21,7 @@
             </div>
         @endif
         <div class="edituserform">
-            <form method="POST" action="{{ route('admin.staff.store') }}" id="userForm">
+            <form method="POST" action="{{ route('admin.staff.store') }}" id="userForm"enctype="multipart/form-data">
                 @csrf
 
                 <div class="edituserform-row">
@@ -35,6 +35,37 @@
                         <input type="email" name="email" placeholder="Email" class="form-control"
                             value="{{ old('email') }}">
                     </div>
+
+                    <div class="form-group">
+                        <strong>Phone:</strong>
+                        <input type="text" name="phone" placeholder="Phone Number" class="form-control" value="{{ old('phone') }}">
+                    </div>
+                    <div class="form-group">
+                        <strong>Role<span class="text-danger">* </span> </strong>
+                        <select name="roles[]" class="form-control" id="multiple">
+                            <option disabled {{ old('roles') ? '' : 'selected' }}>Select User Role</option>
+                            @foreach ($roles as $value => $label)
+                                <option value="{{ $label }}"
+                                    {{ in_array($value, old('roles', [])) ? 'selected' : '' }}>
+                                    {{ $label }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <strong>Profile Image:</strong>
+                        <input type="file" name="profile_image" class="form-control" accept="image/*">
+                    </div>
+            
+                    
+                    <div class="form-group">
+                        <strong>Address:</strong>
+                        <textarea name="address" placeholder="Address" class="form-control">{{ old('address') }}</textarea>
+                    </div>
+            
+
+
                     <div class="form-group">
                         <strong>Password<span class="text-danger">* </span> </strong>
                         <input type="password" name="password" placeholder="Password" class="form-control">
@@ -45,19 +76,7 @@
                         <input type="password" name="confirm-password" placeholder="Confirm Password" class="form-control">
                         <span class="input-icon show-password"><i class="fa-solid fa-eye"></i></span>
                     </div>
-                    <div class="form-group">
-                        <strong>Role<span class="text-danger">* </span> </strong>
-                        <select name="roles[]" class="form-control" id="multiple">
-                            <option disabled {{ old('roles') ? '' : 'selected' }}>Select User Role</option>
-                            @foreach ($roles as $value => $label)
-                                <option value="{{ $value }}"
-                                    {{ in_array($value, old('roles', [])) ? 'selected' : '' }}>
-                                    {{ $label }}
-                                </option>
-                            @endforeach
-                        </select>
-
-                    </div>
+                  
 
                     <div class="form-group" id="restaurant-field">
                         <label for="restaurant_id"><strong>Restaurant<span class="text-danger">* </span></strong></label>

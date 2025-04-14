@@ -34,6 +34,7 @@ use App\Http\Controllers\Admin\LookupsController;
 use App\Http\Controllers\Admin\MenuItemController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\Admin\RestaurantProfileController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\SubcategoryController;
 
@@ -96,13 +97,7 @@ use App\Http\Controllers\Admin\SubcategoryController;
 
 Route::prefix('/')->name('admin.')->group(function () {
 
-    // Service Type Management Routes
-    Route::get('service-type', [\App\Http\Controllers\Admin\ServiceTypeController::class, 'index'])->name('service-type.index');
-    Route::put('service-type', [\App\Http\Controllers\Admin\ServiceTypeController::class, 'update'])->name('service-type.update');
 
-    // Operating Hours Management
-    Route::get('operating-hours', [\App\Http\Controllers\Admin\OperatingHoursController::class, 'index'])->name('operating-hours.index');
-    Route::put('operating-hours', [\App\Http\Controllers\Admin\OperatingHoursController::class, 'update'])->name('operating-hours.update');
 
     Route::any('logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -132,7 +127,7 @@ Route::prefix('/')->name('admin.')->group(function () {
     --------------------------------------------
     --------------------------------------------*/
     Route::middleware(['auth', 'user-access:user'])->group(function () {
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
+        // Route::get('/home', [HomeController::class, 'index'])->name('home');
     });
 
     /*------------------------------------------
@@ -141,7 +136,7 @@ Route::prefix('/')->name('admin.')->group(function () {
     --------------------------------------------
     --------------------------------------------*/
     Route::middleware(['authadmin'])->group(function () {
-        
+
         Route::get('restaurant-dashboard', [HomeController::class, 'restaurantDashboard'])->name('restaurant.dashboard');
         Route::get('dashboard', [HomeController::class, 'adminHome'])->name('home');
         Route::resource('/roles', RoleController::class);
@@ -198,7 +193,7 @@ Route::prefix('/')->name('admin.')->group(function () {
         Route::post('image-gallery', [ImageGalleryController::class, 'upload'])->name('image-gallery');
         Route::delete('image-gallery-delete', [ImageGalleryController::class, 'destroy'])->name('image-gallery-delete');
 
-      
+
         Route::get('/upload-image', [ImageUploadController::class, 'index'])->name('upload.index');
         Route::post('/upload-image', [ImageUploadController::class, 'upload'])->name('upload.image');
         Route::get('/images/fetch', [ImageUploadController::class, 'fetchAll'])->name('images.fetch');
@@ -211,23 +206,36 @@ Route::prefix('/')->name('admin.')->group(function () {
 
 
         Route::get('general-settings', [GeneralSettingsController::class, 'index'])->name('general-settings');
- 
-        
-          // Email Templates Routes
-    Route::get('email-templates', [EmailTemplateController::class, 'index'])->name('email-templates.index');
-    Route::get('email-templates/create', [EmailTemplateController::class, 'create'])->name('email-templates.create');
-    Route::post('email-templates', [EmailTemplateController::class, 'store'])->name('email-templates.store');
-    Route::get('email-templates/{id}', [EmailTemplateController::class, 'show'])->name('email-templates.show');
-    Route::get('email-templates/{id}/edit', [EmailTemplateController::class, 'edit'])->name('email-templates.edit');
-    Route::put('email-templates/{id}', [EmailTemplateController::class, 'update'])->name('email-templates.update');
-    Route::delete('email-templates/{id}', [EmailTemplateController::class, 'destroy'])->name('email-templates.destroy');
-    Route::post('email-templates/{id}/toggle-status', [EmailTemplateController::class, 'toggleStatus'])->name('email-templates.toggle-status');
-    Route::get('email-templates/{id}/preview', [EmailTemplateController::class, 'preview'])->name('email-templates.preview');
 
-    // Email Logs Routes
-    Route::get('email-logs', [EmailLogController::class, 'index'])->name('email-logs.index');
-    Route::get('email-logs/{id}', [EmailLogController::class, 'show'])->name('email-logs.show');
- 
+
+        // Email Templates Routes
+        Route::get('email-templates', [EmailTemplateController::class, 'index'])->name('email-templates.index');
+        Route::get('email-templates/create', [EmailTemplateController::class, 'create'])->name('email-templates.create');
+        Route::post('email-templates', [EmailTemplateController::class, 'store'])->name('email-templates.store');
+        Route::get('email-templates/{id}', [EmailTemplateController::class, 'show'])->name('email-templates.show');
+        Route::get('email-templates/{id}/edit', [EmailTemplateController::class, 'edit'])->name('email-templates.edit');
+        Route::put('email-templates/{id}', [EmailTemplateController::class, 'update'])->name('email-templates.update');
+        Route::delete('email-templates/{id}', [EmailTemplateController::class, 'destroy'])->name('email-templates.destroy');
+        Route::post('email-templates/{id}/toggle-status', [EmailTemplateController::class, 'toggleStatus'])->name('email-templates.toggle-status');
+        Route::get('email-templates/{id}/preview', [EmailTemplateController::class, 'preview'])->name('email-templates.preview');
+
+        // Email Logs Routes
+        Route::get('email-logs', [EmailLogController::class, 'index'])->name('email-logs.index');
+        Route::get('email-logs/{id}', [EmailLogController::class, 'show'])->name('email-logs.show');
+
+        // Service Type Management Routes
+        Route::get('service-type', [\App\Http\Controllers\Admin\ServiceTypeController::class, 'index'])->name('service-type.index');
+        Route::put('service-type', [\App\Http\Controllers\Admin\ServiceTypeController::class, 'update'])->name('service-type.update');
+
+        // Operating Hours Management
+        Route::get('operating-hours', [\App\Http\Controllers\Admin\OperatingHoursController::class, 'index'])->name('operating-hours.index');
+        Route::put('operating-hours', [\App\Http\Controllers\Admin\OperatingHoursController::class, 'update'])->name('operating-hours.update');
+        
+
+        Route::get('restaurant-profile', [RestaurantProfileController::class, 'edit'])->name('restaurant-profile.edit');
+        Route::post('restaurant-profile', [RestaurantProfileController::class, 'update'])->name('restaurant-profile.update');
+
+   
     });
 
     /*------------------------------------------

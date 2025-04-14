@@ -6,11 +6,11 @@
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                        <h2>{{ isset($menuItem) ? 'Edit Menu Item' : 'Create Menu Item' }}</h2>
+                        <h2>{{ isset($menuItem) ? 'Edit Food Item' : 'Create Food Item' }}</h2>
                     </div>
                     <div class="pull-right">
                         <a class="view-btn" href="{{ route('admin.menu-items.index') }}">
-                            Back to Menu Items
+                            Back to Food Items
                         </a>
                     </div>
                 </div>

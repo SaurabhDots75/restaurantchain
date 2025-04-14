@@ -7,12 +7,18 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceTypeController extends Controller
 {
     public function index(): View
     {
-        $restaurants = Restaurant::all();
+        $query = Restaurant::query();
+
+        if(Auth::user()->hasRole('Restaurant')) {
+            $query->where('user_id', Auth::user()->id);
+        }
+        $restaurants = $query->get();
         return view('admin.service-type.index', compact('restaurants'));
     }
 

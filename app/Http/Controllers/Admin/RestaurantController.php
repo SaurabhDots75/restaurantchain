@@ -7,6 +7,7 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -27,6 +28,10 @@ class RestaurantController extends Controller
     public function index(Request $request): View
     {
         $query = Restaurant::query();
+
+        if(Auth::user()->hasRole('Restaurant')) {
+            $query->where('user_id', Auth::user()->id);
+        }
         $searchVariable = [];
         $searchData = $request->except(['display', '_token', 'order', 'sortBy', 'page']);
 
@@ -99,7 +104,7 @@ class RestaurantController extends Controller
         
         $input = $request->all();
 
-        
+        $input['user_id'] = Auth::user()->hasRole('Restaurant') ? Auth::user()->id : null;
         if ($request->hasFile('logo')) {
             $input['logo'] = $request->file('logo')->store('logos', 'public');
         }
@@ -109,7 +114,36 @@ class RestaurantController extends Controller
         }
 
         
-        Restaurant::create($input);
+        $restaurant = new Restaurant();
+
+        $restaurant->name = $request->name;
+        $restaurant->address = $request->address;
+        $restaurant->phone = $request->phone;
+        $restaurant->email = $request->email;
+        $restaurant->city = $request->city;
+        $restaurant->state = $request->state;
+        $restaurant->country = $request->country;
+        $restaurant->zip_code = $request->zip_code;
+        $restaurant->description = $request->description;
+        $restaurant->opening_time = $request->opening_time;
+        $restaurant->closing_time = $request->closing_time;
+        $restaurant->registration_number = $request->registration_number;
+        $restaurant->website_url = $request->website_url;
+        $restaurant->delivery_enabled = $request->delivery_enabled ?? '0';
+        $restaurant->dine_in_enabled = $request->dine_in_enabled ?? '0';
+        $restaurant->pickup_enabled = $request->pickup_enabled ?? '0';
+    
+        $restaurant->user_id = Auth::user()->hasRole('Restaurant') ? Auth::id() : null;
+    
+        if ($request->hasFile('logo')) {
+            $restaurant->logo = $request->file('logo')->store('logos', 'public');
+        }
+    
+        if ($request->hasFile('cover_image')) {
+            $restaurant->cover_image = $request->file('cover_image')->store('cover_images', 'public');
+        }
+    
+        $restaurant->save();
 
         
         return redirect()->route('admin.restaurants.index')
@@ -173,7 +207,7 @@ class RestaurantController extends Controller
         
         $input = $request->all();
 
-        
+        $input['user_id'] = Auth::user()->hasRole('Restaurant') ? Auth::user()->id : null;
         if ($request->hasFile('logo')) {
             
             if ($restaurant->logo) {

@@ -14,6 +14,7 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\ImageUpload;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class StaffController extends Controller
 {
@@ -23,7 +24,7 @@ class StaffController extends Controller
         $this->middleware('permission:staff-index|staff-create|staff-edit|staff-delete', ['only' => ['index', 'show']]);
         $this->middleware('permission:staff-create', ['only' => ['create', 'store']]);
         $this->middleware('permission:staff-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:staff-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:staff-destroy', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -43,6 +44,10 @@ class StaffController extends Controller
             $q->whereIn('name', ['Restaurant', 'Kitchen']);
         });
 
+        if(auth()->user()->hasRole('Restaurant')) {
+            $query->where('restaurant_id', Auth::user()->restaurant_id)
+            ->whereNotIn('id', [Auth::user()->id]);
+           }
 
         $searchData = $request->except(['display', '_token', 'order', 'sortBy', 'page']);
 
@@ -81,9 +86,17 @@ class StaffController extends Controller
      */
     public function create(): View
     {
-
-        $restaurants = Restaurant::where('is_active', 1)->get();
-        $roles = Role::whereIn('name', ['Restaurant', 'Kitchen'])->pluck('name', 'name')->all();
+        if(auth()->user()->hasRole('Restaurant')) {
+         $restaurants = Restaurant::where('id' , Auth::user()->restaurant_id)->where('is_active', 1)->get();
+        } else{
+            $restaurants = Restaurant::where('is_active', 1)->get();
+        }
+        if (auth()->user()->hasRole('Restaurant')) {
+            $roles = Role::whereNotIn('name', ['Super Admin', 'Restaurant'])->pluck('name')->all();
+        } else {
+            $roles = Role::whereNotIn('name', ['Super Admin'])->pluck('name')->all();
+        }
+    
         return view('admin.staff.create', compact('roles', 'restaurants'));
     }
 
@@ -96,12 +109,25 @@ class StaffController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'password' => ['required', 'string', 'min:8', 'same:confirm-password', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[@$!%*?&]/',],
-            'roles' => 'required|array',
+           'name'          => 'required|string|max:255',
+            'email'         => 'required|email|unique:users,email',
+            'password'      => [
+                'required',
+                'string',
+                'min:8',
+                'same:confirm-password',
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'regex:/[@$!%*?&]/',
+            ],
+            'roles'         => 'required|array',
+            'address'       => 'required',
+            'phone'         => 'required|string|max:15', // Add validation for phone
+            'profile_image' => 'nullable|image|mimes:jpg,jpeg,png,bmp,gif,svg|max:2048', // Add validation for profile image
             'restaurant_id' => 'required',
         ]);
+
 
 
         if ($validator->fails()) {
@@ -111,6 +137,10 @@ class StaffController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
+        if ($request->hasFile('profile_image')) {
+            $imagePath = $request->file('profile_image')->store('profile_images', 'public');
+            $input['profile_image'] = $imagePath; // Store the file path in the database
+        }
 
         $user = User::create($input);
         $user->assignRole($request->input('roles'));

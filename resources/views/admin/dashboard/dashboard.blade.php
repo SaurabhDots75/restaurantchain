@@ -6,75 +6,147 @@
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Dashboard</li>
     </ol>
-    <div class="row">
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-primary text-white mb-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>Users</div>
-                        <div class="h3">{{ \App\Models\User::count() }}</div>
+
+    {{-- Sales Overview --}}
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-success fs-3">
+                        <i class="fas fa-dollar-sign"></i>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{ route('admin.users.index') }}">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <div>
+                        <div class="text-muted">Today’s Sales</div>
+                        <div class="fs-5 fw-semibold">${{ $total_sales_today }}</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-warning text-white mb-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>Orders</div>
-                        <div class="h3">{{ \App\Models\Order::count() }}</div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-info fs-3">
+                        <i class="fas fa-calendar-week"></i>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{ route('admin.orders.index') }}">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <div>
+                        <div class="text-muted">This Week’s Sales</div>
+                        <div class="fs-5 fw-semibold">${{ $total_sales_week }}</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-success text-white mb-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>Products</div>
-                        <div class="h3">{{ \App\Models\Product::count() }}</div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-warning fs-3">
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-md-6">
-            <div class="card bg-danger text-white mb-4">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <div>Restaurants</div>
-                        <div class="h3">{{ \App\Models\Restaurant::count() }}</div>
+                    <div>
+                        <div class="text-muted">This Month’s Sales</div>
+                        <div class="fs-5 fw-semibold">${{ $total_sales_month }}</div>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{ route('admin.restaurants.index') }}">View Details</a>
-                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- Order Status Summary --}}
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-secondary fs-3">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted">Pending Orders</div>
+                        <div class="fs-5 fw-semibold">{{ $pending_orders }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-primary fs-3">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted">In Progress Orders</div>
+                        <div class="fs-5 fw-semibold">{{ $inprogress_orders ?? '0' }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-dark fs-3">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted">Completed Orders</div>
+                        <div class="fs-5 fw-semibold">{{ $completed_orders ?? '0' }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Order Type Summary --}}
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-success fs-3">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted">Dine-in Orders</div>
+                        <div class="fs-5 fw-semibold">{{ $dine_in_orders ?? '0' }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-danger fs-3">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted">Delivery Orders</div>
+                        <div class="fs-5 fw-semibold">{{ $delivery_orders ?? '0' }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="me-3 text-warning fs-3">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div>
+                        <div class="text-muted">Pickup Orders</div>
+                        <div class="fs-5 fw-semibold">{{ $pickup_orders ?? '0' }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Recent Orders --}}
     <div class="row">
         <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Recent Orders
+            <div class="card shadow-sm">
+                <div class="card-header bg-white fw-semibold">
+                    <i class="fas fa-receipt me-2"></i>Recent Orders
                 </div>
-                <div class="card-body">
+                <div class="card-body p-0">
                     <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
+                        <table class="table table-striped mb-0">
+                            <thead class="table-light">
                                 <tr>
                                     <th>Order ID</th>
                                     <th>Customer</th>
@@ -97,36 +169,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-6">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    Recent Users
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Registered</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach(\App\Models\User::latest()->take(5)->get() as $user)
-                                <tr>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->created_at->diffForHumans() }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
+
 @endsection

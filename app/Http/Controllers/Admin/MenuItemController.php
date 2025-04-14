@@ -8,6 +8,7 @@ use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class MenuItemController extends Controller
@@ -16,6 +17,10 @@ class MenuItemController extends Controller
     {
         $query = MenuItem::query();
 
+        
+        if(Auth::user()->hasRole('Restaurant')) {
+            $query->where('restaurant_id', Auth::user()->id);
+        }
         if ($request->filled('name')) {
             $query->where('name', 'like', '%' . $request->name . '%');
         }
@@ -31,7 +36,7 @@ class MenuItemController extends Controller
         $menuItems = $query->with(['category', 'menu', 'restaurant'])->paginate(10);
         $categories = Category::all();
         $restaurants = Restaurant::all();
-        return view('admin.menu-items.index', compact('menuItems', 'categories' ,'restaurants'));
+        return view('admin.menu-items.index', compact('menuItems', 'categories', 'restaurants'));
     }
     public function create()
     {
@@ -72,7 +77,7 @@ class MenuItemController extends Controller
             'is_veg' => $request->is_veg ?? '1',
             'preparation_time' => $request->preparation_time,
             'stock_quantity' => $request->stock_quantity,
-            
+
         ]);
 
         return redirect()->route('admin.menu-items.index')->with('success', 'Menu item created successfully.');
